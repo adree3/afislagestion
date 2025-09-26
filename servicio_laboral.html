@@ -1,0 +1,154 @@
+<style>
+.laboral-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+.laboral-img-box {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+.laboral-img {
+  width: 700px;
+  max-width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  display: block;
+}
+.laboral-servicios-box {
+  background: #f0fafa;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(46,125,50,0.13);
+  padding: 32px 26px;
+  min-width: 270px;
+  max-width: 320px;
+  margin-top: 0;
+  align-self: flex-start;
+  height: fit-content;
+}
+.laboral-servicios-box h2 {
+  color: #2e7d32;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  text-align: left;
+  letter-spacing: 1px;
+}
+.laboral-servicios-box ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 0;
+}
+.laboral-servicios-box li {
+  margin-bottom: 16px;
+}
+.laboral-servicios-box a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.15rem;
+  transition: color 0.2s;
+}
+.contable-servicios-box a.active,
+.contable-servicios-box a[aria-current="page"] {
+  text-decoration: none;
+}
+.laboral-content {
+  flex: 2 1 700px;
+  min-width: 400px;
+  max-width: 900px;
+  padding: 0 10px 30px 10px;
+  align-self: flex-start;
+}
+.laboral-content h1 {
+  color: #2e7d32;
+  font-size: 2.5rem;
+  margin-bottom: 22px;
+  text-align: left;
+}
+.laboral-content ul {
+  margin-top: 18px;
+  margin-bottom: 0;
+  padding-left: 28px;
+  font-size: 1.35rem;
+  color: #444;
+}
+.laboral-content > ul > li {
+  margin-bottom: 8px;
+}
+.laboral-content ul ul {
+  margin-top: 6px;
+  margin-bottom: 0;
+  padding-left: 22px;
+  font-size: 1.18rem;
+}
+.laboral-content ul ul li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+.laboral-content li {
+  line-height: 1.5;
+}
+.laboral-content p {
+  font-size: 1.35rem;
+  color: #444;
+  margin-bottom: 22px;
+}
+@media (max-width: 1200px) {
+  .laboral-container { flex-direction: column; gap: 24px; }
+  .laboral-img-box { flex-direction: column; gap: 18px; }
+  .laboral-img { width: 100%; height: 180px; }
+  .laboral-content { max-width: 100%; min-width: 0; }
+  .laboral-servicios-box { max-width: 100%; min-width: 0; }
+}
+</style>
+
+<section class="laboral-container">
+  <div class="laboral-img-box">
+    <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral Afisla" class="laboral-img">
+    <div class="laboral-servicios-box">
+      <h2>SERVICIOS</h2>
+      <ul>
+        <li><a href="#" onclick="loadSection('servicio_fiscal.html'); return false;">Asesoría Fiscal</a></li>
+        <li><a href="#", style="color: black;" class="active" aria-current="page">Asesoría Laboral </a></li>
+        <li><a href="#" onclick="loadSection('servicio_contable.html'); return false;">Asesoría Contable</a></li>
+        <li><a href="#" onclick="loadSection('servicio_herencias.html'); return false;">Herencias y Testamentaria</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="laboral-content">
+    <h1>Asesoría Laboral</h1>
+    <p>
+      En <strong>Afisla Gestión</strong> te acompañamos en la gestión laboral de tu empresa o actividad profesional, asegurando el cumplimiento de la normativa vigente y la tranquilidad de tu equipo. Nos encargamos de todos los trámites y documentación para que puedas centrarte en tu negocio.
+    </p>
+    <ul>
+      <li><strong>Gestionamos:</strong>
+        <ul>
+          <li>Seguros sociales</li>
+          <li>Altas y bajas en la seguridad social</li>
+          <li>Incapacidad temporal</li>
+          <li>Certificados de empresa</li>
+        </ul>
+      </li>
+      <li><strong>Elaboramos:</strong>
+        <ul>
+          <li>Contratos</li>
+          <li>Nóminas</li>
+          <li>Finiquitos</li>
+          <li>Despidos</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      Además, te asesoramos en la aplicación de convenios colectivos, prevención de riesgos laborales y resolución de conflictos. Nuestro equipo está siempre disponible para resolver tus dudas y ayudarte a tomar las mejores decisiones para tu empresa y tus empleados.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,131 @@
+<style>
+.presupuesto-container {
+  max-width: 520px;
+  margin: 40px auto 0 auto;
+  background: #f0fafa;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(46,125,50,0.11);
+  padding: 38px 32px 32px 32px;
+}
+.presupuesto-container h1 {
+  text-align: center;
+  color: #2e7d32;
+  font-size: 2.1rem;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.presupuesto-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #222;
+  font-weight: bold;
+  font-size: 1.08rem;
+}
+.presupuesto-form input,
+.presupuesto-form select,
+.presupuesto-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 1.08rem;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.presupuesto-form input:focus,
+.presupuesto-form select:focus,
+.presupuesto-form textarea:focus {
+  border-color: #2e7d32;
+  outline: none;
+}
+.presupuesto-form button {
+  width: 100%;
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 14px 0;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(46,125,50,0.10);
+  transition: background 0.2s, transform 0.2s;
+}
+.presupuesto-form button:hover {
+  background: #1b5e20;
+  transform: translateY(-2px) scale(1.03);
+}
+.presupuesto-form .confirmacion {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 18px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.08rem;
+  display: none;
+}
+</style>
+
+<div class="presupuesto-container">
+  <h1>Solicita tu presupuesto</h1>
+  <form class="presupuesto-form" id="form">
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" placeholder="Ej: Adrián Alonso" required>
+
+    <label for="correo">Correo electrónico</label>
+    <input type="email" name="correo" id="correo" placeholder="Ej: adrianalonso@gmail.com" required>
+
+    <label for="servicio">Servicio</label>
+    <select name="servicio" id="servicio" required>
+      <option value="">Selecciona un servicio</option>
+      <option value="fiscal">Asesoría Fiscal</option>
+      <option value="laboral">Asesoría Laboral</option>
+      <option value="contable">Asesoría Contable</option>
+      <option value="herencias">Herencias y Testamentaria</option>
+      <option value="otro">Otro</option>
+    </select>
+
+    <label for="detalles">Detalles para el presupuesto</label>
+    <textarea name="detalles" id="detalles" rows="5" placeholder="Ej: Necesito asesoramiento para mi declaración de impuestos..." required></textarea>
+
+    <input type="hidden" name="time" id="time" value="">
+
+    <button type="button" id="button">Enviar solicitud</button>
+    <div class="confirmacion" id="confirmacionMsg">
+      ¡Tu solicitud ha sido enviada! Nos pondremos en contacto contigo lo antes posible.
+    </div>
+  </form>
+</div>
+
+<script>
+const btn = document.getElementById('button');
+const form = document.getElementById('form');
+const confirmacion = document.getElementById('confirmacionMsg');
+
+btn.addEventListener('click', () => form.requestSubmit());
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  document.getElementById('time').value = new Date().toLocaleString();
+
+  btn.innerText = 'Enviando...';
+
+  const serviceID = 'default_service';
+  const templateID = 'template_f4kinzt';
+
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.innerText = 'Enviar solicitud';
+      confirmacion.style.display = 'block';
+      form.reset();
+    })
+    .catch((err) => {
+      btn.innerText = 'Enviar solicitud';
+      alert("Error al enviar el mensaje: " + JSON.stringify(err));
+    });
+});
+</script>
