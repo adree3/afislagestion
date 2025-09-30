@@ -1,458 +1,115 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Afisla Gestión</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      font-size: 18px; 
-      background: #f8fafc;
-    }
-    .top-bar {
-      background-color: #e8f5e9;
-      color: #2e7d32;
-      text-align: center;
-      padding: 8px;
-      font-size: 18px;
-      letter-spacing: 0.5px;
-      animation: fadeInDown 0.7s;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .contact-block {
-      background-color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 60px;
-      flex-wrap: wrap;
-      animation: fadeIn 1s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    .logo {
-      margin-left: 40px;
-    }
-    .logo img {
-      height: 110px;
-      transition: transform 0.3s;
-    }
-    .logo img:hover {
-      transform: scale(1.07) rotate(-2deg);
-    }
-    .contact-info {
-      display: flex;
-      gap: 60px;
-      font-size: 18px;
-      color: #444;
-      align-items: center;
-    }
-    .contact-info > div {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .contact-info svg {
-      width: 32px;
-      height: 32px;
-      fill: #2e7d32;
-      flex-shrink: 0;
-      transition: fill 0.2s;
-    }
-    .contact-info svg:hover {
-      fill: #1b5e20;
-    }
-    .phone-numbers {
-      display: flex;
-      flex-direction: column;
-    }
-    .phone-primary {
-      font-weight: bold;
-      color: #000;
-    }
-    .phone-secondary {
-      color: #777;
-    }
-    .address-main {
-      font-weight: bold;
-      color: #000;
-    }
-    .address-sub {
-      color: #777;
-      font-size: 15px;
-    }
-    .contact-actions button {
-      background-color: #2e7d32;
-      color: white;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.08rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .contact-actions button:hover {
-      background-color: #1b5e20;
-      box-shadow: 0 4px 16px rgba(46,125,50,0.18);
-      transform: translateY(-2px) scale(1.04);
-    }
-    .tapbar {
-      position: sticky;
-      top: 0;
-      background-color: #f0fafa;
-      display: flex;
-      justify-content: center;
-      border-top: 0.5px solid #eee;
-      border-bottom: 0.5px solid #eee;
-      z-index: 1000;
-      gap: 0;
-      animation: fadeInDown 0.7s;
-    }
-    .tapbar a, .tapbar-dropbtn {
-      text-align: center;
-      padding: 12px 25px;
-      text-decoration: none;
-      color: #444;
-      font-size: 18px;
-      font-weight: bold;
-      transition: color 0.3s;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .tapbar-sep {
-      color: #bbb;
-      align-self: center;
-      margin: 0 5px;
-      font-size: 18px;
-      user-select: none;
-      pointer-events: none;
-    }
-    .tapbar a:hover,
-    .tapbar-dropbtn:hover {
-      color: #5daa62;
-    }
-    .tapbar a::after,
-    .tapbar-dropbtn::after {
-      content: "";
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 100%;
-      height: 2px;
-      background: #5daa62;
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-    .tapbar a:hover::after,
-    .tapbar-dropbtn:hover::after {
-      transform: scaleX(1);
-    }
-    .tapbar a.active {
-      color: #5daa62;
-      border-bottom: 2px solid #5daa62;
-      font-weight: bold;
-      z-index: 2;
-    }
-    .tapbar-dropdown {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .tapbar-dropbtn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .tapbar-dropdown-content {
-      display: none;
-      position: absolute;
-      left: 50%;
-      top: 100%;
-      transform: translateX(-50%);
-      min-width: 260px;
-      background-color: #f0fafa;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
-      z-index: 1001;
-      border-radius: 0 0 8px 8px;
-      animation: fadeIn 0.3s;
-      white-space: nowrap;
-    }
-    .tapbar-dropdown-content a {
-      display: block;
-      padding: 14px 26px;
-      color: #444;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: normal;
-      border-bottom: 1px solid #eee;
-      background: none;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    .tapbar-dropdown-content a:last-child {
-      border-bottom: none;
-    }
-    .tapbar-dropdown-content a:hover {
-      background: #e8f5e9;
-      color: #2e7d32;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-    .tapbar-dropdown:hover .tapbar-dropdown-content {
-      display: block;
-    }
-    #main-content {
-      padding: 40px 20px;
-      opacity: 0;
-      transition: opacity 0.5s;
-      min-height: 400px;
-    }
-    #main-content.visible {
-      opacity: 1;
-    }
-    footer {
-      background: #374151;
-      color: #9ca3af;
-      text-align: center;
-      padding: 1rem;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      animation: fadeInUp 1s;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .card-servicio {
-      background: #f0fafa;
-      border-radius: 16px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-      width: 340px;
-      margin-bottom: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px;
-      text-decoration: none;
-      transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-    .card-servicio:hover {
-      background: rgba(46, 125, 50, 0.12);
-      box-shadow: 0 8px 28px rgba(46,125,50,0.18);
-      transform: translateY(-6px) scale(1.03);
-    }
-    .card-servicio img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 22px;
-      transition: transform 0.3s;
-    }
-    .card-servicio:hover img {
-      transform: scale(1.04);
-    }
-    .card-servicio h3 {
-      margin-bottom: 14px;
-      font-size: 1.35rem;
-      color: #222;
-      transition: text-decoration 0.2s;
-    }
-    .card-servicio:hover h3 {
-      text-decoration: underline;
-      text-decoration-color: #2e7d32;
-      text-underline-offset: 4px;
-    }
-    .card-servicio span {
-      color: #2e7d32;
-      font-weight: bold;
-      text-decoration: underline;
-      margin-top: 12px;
-      font-size: 1.08rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="top-bar">Te aseguramos la mejor calidad por nuestros años de experiencia.</div>
-  <div class="contact-block">
-    <div class="logo">
-      <img src="imagenes/logo.png" alt="Afisla Gestión">
-    </div>
-    <div class="contact-info">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.59.11.34.03.73-.24 1l-2.21 2.2z"/>
-        </svg>
-        <div class="phone-numbers">
-          <span class="phone-primary">983 811 842</span>
-          <span class="phone-secondary">685 131 806</span>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="description" content="AFISLA Gestión - Asesoría contable, fiscal y laboral. Profesionales a tu servicio.">
+    <title>Afisla Gestión</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="top-bar">Te aseguramos la mejor calidad por nuestros años de experiencia.</div>
+
+    <!-- 🔹 CABECERA -->
+    <div class="contact-block">
+      <div class="contact-left">
+        <div class="logo">
+          <img src="imagenes/logo.png" alt="Afisla Gestión">
         </div>
       </div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
-        </svg>
-        <div>
-          <div class="address-main">Calle Padilla, 25, 1º</div>
-          <div class="address-sub">47400, Medina del Campo</div>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">☰</button>
+      <div class="contact-right">
+        <div class="contact-info">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.59.11.34.03.73-.24 1l-2.21 2.2z"/>
+            </svg>
+            <div class="phone-numbers">
+              <span class="phone-primary">983 811 842</span>
+              <span class="phone-secondary">685 131 806</span>
+            </div>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
+            </svg>
+            <div>
+              <div class="address-main">Calle Padilla, 25, 1º</div>
+              <div class="address-sub">47400, Medina del Campo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <button onclick="loadSection('contacto/contacto.html')">Contáctanos</button>
         </div>
       </div>
-      <div class="contact-actions">
-        <button onclick="loadSection('contacto.html')">Contáctanos</button>
+
+    </div>
+
+    <!-- 🔹 MENÚ PRINCIPAL -->
+    <div class="tapbar-container">
+      <div class="tapbar" id="tapbar">
+        <a href="#" onclick="loadSection('inicio/inicio.html'); return false;">INICIO</a>
+        <span class="tapbar-sep">|</span>
+        <div class="tapbar-dropdown">
+          <a href="#" onclick="loadSection('servicios/servicios.html');return false;" class="tapbar-dropbtn">SERVICIOS</a>
+          <div class="tapbar-dropdown-content">
+            <a href="#" onclick="loadSection('servicios/apartados/servicio_fiscal.html'); return false;">Asesoramiento fiscal</a>
+            <a href="#" onclick="loadSection('servicios/apartados/servicio_laboral.html'); return false;">Asesoramiento laboral</a>
+            <a href="#" onclick="loadSection('servicios/apartados/servicio_contable.html'); return false;">Asesoramiento contable</a>
+            <a href="#" onclick="loadSection('servicios/apartados/servicio_herencias.html'); return false;">Herencias y testamentaria</a>
+          </div>
+        </div>
+        <span class="tapbar-sep">|</span>
+        <a href="#" onclick="loadSection('presupuestos/presupuestos.html'); return false;">PRESUPUESTOS</a>
+        <span class="tapbar-sep">|</span>
+        <a href="#" onclick="loadSection('ubicacion/ubicacion.html'); return false;">LOCALIZACIÓN</a>
+        <span class="tapbar-sep">|</span>
+        <a href="#" onclick="loadSection('contacto/contacto.html'); return false;">CONTACTANOS</a>
       </div>
     </div>
-  </div>
 
-  <div class="tapbar" id="tapbar">
-    <a href="#" onclick="loadSection('inicio.html'); return false;">INICIO</a>
-    <span class="tapbar-sep">|</span>
-    <div class="tapbar-dropdown">
-      <a href="#" onclick="loadSection('servicios.html'); return false;" class="tapbar-dropbtn">SERVICIOS</a>
-      <div class="tapbar-dropdown-content">
-        <a href="#" onclick="loadSection('servicio_fiscal.html'); return false;">Asesoramiento fiscal</a>
-        <a href="#" onclick="loadSection('servicio_laboral.html'); return false;">Asesoramiento laboral</a>
-        <a href="#" onclick="loadSection('servicio_contable.html'); return false;">Asesoramiento contable</a>
-        <a href="#" onclick="loadSection('servicio_herencias.html'); return false;">Herencias y testamentaria</a>
+    <!-- 🔹 MENÚ LATERAL (oculto por defecto en móvil) -->
+    <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
+
+  <!-- Menú lateral -->
+    <nav id="side-menu" class="side-menu">
+      <div class="menu-header">
+        <img src="imagenes/logo.png" alt="Afisla Gestión" class="menu-logo">
       </div>
-    </div>
-    <span class="tapbar-sep">|</span>
-    <a href="#" onclick="loadSection('presupuestos.html'); return false;">PRESUPUESTOS</a>
-    <span class="tapbar-sep">|</span>
-    <a href="#" onclick="loadSection('ubicacion.html'); return false;">LOCALIZACIÓN</a>
-    <span class="tapbar-sep">|</span>
-    <a href="#" onclick="loadSection('contacto.html'); return false;">CONTACTANOS</a>
-  </div>
 
-  <div id="main-content">
-  </div>
+      <ul class="menu-list">
+        <li><a href="#" onclick="loadSection('inicio/inicio.html'); toggleMenu(); return false;">Inicio</a></li>
 
-  <footer>
-    © 2024 Afisla Gestión. Todos los derechos reservados.
-  </footer>
+        <li class="menu-item has-submenu">
+          <a href="#" onclick="loadSection('servicios/servicios.html');">Servicios ▾</a>
+          <ul class="submenu">
+            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_fiscal.html'); toggleMenu(); return false;">Asesoramiento fiscal</a></li>
+            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_laboral.html'); toggleMenu(); return false;">Asesoramiento laboral</a></li>
+            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_contable.html'); toggleMenu(); return false;">Asesoramiento contable</a></li>
+            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_herencias.html'); toggleMenu(); return false;">Herencias y testamentaria</a></li>
+          </ul>
+        </li>
 
- <script>
-    function loadSection(fileName) {
-      localStorage.setItem('lastSection', fileName); 
-      const mainContent = document.getElementById('main-content');
-      mainContent.classList.remove('visible');
+        <li><a href="#" onclick="loadSection('presupuestos/presupuestos.html'); toggleMenu(); return false;">Presupuestos</a></li>
+        <li><a href="#" onclick="loadSection('ubicacion/ubicacion.html'); toggleMenu(); return false;">Localización</a></li>
+        <li><a href="#" onclick="loadSection('contacto/contacto.html'); toggleMenu(); return false;">Contáctanos</a></li>
+      </ul>
+    </nav>  
 
-      fetch(fileName)
-        .then(response => {
-          if (!response.ok) throw new Error('No se pudo cargar el archivo ' + fileName);
-          return response.text();
-        })
-        .then(data => {
-          mainContent.innerHTML = data;
-          setTimeout(() => mainContent.classList.add('visible'), 50);
-          updateActiveLink(fileName);
-          initForms();
-          initHorarios();
-        })
-        .catch(error => console.error(error));
-    }
+    <!-- 🔹 CONTENIDO DINÁMICO -->
+    <div id="main-content"></div>
 
-    function updateActiveLink(fileName) {
-      const navLinks = document.querySelectorAll('.tapbar a');
-      navLinks.forEach(link => link.classList.remove('active'));
+    <footer>© 2024 Afisla Gestión. Todos los derechos reservados.</footer>
 
-      const serviciosSub = [
-        'servicio_fiscal.html',
-        'servicio_laboral.html',
-        'servicio_contable.html',
-        'servicio_herencias.html'
-      ];
-
-      if (serviciosSub.includes(fileName)) {
-        const serviciosBtn = document.querySelector('.tapbar-dropbtn');
-        if (serviciosBtn) serviciosBtn.classList.add('active');
-      } else {
-        navLinks.forEach(link => {
-          if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(fileName)) {
-            link.classList.add('active');
-          }
-        });
-      }
-    }
-
-    function initForms() {
-      const btn = document.getElementById('button');
-      const form = document.getElementById('form');
-      const confirmacion = document.getElementById('confirmacionMsg');
-
-      if (!btn || !form) return;
-
-      btn.addEventListener('click', function() { form.requestSubmit(); });
-
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        document.getElementById('time').value = new Date().toLocaleString();
-        btn.innerText = 'Enviando...';
-        const serviceID = 'default_service';
-        const templateID = 'template_f4kinzt';
-
-        emailjs.sendForm(serviceID, templateID, this)
-          .then(() => {
-            btn.innerText = 'Enviar solicitud';
-            confirmacion.style.display = 'block';
-            form.reset();
-          }, (err) => {
-            btn.innerText = 'Enviar solicitud';
-            alert("Error al enviar el mensaje: " + JSON.stringify(err));
-          });
-      });
-    }
-
-    function initHorarios() {
-      const selector = document.getElementById('selectorHorario');
-      const tabla = document.getElementById('tablaHorario')?.getElementsByTagName('tbody')[0];
-      if (!tabla || !selector) return;
-
-      const horarios = {
-          invierno: ["9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00"],
-          verano: ["8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00"]
-      };
-      const dias = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
-
-      const mes = new Date().getMonth() + 1;
-      const temporada = (mes === 7 || mes === 8) ? 'verano' : 'invierno';
-      selector.value = temporada;
-
-      function actualizarTabla(temp) {
-          tabla.innerHTML = "";
-          dias.forEach((dia, i) => {
-              const row = tabla.insertRow();
-              row.insertCell(0).textContent = dia;
-              row.insertCell(1).textContent = horarios[temp][i];
-          });
-      }
-
-      actualizarTabla(temporada);
-
-      selector.addEventListener('change', () => {
-          actualizarTabla(selector.value);
-      });
-  }
-
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const lastSection = localStorage.getItem('lastSection') || 'inicio.html';
-      loadSection(lastSection);
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    emailjs.init("wg9yTCm6ET8eHCS3I"); 
-  </script>
-</body>
-</html>
+    <!-- 🔹 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init("wg9yTCm6ET8eHCS3I");
+    </script>
+    <script src="index.js"></script>
+    <script src="menu.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,375 @@
+/* ============ BASE GENERAL ============ */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  min-width: 400px; /* tamaño mínimo para móviles pequeños */
+}
+
+html { font-size:16px; scroll-behavior:smooth; }
+body { font-family: Arial, Helvetica, sans-serif; color:#333; background:#fff; line-height:1.6; }
+
+/* ============ TOP BAR ============ */
+.top-bar { background:#2e7d32; color:white; text-align:center; font-size:0.9rem; padding:0.5rem; }
+
+/* ============ BLOQUE DE CONTACTO (CABECERA) ============ */
+.contact-block {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  flex-wrap:wrap;
+  border-bottom:1px solid #ccc;
+}
+
+/* 🔹 Agrupación del logo + menú hamburguesa */
+.contact-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  max-width:190px;
+  height:auto;
+}
+
+/* 🔹 Botón menú hamburguesa (visible solo en móvil) */
+.menu-toggle {
+  margin-left: auto; /* empuja el botón al borde derecho */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background:none;
+  border:none;
+  color:#2e7d32;
+  cursor: pointer;
+  padding: 6px 20px;
+  border-radius: 6px;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.menu-toggle:hover { 
+  color:#256628; 
+  transform: scale(1.1);
+}
+.menu-toggle:focus {
+  outline: 2px solid rgba(46,125,50,0.15);
+  outline-offset: 2px; 
+}
+
+/* 🔹 Parte derecha de la cabecera */
+.contact-right {
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  flex-wrap:wrap;
+}
+
+.contact-info { 
+  display:flex; 
+  align-items:center; 
+  gap:2rem; 
+  flex-wrap:wrap; 
+}
+.contact-info svg { 
+  width:24px; 
+  height:24px; 
+  fill:#2e7d32; 
+  margin-right:0.5rem; 
+}
+.contact-info > div { 
+  display:flex; 
+  align-items:center;
+}
+.phone-numbers { 
+  display:flex; 
+  flex-direction:column; 
+  font-weight:bold; 
+}
+.phone-primary { 
+  color:#2e7d32; 
+}
+.address-main { 
+  font-weight:bold;
+}
+
+/* Botón de contacto */
+.contact-actions button {
+  background:#2e7d32;
+  color:white;
+  border:none;
+  padding:0.7rem 1.2rem;
+  cursor:pointer;
+  border-radius:4px;
+  font-size:1rem;
+  transition:background 0.3s;
+}
+.contact-actions button:hover { background:#256628; }
+
+/* ============ TAPBAR (MENÚ DE NAVEGACIÓN DESKTOP) ============ */
+.tapbar-container {
+  background:#f4f4f4;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+  position:relative;
+}
+
+.tapbar {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:0.8rem;
+  flex-wrap:wrap;
+}
+
+.tapbar a {
+  position: relative;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+/* Color de texto en hover o activo */
+.tapbar a:hover,
+.tapbar a.active {
+  color: #2e7d32;
+}
+.tapbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #2e7d32;
+  transition: width 0.3s ease;
+}
+
+/* Cuando pasas el ratón o está activo */
+.tapbar a:hover::after,
+.tapbar a.active::after {
+  width: 100%;
+}
+
+.tapbar-sep { margin:0 0.5rem; color:#aaa; }
+
+/* Dropdown */
+.tapbar-dropdown { position:relative; }
+.tapbar-dropdown-content {
+  display:none;
+  position:absolute;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  z-index:10;
+  flex-direction:column;
+}
+.tapbar-dropdown-content a {
+  display:block;
+  padding:0.5rem 1rem;
+  color:#333;
+  text-align:left;
+  white-space:nowrap;
+}
+.tapbar-dropdown-content a:hover {
+  background:#f1f1f1;
+  color:#2e7d32;
+}
+.tapbar-dropdown:hover .tapbar-dropdown-content { display:flex; } /* hover escritorio */
+.tapbar-dropdown.open .tapbar-dropdown-content { display:flex; } /* click móvil */
+
+/* ============ MENÚ LATERAL (DESLIZANTE) ============ */
+.side-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1500;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -280px; /* empieza oculto a la derecha */
+  width: 280px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* sombra desde la derecha */
+  transition: right 0.3s ease;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu.show { right: 0; }
+.side-menu-overlay.show { display: block; opacity: 1; }
+
+.menu-header {
+  background-color: #2e7d32;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+.menu-header img {
+  width: 250px;
+  height: auto;
+  display: inline-block;
+}
+
+/* Lista principal */
+.side-menu ul { list-style: none; padding: 0; margin: 0; }
+.side-menu ul li { border-bottom: 1px solid #eee; }
+
+.side-menu ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Hover y activo */
+.side-menu ul li a:hover,
+.side-menu ul li a.active {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Submenú */
+.has-submenu > a {
+  cursor: pointer;
+}
+
+.submenu {
+  display: none;
+  background-color: #f9f9f9;
+}
+
+.submenu li a {
+  padding-left: 2rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.submenu li a:hover,
+.submenu li a.active {
+  background-color: #e0f2f1;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Mostrar submenú al pasar el ratón */
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+/* ============ CONTENIDO PRINCIPAL Y FOOTER ============ */
+#main-content {
+  padding: 2rem;
+  min-height: 400px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+#main-content.visible { opacity: 1; }
+
+footer {
+  text-align:center;
+  background:#f4f4f4;
+  color:#555;
+  padding:1.2rem;
+  font-size:0.9rem;
+  border-top:1px solid #ccc;
+}
+
+/* ============ SCROLL-TO-TOP ============ */
+.scroll-top-btn {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#2e7d32;
+  color:white;
+  border:none;
+  padding:0.6rem 0.8rem;
+  font-size:1.2rem;
+  border-radius:50%;
+  cursor:pointer;
+  display:none;
+  z-index:999;
+}
+.scroll-top-btn.visible { display:block; }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width:1024px) {
+  .contact-block { flex-wrap:wrap; justify-content:space-between; padding:0.8rem 1.5rem; }
+  .contact-right { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  .menu-toggle { display: none; }
+}
+
+@media (max-width:768px) {
+  .contact-right { display: none !important; }
+  .tapbar-container { display: none; }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .contact-block { padding: 0.5rem 1rem; }
+  body.menu-open { overflow: hidden; height: 100vh; }
+}
+
+@media (max-width:480px) {
+  .logo img { max-width: 120px; }
+  .side-menu { width: 85%; }
+}
+
+/* Ocultar menú en desktop */
+@media (min-width:769px) {
+  .menu-toggle { display: none; }
+  .side-menu, .side-menu-overlay { display: none !important; }
+}
+
+/* === HEADER FIJO EN MÓVIL === */
+@media (max-width: 768px) {
+  .contact-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff; /* o puedes mantener la barra verde */
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 0.5rem 1rem;
+  }
+
+  /* Ajuste para que el contenido no quede tapado */
+  #main-content {
+    padding-top: 165px; /* altura aproximada de la cabecera */
+  }
+
+  .tapbar-container {
+    position: fixed;
+    top: 70px; /* justo debajo de la cabecera */
+    left: 0;
+    width: 100%;
+    z-index: 1900;
+    display: none; /* seguirá oculta en móvil */
+  }
+
+  body.menu-open #main-content {
+    overflow: hidden;
+  }
+}

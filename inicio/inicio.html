@@ -1,3 +1,4 @@
+
 <style>
 #inicio-hero {
   position: relative;
@@ -67,8 +68,8 @@
   margin-top: 55px;
 }
 .inicio-titulos .inicio-servicios-titulo {
-  font-size: 2rem;
-  color: #222;
+  font-size: 2.2rem;
+  color: #2e7d32;
   font-weight: bold;
   letter-spacing: 1px;
 }
@@ -77,21 +78,22 @@
 }
 .inicio-servicios-row {
   display: flex;
-  gap: 40px;
-  justify-content: center;
   flex-wrap: wrap;
-  flex-direction: row;
+  justify-content: center; /* centrará el último card */
+  gap: 40px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
-.inicio-servicios-row-centro {
-  display: flex;
-  justify-content: center;
-}
+
 .card-servicio {
   background: #f0fafa;
   border-radius: 16px;
   box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-  width: 340px;
-  margin-bottom: 40px;
+  width: 320px;
+  max-width: 100%;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,6 +117,7 @@
   margin-bottom: 14px;
   font-size: 1.35rem;
   color: #222;
+  text-align: center;
 }
 .card-servicio:hover h3 {
   text-decoration: underline;
@@ -128,6 +131,69 @@
   margin-top: 12px;
   font-size: 1.08rem;
 }
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1024px) {
+  .inicio-hero-contenido h1 {
+    font-size: 2.3rem;
+  }
+
+  .inicio-hero-contenido p {
+    font-size: 1.2rem;
+  }
+
+  .inicio-hero-contenido {
+    padding: 40px 30px;
+  }
+
+  .inicio-servicios-row {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  #inicio-hero {
+    min-height: 450px;
+  }
+
+  .inicio-hero-contenido h1 {
+    font-size: 2rem;
+  }
+
+  .inicio-hero-contenido p {
+    font-size: 1.1rem;
+  }
+
+  .card-servicio {
+    width: 80%;
+  }
+
+  .inicio-servicios-row {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inicio-hero-contenido {
+    padding: 30px 20px;
+  }
+
+  .inicio-hero-contenido h1 {
+    font-size: 1.7rem;
+  }
+
+  .inicio-hero-contenido p {
+    font-size: 1rem;
+  }
+
+  .card-servicio {
+    width: 90%;
+    padding: 24px;
+  }
+
+  .inicio-titulos .inicio-servicios-titulo {
+    font-size: 1.6rem;
+  }
+}
 </style>
 
 <section id="inicio-hero">
@@ -137,7 +203,7 @@
       Tu gestoría de confianza en Medina del Campo.<br>
       Trámites sencillos, atención cercana y soluciones profesionales.
     </p>
-    <button onclick="loadSection('ubicacion.html')">
+    <button onclick="loadSection('ubicacion/ubicacion.html')">
       ¿Dónde estamos?
     </button>
   </div>
@@ -158,25 +224,22 @@
 
 <section id="inicio-servicios">
   <div class="inicio-servicios-row">
-    <a href="#" class="card-servicio", onclick="loadSection('servicio_fiscal.html'); return false;">
+    <a href="#" class="card-servicio", onclick="loadSection('servicios/apartados/servicio_fiscal.html'); return false;">
       <img src="imagenes/asesoria_fiscal1.jpg" alt="Asesoría Fiscal">
       <h3>Asesoría Fiscal</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('servicio_laboral.html'); return false;">
+    <a href="#" class="card-servicio", onclick="loadSection('servicios/apartados/servicio_laboral.html'); return false;">
       <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
       <h3>Asesoría Laboral</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('servicio_contable.html'); return false;">
+    <a href="#" class="card-servicio", onclick="loadSection('servicios/apartados/servicio_contable.html'); return false;">
       <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
       <h3>Asesoría Contable</h3>
       <span>Leer más</span>
     </a>
-    
-  </div>
-  <div class="inicio-servicios-row-centro">
-    <a href="#" class="card-servicio", onclick="loadSection('servicio_herencias.html'); return false;">
+    <a href="#" class="card-servicio", onclick="loadSection('servicios/apartados/servicio_herencias.html'); return false;">
       <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
       <h3>Herencias y Testamentaria</h3>
       <span>Leer más</span>
