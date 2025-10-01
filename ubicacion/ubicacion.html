@@ -151,6 +151,130 @@
 .contact-info svg:hover {
     fill: #1b5e20;
 }
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(46,125,50,0.10); /* igual que los otros bloques */
+    background: black;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
+}
+
+.slider img.active {
+  transform: scale(1.02);
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  color: #2e7d32;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 8px; /* rectángulo redondeado */
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.arrow:hover {
+  background: #2e7d32;
+  color: white;
+}
+
+.arrow.left {
+  left: 12px;
+}
+
+.arrow.right {
+  right: 12px;
+}
+
+@media (max-width: 900px) {
+  .slider {
+    max-width: 100%;
+    height: 400px;
+  }
+  .arrow {
+    font-size: 1.6rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .slider {
+    height: 220px;
+  }
+  .arrow {
+    font-size: 1.4rem;
+    padding: 3px 8px;
+  }
+}
+
+/* ======== Responsive para el apartado de ubicación ======== */
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr; /* una sola columna */
+  }
+
+  .direccion {
+    order: 1; /* primero la dirección */
+  }
+
+  .fotos {
+    order: 2; /* debajo las fotos */
+    grid-template-columns: 1fr; /* una foto por fila */
+  }
+
+  .fotos img {
+    height: 220px;
+  }
+
+  .direccion h2 {
+    font-size: 1.8rem;
+  }
+
+  .direccion p, .direccion a {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .ubicacion-container {
+    padding: 10px;
+  }
+
+  .direccion {
+    padding: 15px;
+  }
+
+  .fotos img {
+    height: 200px;
+  }
+
+  .contact-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
 </style>
 
 <div class="ubicacion-container">
@@ -188,12 +312,18 @@
     </div>
         
 
-        <div class="fotos">
-            <img src="imagenes/afisla_porFuera.jpg" alt="Oficina 1">
-            <img src="imagenes/afisla_cartel.jpg" alt="Oficina 2">
-            <img src="imagenes/afisla_despacho_grande.jpg" alt="Oficina 3">
-            <img src="imagenes/afisla_mostrador.jpg" alt="Oficina 4">
-        </div>
+        <section class="slider" data-imagenes = '[
+            "imagenes/afisla_cartel.jpg",
+            "imagenes/afisla_puertaconlogoGrande.jpg",
+            "imagenes/afisla_despacho_grande.jpg",
+            "imagenes/afisla_puertaconlogo.jpg",
+            "imagenes/afisla_despacho_pequeño.jpg",
+        ]'>
+            <button class="arrow left">❮</button>
+            <img id="slider-img" src="imagenes/afisla_porFuera.jpg" alt="Imagen exterior">
+            <button class="arrow right">❯</button>
+        </section>
+
     </div>
 
     <h1>HORARIO</h1>

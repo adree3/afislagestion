@@ -14,6 +14,7 @@
           updateActiveLink(fileName);
           initForms();
           initHorarios();
+          initSlider();
         })
         .catch(error => console.error(error));
     }
@@ -119,5 +120,90 @@
       const submenu = event.target.nextElementSibling;
       submenu.classList.toggle('open');
     }
+    /* ===== Slider: una imagen, flechas + autoplay (inicializar tras cargar sección) ===== */
+    function initSlider() {
+      const slider = document.querySelector('.slider');
+      if (!slider) return; // nada que hacer si la página no tiene slider
 
+      const imgEl = slider.querySelector('#slider-img');
+      const leftBtn = slider.querySelector('.arrow.left');
+      const rightBtn = slider.querySelector('.arrow.right');
+
+      // leer lista de imágenes desde data-images si existe, sino usar fallback
+      let images = [];
+      try {
+        images = slider.dataset.images ? JSON.parse(slider.dataset.images) : [
+          "imagenes/afisla_cartel.jpg",
+          "imagenes/afisla_puertaconlogoGrande.jpg",
+          "imagenes/afisla_despacho_grande.jpg",
+          "imagenes/afisla_puertaconlogo.jpg",
+          "imagenes/afisla_despacho_pequeño.jpg"
+        ];
+      } catch (e) {
+        images = [
+          "imagenes/afisla_cartel.jpg",
+          "imagenes/afisla_puertaconlogoGrande.jpg",
+          "imagenes/afisla_despacho_grande.jpg",
+          "imagenes/afisla_puertaconlogo.jpg",
+          "imagenes/afisla_despacho_pequeño.jpg"
+        ];
+      }
+
+      // índice inicial (si el src del img coincide con alguno)
+      let idx = images.indexOf(imgEl.getAttribute('src'));
+      if (idx === -1) idx = 0;
+
+      // limpiar intervalos previos si los hubiera (evita duplicados al navegar)
+      if (slider._intervalId) {
+        clearInterval(slider._intervalId);
+        slider._intervalId = null;
+      }
+
+      function showIndex(newIndex) {
+        newIndex = ((newIndex % images.length) + images.length) % images.length; // normaliza
+        if (newIndex === idx) return;
+        // fade out -> cambiar src -> fade in
+        imgEl.style.transition = "opacity 0.5s ease";
+        imgEl.style.opacity = 0;
+        setTimeout(() => {
+          imgEl.src = images[newIndex];
+          idx = newIndex;
+          imgEl.style.opacity = 1;
+        }, 300);
+      }
+
+      function next() { showIndex(idx + 1); }
+      function prev() { showIndex(idx - 1); }
+
+      // listeners de flechas
+      if (leftBtn) leftBtn.addEventListener('click', () => { prev(); resetAuto(); });
+      if (rightBtn) rightBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+      // autoplay
+      function resetAuto() {
+        if (slider._intervalId) clearInterval(slider._intervalId);
+        slider._intervalId = setInterval(next, 7000);
+      }
+      slider._intervalId = setInterval(next, 7000);
+
+      // pausa al pasar el ratón (útil en desktop)
+      slider.addEventListener('mouseenter', () => {
+        if (slider._intervalId) {
+          clearInterval(slider._intervalId);
+          slider._intervalId = null;
+        }
+      });
+      slider.addEventListener('mouseleave', () => {
+        resetAuto();
+      });
+
+      // opcional: detectar cambio de visibilidad (pestaña) y detener autoplay
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (slider._intervalId) { clearInterval(slider._intervalId); slider._intervalId = null; }
+        } else {
+          resetAuto();
+        }
+      });
+    }
     
