@@ -70,24 +70,32 @@ body {
   flex-wrap:wrap;
 }
 
-.contact-info { 
-  display:flex; 
-  align-items:center; 
-  gap:2rem; 
-  flex-wrap:wrap; 
+.contact-info {
+  display: flex;
+  gap: 60px;
+  font-size: 18px;
+  color: #444;
+  align-items: center;
 }
 .contact-actions button {
-  font-size: 1rem; 
+  font-size: 1.2rem; 
 }
-.contact-info svg { 
-  width:24px; 
-  height:24px; 
-  fill:#2e7d32; 
-  margin-right:0.5rem; 
+.contact-info > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.contact-info > div { 
-  display:flex; 
-  align-items:center;
+
+.contact-info svg {
+  width: 32px;
+  height: 32px;
+  fill: #2e7d32;
+  flex-shrink: 0;
+  transition: fill 0.2s;
+}
+
+.contact-info svg:hover {
+  fill: #1b5e20;
 }
 .phone-numbers, .address-main { 
   font-size: 1.05rem;
@@ -107,19 +115,32 @@ body {
 /* Botón de contacto */
 .contact-actions button {
   background:#2e7d32;
-  color:white;
+  color:white; 
   border:none;
   padding:0.7rem 1.2rem;
   cursor:pointer;
   border-radius:4px;
-  font-size:1rem;
+  font-size:1.2rem;
   transition:background 0.3s;
 }
 .contact-actions button:hover { background:#256628; }
 
+.contact-actions:hover {
+  animation: shake 0.4s ease-in-out;
+  background: #1b5e20;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
 /* ============ TAPBAR (MENÚ DE NAVEGACIÓN DESKTOP) ============ */
 .tapbar-container {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 1);
   border: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   position: relative;
@@ -393,5 +414,40 @@ footer {
 
   body.menu-open #main-content {
     overflow: hidden;
+  }
+}
+:root {
+  --contact-block-height: 10.25rem;  /* altura bloque contacto */
+  --tapbar-height: 3.5rem;         /* altura tapbar (menú principal) */
+}
+
+/* ===== HEADER FIJO EN ESCRITORIO ===== */
+@media (min-width: 769px) {
+  .top-bar {
+    position: relative;
+    width: 100%;
+    z-index: 3000;
+  }
+
+  .contact-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 2900;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .tapbar-container {
+    position: fixed;
+    top: var(--contact-block-height);
+    left: 0;
+    width: 100%;
+    z-index: 2800;
+  }
+
+  #main-content {
+    padding-top: calc(var(--contact-block-height) + var(--tapbar-height)) ;
   }
 }
