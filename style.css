@@ -400,7 +400,7 @@ footer {
 
   /* Ajuste para que el contenido no quede tapado */
   #main-content {
-    padding-top: 165px; /* altura aproximada de la cabecera */
+    padding-top: 120px; /* altura aproximada de la cabecera */
   }
 
   .tapbar-container {
@@ -430,24 +430,25 @@ footer {
   }
 
   .contact-block {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     background: #fff;
     z-index: 2900;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
 
-  .tapbar-container {
+ .tapbar-container {
     position: fixed;
-    top: var(--contact-block-height);
     left: 0;
     width: 100%;
-    z-index: 2800;
+    z-index: 3000;
+    transition: top 0s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
+  /* Opcional: ajusta padding superior del contenido */
   #main-content {
-    padding-top: calc(var(--contact-block-height) + var(--tapbar-height)) ;
+    padding-top: calc(var(--tapbar-height, 70px) + 40px);
   }
+
 }

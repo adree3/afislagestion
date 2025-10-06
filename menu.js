@@ -110,3 +110,27 @@ document.querySelectorAll('.side-menu a').forEach(link => {
     lastScroll = currentScroll;
   });
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  const topBar = document.querySelector(".top-bar");
+  const contactBlock = document.querySelector(".contact-block");
+  const tapbar = document.querySelector(".tapbar-container");
+
+  const updateTapbarPosition = () => {
+    const topBarRect = topBar ? topBar.getBoundingClientRect() : { bottom: 0 };
+    const contactRect = contactBlock ? contactBlock.getBoundingClientRect() : { bottom: 0 };
+
+    // Si ambos (o alguno) están visibles en la pantalla
+    if ((topBarRect.bottom > 0) || (contactRect.bottom > 0)) {
+      // Tapbar se coloca justo debajo de ellos
+      tapbar.style.top = `${Math.max(topBarRect.bottom, contactRect.bottom)}px`;
+    } else {
+      // Si no están visibles, se queda arriba del todo
+      tapbar.style.top = "0";
+    }
+  };
+
+  // Actualiza posición al cargar y al hacer scroll
+  updateTapbarPosition();
+  window.addEventListener("scroll", updateTapbarPosition);
+  window.addEventListener("resize", updateTapbarPosition);
+});
