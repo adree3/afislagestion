@@ -398,10 +398,6 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-  /* Ajuste para que el contenido no quede tapado */
-  #main-content {
-    padding-top: 120px; /* altura aproximada de la cabecera */
-  }
 
   .tapbar-container {
     position: fixed;

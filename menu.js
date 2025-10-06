@@ -134,3 +134,21 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateTapbarPosition);
   window.addEventListener("resize", updateTapbarPosition);
 });
+
+// Calcular padding del contenido en movil
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".contact-block");
+  const mainContent = document.querySelector("#main-content");
+
+  const updatePadding = () => {
+    if (window.innerWidth <= 768 && header && mainContent) {
+      const headerHeight = header.offsetHeight;
+      mainContent.style.paddingTop = `${headerHeight + 20}px`;
+    } else {
+      mainContent.style.paddingTop = ""; // restablece en escritorio
+    }
+  };
+
+  updatePadding();
+  window.addEventListener("resize", updatePadding);
+});
