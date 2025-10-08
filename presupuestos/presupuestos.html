@@ -100,32 +100,4 @@
   </form>
 </div>
 
-<script>
-const btn = document.getElementById('button');
-const form = document.getElementById('form');
-const confirmacion = document.getElementById('confirmacionMsg');
 
-btn.addEventListener('click', () => form.requestSubmit());
-
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  document.getElementById('time').value = new Date().toLocaleString();
-
-  btn.innerText = 'Enviando...';
-
-  const serviceID = 'default_service';
-  const templateID = 'template_f4kinzt';
-
-  emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.innerText = 'Enviar solicitud';
-      confirmacion.style.display = 'block';
-      form.reset();
-    })
-    .catch((err) => {
-      btn.innerText = 'Enviar solicitud';
-      alert("Error al enviar el mensaje: " + JSON.stringify(err));
-    });
-});
-</script>

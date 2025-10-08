@@ -326,6 +326,31 @@ body {
 }
 #main-content.visible { opacity: 1; }
 
+.whatsapp-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* verde WhatsApp */
+  color: white;
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 2000; /* 🔹 para que esté por encima de todo */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+  background-color: #20ba5a;
+}
+
 footer {
   text-align:center;
   background:#f4f4f4;
