@@ -351,15 +351,6 @@ body {
   background-color: #20ba5a;
 }
 
-footer {
-  text-align:center;
-  background:#f4f4f4;
-  color:#555;
-  padding:1.2rem;
-  font-size:0.9rem;
-  border-top:1px solid #ccc;
-}
-
 /* ============ SCROLL-TO-TOP ============ */
 .scroll-top-btn {
   position:fixed;
@@ -376,6 +367,121 @@ footer {
   z-index:999;
 }
 .scroll-top-btn.visible { display:block; }
+/* === FOOTER GENERAL === */
+.footer {
+  font-family: 'Poppins', sans-serif;
+  color: #f1f1f1;
+}
+
+/* === PRE-FOOTER OSCURO === */
+.pre-footer {
+  background-color: #434141;
+  padding: 3rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
+}
+
+.footer-column {
+  text-align: center;
+}
+
+.footer-column h4 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #777;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.footer-column h4 i {
+  margin-right: 8px;
+  color: #b4b4b4;
+}
+
+.footer-column p,
+.footer-column a,
+.footer-column li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.footer-column a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-column i {
+  margin-right: 6px;
+  color: #aaa;
+}
+
+/* Enlaces */
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* === FOOTER-BOTTOM CLARO === */
+.footer-bottom {
+  color: #333333;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.85rem;
+  border-top: 1px solid #222;
+  background-color: #f7f7f7;
+}
+
+.footer-bottom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom-container {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}
+
+.footer-bottom a {
+  color: #333333;
+  text-decoration: none;
+  margin: 0 4px;
+  transition: all 0.2s ease;
+}
+
+.footer-bottom a:hover {
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.footer-bottom span {
+  color: #333333;
+}
 
 /* =================== RESPONSIVE =================== */
 @media (max-width:1024px) {

@@ -50,7 +50,8 @@ function inicializarFormularioPresupuesto() {
   const btn = document.getElementById('button');
   const form = document.getElementById('form');
   const confirmacion = document.getElementById('confirmacionMsg');
-
+  const consentimiento = document.getElementById('consent-presupuesto');
+  
   if (!btn || !form) return;
 
   btn.addEventListener('click', function() { form.requestSubmit(); });
@@ -62,6 +63,11 @@ function inicializarFormularioPresupuesto() {
     const serviceID = 'default_service';
     const templateID = 'template_f4kinzt';
 
+    if (!consentimiento.checked) {
+      alert('Debes aceptar la Política de Privacidad antes de enviar la solicitud.');
+      btn.innerText = 'Enviar solicitud';
+      return;
+    }
     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
         btn.innerText = 'Enviar solicitud';
@@ -78,6 +84,7 @@ function inicializarFormularioContacto() {
   const form = document.getElementById('form-mensaje');
   const btn = document.getElementById('button-contacto');
   const confirmacion = document.getElementById('confirmacionMsg');
+  const consentimiento = document.getElementById('consent-contacto');
 
   if (!form || !btn) return;
 
@@ -92,6 +99,11 @@ function inicializarFormularioContacto() {
     const serviceID = 'default_service';
     const templateID = 'template_g31kgga';
 
+    if (!consentimiento.checked) {
+      alert('Debes aceptar la Política de Privacidad antes de enviar el formulario.');
+      btn.innerText = 'Enviar mensaje';
+      return;
+    }
     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
         btn.innerText = 'Enviar mensaje';

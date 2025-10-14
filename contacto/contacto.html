@@ -41,7 +41,6 @@
   gap: 25px;
 }
 
-/* Card general (entera clicable) */
 .contacto-link {
   text-decoration: none;
   color: inherit;
@@ -185,7 +184,7 @@
   }
 
   .contacto-general {
-    padding: 60px 15px;
+    padding: 0px 15px 60px 15px;  
   }
 
   .whatsapp-fab {
@@ -195,7 +194,43 @@
     height: 52px;
     font-size: 1.7rem;
   }
+  
 }
+.legal-consent {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.legal-consent label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.legal-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2e7d32;
+  position: relative;
+  top: 1px;
+  flex-shrink: 0;
+}
+
+.legal-consent a {
+  color: #2e7d32;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.legal-consent a:hover {
+  text-decoration: none;
+}
+
 </style>
 
 <section class="contacto-general">
@@ -207,9 +242,7 @@
     </p>
 
     <div class="contacto-grid">
-      <!-- Bloque de información -->
       <div class="contacto-info">
-        <!-- WhatsApp -->
         <a href="https://wa.me/34685131806" target="_blank" class="contacto-link">
           <div class="contacto-item">
             <i class="fa-brands fa-whatsapp"></i>
@@ -220,7 +253,6 @@
           </div>
         </a>
 
-        <!-- Correo -->
         <a href="mailto:info@afislagestion.es" target="_blank" class="contacto-link">
           <div class="contacto-item">
             <i class="fa-solid fa-envelope"></i>
@@ -231,8 +263,6 @@
           </div>
         </a>
       
-
-        <!-- Dirección -->
         <a href="https://maps.app.goo.gl/KDtakGgpH6RwZU5D7" target="_blank" class="contacto-link">
           <div class="contacto-item">
             <i class="fa-solid fa-location-dot"></i>
@@ -243,7 +273,6 @@
           </div>
         </a>
 
-        <!-- Presupuesto -->
         <a href="#" onclick="loadSection('presupuestos/presupuestos.html'); return false;" class="contacto-link">
           <div class="contacto-item">
             <i class="fa-solid fa-coins"></i>
@@ -265,8 +294,6 @@
         </a>
       </div>
       
-
-      <!-- Formulario -->
       <form class="contacto-form" id="form-mensaje">
         <h2>Envíanos un mensaje</h2>
 
@@ -296,7 +323,13 @@
           <label for="mensaje">Mensaje</label>
           <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
         </div>
-
+        <div class="legal-consent">
+          <label>
+            <input type="checkbox" id="consent-contacto" required>
+            He leído y acepto la 
+            <a href="apartado_legal/politica_privacidad.html">Política de Privacidad</a> 
+          </label>
+        </div>
         <input type="hidden" name="time" id="time" value="">
 
         <button type="button" class="btn-enviar" id="button-contacto">Enviar mensaje</button>

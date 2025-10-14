@@ -12,11 +12,11 @@
   <body>
     <div class="top-bar">Te aseguramos la mejor calidad por nuestros años de experiencia.</div>
 
-    <!-- 🔹 CABECERA -->
+    <!-- CABECERA -->
     <div class="contact-block">
       <div class="contact-left">
         <div class="logo">
-          <img src="imagenes/logo.png" alt="Afisla Gestión">
+          <img src="imagenes/logo-sin-fondo.png" alt="Afisla Gestión">
         </div>
       </div>
       <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">☰</button>
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <!-- 🔹 MENÚ PRINCIPAL -->
+    <!-- MENÚ PRINCIPAL -->
     <div class="tapbar-container">
       <div class="tapbar" id="tapbar">
         <a href="#" onclick="loadSection('inicio/inicio.html'); return false;">INICIO</a>
@@ -71,13 +71,13 @@
       </div>
     </div>
 
-    <!-- 🔹 MENÚ LATERAL (oculto por defecto en móvil) -->
+    <!-- MENÚ LATERAL (oculto en móvil) -->
     <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
 
   <!-- Menú lateral -->
     <nav id="side-menu" class="side-menu">
       <div class="menu-header">
-        <img src="imagenes/logo.png" alt="Afisla Gestión" class="menu-logo">
+        <img src="imagenes/logo-sin-fondo.png" alt="Afisla Gestión" class="menu-logo">
       </div>
 
       <ul class="menu-list">
@@ -99,7 +99,7 @@
       </ul>
     </nav>  
 
-    <!-- 🔹 CONTENIDO DINÁMICO -->
+    <!-- CONTENIDO DINÁMICO -->
     <div id="main-content"></div>
 
     <a 
@@ -111,14 +111,229 @@
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <footer>© 2024 Afisla Gestión. Todos los derechos reservados.</footer>
+    <footer class="footer">
+      <section class="pre-footer">
+        <div class="footer-inner">
 
-    <!-- 🔹 JS -->
+          <div class="footer-column">
+            <h4><i class="fa-solid fa-phone"></i> CONTACTO</h4>
+            <p><strong>Teléfonos:</strong></p>
+            <p><a href="tel:983811842"><i class="fa-solid fa-phone"></i> 983 811 842</a></p>
+            <p><a href="tel:685131806"><i class="fa-solid fa-mobile-screen"></i> 685 131 806</a></p>
+            <p><strong><i class="fa-solid fa-location-dot"></i> Dirección:</strong></p>
+            <p><a href="https://maps.app.goo.gl/24yKFTAD3vW3FCbE6" target="_blank">Calle Padilla 25, 1º</a></p>
+          </div>
+          
+          
+          <div class="footer-column">
+            <h4><i class="fa-solid fa-clock"></i> HORARIO</h4>
+            <p><strong>Lunes - Viernes:</strong><br>9:00h - 14:00h / <br> 17:00h - 19:00h</p>
+            <p><strong>Julio y Agosto:</strong><br>8:00h - 15:00h</p>
+          </div>
+          <div class="footer-column">
+            <h4><i class="fa-solid fa-link"></i> ENLACES</h4>
+            <p><a href="#" onclick="loadSection('inicio/inicio.html'); return false;">Inicio</a></p>
+            <p><a href="#" onclick="loadSection('servicios/servicios.html'); return false;">Servicios</a></p>
+            <p><a href="#" onclick="loadSection('presupuestos/presupuestos.html'); return false;">Presupuestos</a></p>
+            <p><a href="#" onclick="loadSection('ubicacion/ubicacion.html'); return false;">Localización</a></p>
+            <p><a href="#" onclick="loadSection('contacto/contacto.html'); return false;">Contáctanos</a></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-container">
+          <p>© 2025 Afisla Gestión. Todos los derechos reservados.</p>
+          <p class="footer-bottom-links">
+            <a href="apartado_legal/aviso_legal.html">Aviso Legal</a> |
+            <a href="apartado_legal/politica_privacidad.html">Política de Privacidad</a> |
+            <a href="apartado_legal/politica_cookies.html">Política de Cookies</a> |
+            <span>Creado por <strong>adrianalonso200@gmail.com</strong></span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       emailjs.init("wg9yTCm6ET8eHCS3I");
     </script>
     <script src="index.js"></script>
     <script src="menu.js"></script>
+
+    <!-- Banner de Cookies-->
+    <div id="cookie-banner" class="cookie-banner">
+      <p>
+        Utilizamos cookies propias y de terceros con fines técnicos, de personalización y analíticos. 
+        Puedes aceptar todas, rechazarlas o configurar tus preferencias. 
+        Más información en nuestra 
+        <a href="apartado_legal/politica_cookies.html" target="_blank">Política de Cookies</a>.
+      </p>
+      <div class="cookie-buttons">
+        <button id="accept-all">Aceptar todas</button>
+        <button id="reject-all">Rechazar</button>
+        <button id="customize">Configurar</button>
+      </div>
+    </div>
+
+    <!-- Modal de configuración -->
+    <div id="cookie-modal" class="cookie-modal">
+      <div class="cookie-modal-content">
+        <h2>Configuración de cookies</h2>
+        <p>Selecciona qué tipos de cookies quieres permitir. Puedes cambiarlo en cualquier momento.</p>
+        <form id="cookie-preferences">
+          <label>
+            <input type="checkbox" checked disabled> 
+            <strong>Cookies técnicas necesarias</strong> (obligatorias)
+          </label><br>
+          <label>
+            <input type="checkbox" id="analytics-cookies">
+            <strong>Cookies analíticas</strong> (nos ayudan a mejorar el sitio)
+          </label><br>
+          <label>
+            <input type="checkbox" id="marketing-cookies">
+            <strong>Cookies de marketing</strong> (para personalizar publicidad)
+          </label><br><br>
+          <div class="cookie-modal-actions">
+            <button type="button" id="save-preferences">Guardar preferencias</button>
+            <button type="button" id="cancel-preferences">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const banner = document.getElementById("cookie-banner");
+      const modal = document.getElementById("cookie-modal");
+
+      if (!localStorage.getItem("cookieConsent")) {
+        banner.style.display = "block";
+      }
+
+      document.getElementById("accept-all").addEventListener("click", () => {
+        const consent = {
+          necessary: true,
+          analytics: true,
+          marketing: true
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        banner.style.display = "none";
+        modal.style.display = "none";
+        activateCookies(consent);
+      });
+
+      document.getElementById("reject-all").addEventListener("click", () => {
+        const consent = {
+          necessary: true,
+          analytics: false,
+          marketing: false
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        banner.style.display = "none";
+        modal.style.display = "none";
+      });
+
+      document.getElementById("customize").addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      document.getElementById("save-preferences").addEventListener("click", () => {
+        const consent = {
+          necessary: true,
+          analytics: document.getElementById("analytics-cookies").checked,
+          marketing: document.getElementById("marketing-cookies").checked
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        banner.style.display = "none";
+        modal.style.display = "none";
+      });
+      document.getElementById("cancel-preferences").addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      
+    </script>
+
+    <style>
+      .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #434141;
+        color: #fff;
+        padding: 1.2rem;
+        text-align: center;
+        font-size: 0.95rem;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+        display: none;
+        z-index: 9999;
+      }
+      .cookie-banner a {
+        color: #a8e6a1;
+        text-decoration: underline;
+      }
+      .cookie-buttons button {
+        background: #2e7d32;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .cookie-buttons button:hover {
+        background: #256628;
+      }
+
+      .cookie-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.65);
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+      }
+      .cookie-modal-content {
+        background: #fff;
+        color: #333;
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 480px;
+        width: 90%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        text-align: left;
+      }
+      .cookie-modal-content h2 {
+        color: #2e7d32;
+        margin-bottom: 1rem;
+      }
+      .cookie-modal-content label {
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      .cookie-modal-actions {
+        text-align: right;
+        margin-top: 1rem;
+      }
+      .cookie-modal-actions button {
+        background: #2e7d32;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        margin-left: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .cookie-modal-actions button:hover {
+        background: #256628;
+      }
+    </style>
   </body>
 </html>

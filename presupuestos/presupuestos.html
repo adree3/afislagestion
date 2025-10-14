@@ -67,6 +67,39 @@
   font-size: 1.08rem;
   display: none;
 }
+.legal-consent {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.legal-consent label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.legal-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2e7d32;
+  position: relative;
+  top: 1px;
+  flex-shrink: 0;
+}
+
+.legal-consent a {
+  color: #2e7d32;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.legal-consent a:hover {
+  text-decoration: none;
+}
 </style>
 
 <div class="presupuesto-container">
@@ -90,6 +123,11 @@
 
     <label for="detalles">Detalles para el presupuesto</label>
     <textarea name="detalles" id="detalles" rows="5" placeholder="Ej: Necesito asesoramiento para mi declaración de impuestos..." required></textarea>
+    <div class="legal-consent">
+      <label>
+        <input type="checkbox" id="consent-presupuesto" required>He leído y acepto la <a href="apartado_legal/politica_privacidad.html">Política de Privacidad</a>
+      </label>
+    </div>
 
     <input type="hidden" name="time" id="time" value="">
 
