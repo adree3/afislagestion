@@ -1,0 +1,183 @@
+<style>
+  .servicios-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 0 10px 0;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+
+  .servicios-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .servicios-container h1 {
+    font-size: 2.5rem;
+    color: #2e7d32;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+  .servicios-container p {
+    font-size: 1.25rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+
+  #card-servicios {
+    padding: 40px 0 0 0;
+  }
+  .card-servicios-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .card-servicio {
+    background: #f0fafa;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    width: 320px;
+    max-width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .card-servicio:hover {
+    background: rgba(46, 125, 50, 0.12);
+    box-shadow: 0 8px 28px rgba(46,125,50,0.18);
+  }
+  .card-servicio img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 22px;
+  }
+  .card-servicio h3 {
+    margin-bottom: 14px;
+    font-size: 1.35rem;
+    color: #222;
+    text-align: center;
+  }
+  .card-servicio:hover h3 {
+    text-decoration: underline;
+    text-decoration-color: #2e7d32;
+    text-underline-offset: 4px;
+  }
+  .card-servicio span {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 12px;
+    font-size: 1.08rem;
+  }
+  @media (max-width: 1024px) {
+    .inicio-hero-contenido h1 {
+      font-size: 2.3rem;
+    }
+
+    .inicio-hero-contenido p {
+      font-size: 1.2rem;
+    }
+
+    .inicio-hero-contenido {
+      padding: 40px 30px;
+    }
+
+    .inicio-servicios-row {
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #inicio-hero {
+      min-height: 450px;
+    }
+
+    .inicio-hero-contenido h1 {
+      font-size: 2rem;
+    }
+
+    .inicio-hero-contenido p {
+      font-size: 1.1rem;
+    }
+
+    .card-servicio {
+      width: 80%;
+    }
+
+    .inicio-servicios-row {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .inicio-hero-contenido {
+      padding: 30px 20px;
+    }
+
+    .inicio-hero-contenido h1 {
+      font-size: 1.7rem;
+    }
+
+    .inicio-hero-contenido p {
+      font-size: 1rem;
+    }
+
+    .card-servicio {
+      width: 90%;
+      padding: 24px;
+    }
+
+    .inicio-titulos .inicio-servicios-titulo {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+<section class="servicios-section">
+  <div class="servicios-container">
+    <h1>NUESTROS SERVICIOS</h1>
+    <p>
+      En <b>Afisla Gestión</b> ofrecemos asesoramiento profesional y personalizado en las áreas <b>fiscal, laboral, contable, herencias y testamentarias</b> entre otros. Nuestro equipo te acompaña en cada trámite, garantizando cercanía, <b>transparencia y soluciones</b> adaptadas a tus necesidades.
+    </p>
+  </div>
+</section>
+
+<section id="card-servicios">
+  <div class="card-servicios-row">
+    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
+      <img src="imagenes/asesoria_fiscal1.jpg" alt="Asesoría Fiscal">
+      <h3>Asesoría Fiscal</h3>
+      <span>Leer más</span>
+    </a>
+    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
+      <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
+      <h3>Asesoría Laboral</h3>
+      <span>Leer más</span>
+    </a>
+    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
+      <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
+      <h3>Asesoría Contable</h3>
+      <span>Leer más</span>
+    </a>
+    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
+      <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
+      <h3>Herencias y Testamentaria</h3>
+      <span>Leer más</span>
+    </a>
+  </div>
+</section>

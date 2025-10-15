@@ -53,11 +53,54 @@
       color: #777;
       margin-top: 3rem;
     }
+    .legal-header {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: #2e7d32;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(46,125,50,0.1);
+      transform: translateX(-2px);
+    }
+
+    .legal-header h1 {
+      flex: 1;
+      text-align: center;
+      margin: 0;
+    }
+
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <h1>Aviso Legal</h1>
+    <header class="legal-header">
+      <button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <h1>Aviso Legal</h1>
+    </header>
+
 
     <h2>1. Datos identificativos</h2>
     <p>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:</p>
@@ -79,7 +122,7 @@
 
     <h2>5. Protección de datos personales</h2>
     <p>Afisla Gestión S.L. cumple con la normativa vigente en materia de protección de datos personales y garantiza el correcto uso y tratamiento de los datos del usuario, de acuerdo con el Reglamento (UE) 2016/679 y la Ley Orgánica 3/2018.</p>
-    <p>Puede consultar información detallada sobre el tratamiento de sus datos personales en nuestra <a href="politica-privacidad.html">Política de Privacidad</a>.</p>
+    <p>Puede consultar información detallada sobre el tratamiento de sus datos personales en nuestra <a href="apartados/apartado_legal/politica-privacidad.html">Política de Privacidad</a>.</p>
 
     <h2>6. Exención de responsabilidades</h2>
     <p>Afisla Gestión S.L. no se responsabiliza de los posibles daños o perjuicios que pudieran derivarse de interferencias, omisiones, interrupciones, virus informáticos, averías o desconexiones en el funcionamiento operativo de este sistema electrónico, motivadas por causas ajenas a la empresa.</p>

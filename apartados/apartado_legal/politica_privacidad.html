@@ -51,11 +51,53 @@
             color: #777;
             margin-top: 3rem;
         }
+        .legal-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding: 12px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        }
+
+        .back-button {
+        background: none;
+        border: none;
+        color: #2e7d32;
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        transition: all 0.25s ease;
+        }
+
+        .back-button:hover {
+        background-color: rgba(46,125,50,0.1);
+        transform: translateX(-2px);
+        }
+
+        .legal-header h1 {
+        flex: 1;
+        text-align: center;
+        margin: 0;
+        }
+
     </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <header class="legal-header">
+            <button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
         <h1>Política de Privacidad</h1>
+        </header>
         <p><strong>Última actualización:</strong> 14 de octubre de 2025</p>
 
         <h2>1. Responsable del tratamiento</h2>
@@ -99,7 +141,7 @@
         <p>Afisla Gestión adopta medidas técnicas y organizativas para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
 
         <h2>8. Cookies</h2>
-        <p>Este sitio web utiliza cookies técnicas y analíticas propias y de terceros. Puede obtener información detallada en nuestra <a href="politica-cookies.html">Política de Cookies</a>.</p>
+        <p>Este sitio web utiliza cookies técnicas y analíticas propias y de terceros. Puede obtener información detallada en nuestra <a href="apartados/apartado_legal/politica-cookies.html">Política de Cookies</a>.</p>
 
         <h2>9. Cambios en la política de privacidad</h2>
         <p>Afisla Gestión se reserva el derecho de modificar esta Política para adaptarla a cambios legales o técnicos. Las modificaciones se publicarán en esta página.</p>

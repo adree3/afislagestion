@@ -1,0 +1,341 @@
+<style>
+  .contacto-general {
+    padding: 0px 20px;
+    text-align: center;
+  }
+
+  .contacto-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .contacto-general h1 {
+    font-size: 2.2rem;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .contacto-general p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 50px;
+    line-height: 1.6;
+  }
+
+  .contacto-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  /* ======== BLOQUE INFO ======== */
+  .contacto-info {
+    flex: 1;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .contacto-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .contacto-item {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .contacto-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(46,125,50,0.2);
+  }
+
+  .contacto-item i {
+    font-size: 1.8rem;
+    color: #2e7d32;
+    min-width: 36px;
+  }
+
+  .contacto-item h3 {
+    font-size: 1.15rem;
+    color: #2e7d32;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .contacto-item p {
+    margin: 0;
+    color: #444;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  /* ======== FORMULARIO ======== */
+  .contacto-form {
+    flex: 1;
+    min-width: 340px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 30px;
+    text-align: left;
+  }
+  .contacto-form h2 {
+    color: #2e7d32;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .contacto-form .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contacto-form label {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .contacto-form input,
+  .contacto-form textarea {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .contacto-form input:focus,
+  .contacto-form textarea:focus {
+    border-color: #2e7d32;
+    outline: none;
+  }
+
+  .btn-enviar {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-enviar:hover {
+    background: #256628;
+    transform: translateY(-2px);
+  }
+
+  .contacto-form select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background-color: #fff;
+    color: #333;
+  }
+
+  .contacto-form select:focus {
+    border-color: #2e7d32;
+    outline: none;
+  }
+
+  .contacto-form .confirmacion {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 18px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.05rem;
+    display: none;
+  }
+
+  /* ======== RESPONSIVE ======== */
+  @media (max-width: 768px) {
+    .contacto-grid {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .contacto-form,
+    .contacto-info {
+      width: 100%;
+    }
+
+    .contacto-general {
+      padding: 0px 15px 60px 15px;  
+    }
+
+    .whatsapp-fab {
+      bottom: 18px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      font-size: 1.7rem;
+    }
+    
+  }
+  .legal-consent {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 5px;
+  }
+
+  .legal-consent label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .legal-consent input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2e7d32;
+    position: relative;
+    top: 1px;
+    flex-shrink: 0;
+  }
+
+  .legal-consent a {
+    color: #2e7d32;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .legal-consent a:hover {
+    text-decoration: none;
+  }
+</style>
+
+<section class="contacto-general">
+  <div class="contacto-container">
+    <h1>¿Tienes alguna pregunta? ¡Te ayudamos!</h1>
+    <p>
+      Si tienes cualquier consulta o necesitas más información sobre nuestros servicios,
+      puedes rellenar el siguiente formulario o contactarnos directamente.
+    </p>
+
+    <div class="contacto-grid">
+      <div class="contacto-info">
+        <a href="https://wa.me/34685131806" target="_blank" class="contacto-link">
+          <div class="contacto-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <h3>WhatsApp</h3>
+              <p>Envíanos un mensaje directamente</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="mailto:info@afislagestion.es" target="_blank" class="contacto-link">
+          <div class="contacto-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <h3>Correo electrónico</h3>
+              <p>info@afislagestion.es</p>
+            </div>
+          </div>
+        </a>
+      
+        <a href="https://maps.app.goo.gl/KDtakGgpH6RwZU5D7" target="_blank" class="contacto-link">
+          <div class="contacto-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <h3>Dirección</h3>
+              <p>Calle Padilla, 25, 1º - Medina del Campo</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" onclick="loadSection('apartados/presupuestos.html'); return false;" class="contacto-link">
+          <div class="contacto-item">
+            <i class="fa-solid fa-coins"></i>
+            <div>
+              <h3>Presupuesto</h3>
+              <p>Solicita tu presupuesto personalizado</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="tel:983811842" target="_blank" class="contacto-link">
+          <div class="contacto-item">
+            <i class="fa-solid fa-phone contact-icon"></i>
+            <div>
+              <h3>Teléfono</h3>
+              <p>983 81 18 42</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <form class="contacto-form" id="form-mensaje">
+        <h2>Envíanos un mensaje</h2>
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" placeholder="Ej: ejemplo@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="servicio">Servicio</label>
+          <select id="servicio" name="servicio" required>
+            <option value="">Selecciona un servicio</option>
+            <option value="fiscal">Asesoría Fiscal</option>
+            <option value="laboral">Asesoría Laboral</option>
+            <option value="contable">Asesoría Contable</option>
+            <option value="herencias">Herencias y Testamentaria</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
+        </div>
+        <div class="legal-consent">
+          <label>
+            <input type="checkbox" id="consent-contacto" required>
+            He leído y acepto la 
+            <a href="apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a> 
+          </label>
+        </div>
+        <input type="hidden" name="time" id="time" value="">
+
+        <button type="button" class="btn-enviar" id="button-contacto">Enviar mensaje</button>
+
+        <div class="confirmacion" id="confirmacionMsg">
+          ¡Tu mensaje ha sido enviado! Te responderemos lo antes posible.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

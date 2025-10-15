@@ -25,7 +25,7 @@ body {
   border-bottom:1px solid #ccc;
 }
 
-/* 🔹 Agrupación del logo + menú hamburguesa */
+/* Agrupación del logo + menú hamburguesa */
 .contact-left {
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@ body {
   height:auto;
 }
 
-/* 🔹 Botón menú hamburguesa (visible solo en móvil) */
+/* Botón menú hamburguesa (visible solo en móvil) */
 .menu-toggle {
   margin-left: auto; /* empuja el botón al borde derecho */
   display: inline-flex;
@@ -62,7 +62,7 @@ body {
   outline-offset: 2px; 
 }
 
-/* 🔹 Parte derecha de la cabecera */
+/* Parte derecha de la cabecera */
 .contact-right {
   display:flex;
   align-items:center;
@@ -185,13 +185,10 @@ body {
   transition: width 0.3s ease;
 }
 
-/* Cuando pasas el ratón o está activo */
 .tapbar a:hover::after,
 .tapbar a.active::after {
   width: 100%;
 }
-
-/*.tapbar-sep { margin:0 0.5rem; color:#aaa; }*/
 
 .tapbar-sep {
   display: none;
@@ -220,8 +217,8 @@ body {
   background:#f1f1f1;
   color:#2e7d32;
 }
-.tapbar-dropdown:hover .tapbar-dropdown-content { display:flex; } /* hover escritorio */
-.tapbar-dropdown.open .tapbar-dropdown-content { display:flex; } /* click móvil */
+.tapbar-dropdown:hover .tapbar-dropdown-content { display:flex; }
+.tapbar-dropdown.open .tapbar-dropdown-content { display:flex; }
 
 /* ============ MENÚ LATERAL (DESLIZANTE) ============ */
 .side-menu-overlay {
@@ -244,7 +241,7 @@ body {
   width: 280px;
   height: 100%;
   background: #ffffff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* sombra desde la derecha */
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
   transition: right 0.3s ease;
   z-index: 3000;
   display: flex;
@@ -265,7 +262,6 @@ body {
   display: inline-block;
 }
 
-/* Lista principal */
 .side-menu ul { list-style: none; padding: 0; margin: 0; }
 .side-menu ul li { border-bottom: 1px solid #eee; }
 
@@ -281,7 +277,6 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 
-/* Hover y activo */
 .side-menu ul li a:hover,
 .side-menu ul li a.active {
   background-color: #e8f5e9;
@@ -312,7 +307,6 @@ body {
   font-weight: 600;
 }
 
-/* Mostrar submenú al pasar el ratón */
 .has-submenu:hover .submenu {
   display: block;
 }
@@ -330,7 +324,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25d366; /* verde WhatsApp */
+  background-color: #25d366;
   color: white;
   font-size: 28px;
   width: 60px;
@@ -342,7 +336,7 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   cursor: pointer;
   text-decoration: none;
-  z-index: 2000; /* 🔹 para que esté por encima de todo */
+  z-index: 2000;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
@@ -430,7 +424,6 @@ body {
   color: #aaa;
 }
 
-/* Enlaces */
 .footer-links-list {
   list-style: none;
   padding: 0;
@@ -483,6 +476,37 @@ body {
   color: #333333;
 }
 
+/* === Bloque legal dentro del menú lateral === */
+.side-menu-legal {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+  color: #555;
+  background: #f9f9f9;
+}
+
+.side-menu-legal a {
+  display: block;
+  color: #2e7d32;
+  text-decoration: none;
+  margin: 4px 0;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.side-menu-legal a:hover {
+  color: #1b5e20;
+}
+
+.side-menu-legal p {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+
 /* =================== RESPONSIVE =================== */
 @media (max-width:1024px) {
   .contact-block { flex-wrap:wrap; justify-content:space-between; padding:0.8rem 1.5rem; }
@@ -523,7 +547,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #fff; /* o puedes mantener la barra verde */
+    background: #fff;
     z-index: 2000;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     padding: 0.5rem 1rem;
@@ -532,11 +556,11 @@ body {
 
   .tapbar-container {
     position: fixed;
-    top: 70px; /* justo debajo de la cabecera */
+    top: 70px;
     left: 0;
     width: 100%;
     z-index: 1900;
-    display: none; /* seguirá oculta en móvil */
+    display: none;
   }
 
   body.menu-open #main-content {
@@ -544,10 +568,17 @@ body {
   }
 }
 :root {
-  --contact-block-height: 10.25rem;  /* altura bloque contacto */
-  --tapbar-height: 3.5rem;         /* altura tapbar (menú principal) */
+  --contact-block-height: 10.25rem;
+  --tapbar-height: 3.5rem;
 }
 
+/*==== FOOTER Y PRE-FOOTER DESACTIVADO EN MOVIL ====*/
+@media (max-width: 768px) {
+  .pre-footer,
+  .footer-bottom {
+    display: none !important;
+  }
+}
 /* ===== HEADER FIJO EN ESCRITORIO ===== */
 @media (min-width: 769px) {
   .top-bar {

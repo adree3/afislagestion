@@ -7,7 +7,20 @@
     <title>Afisla Gestión</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/logo_32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="imagenes/logo_192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="imagenes/logo_512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/logo_apple_touch_icon.png">  
+    <link rel="icon" type="image/x-icon" href="imagenes/favicon.ico">
+    <!-- MANIFEST -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#2e7d32">
 
+    <!-- iOS CONFIG -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Afisla Gestión">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
   </head>
   <body>
     <div class="top-bar">Te aseguramos la mejor calidad por nuestros años de experiencia.</div>
@@ -42,7 +55,7 @@
             </div>
           </div>
           <div class="contact-actions">
-            <button onclick="loadSection('contacto/contacto.html')">Contáctanos</button>
+            <button onclick="loadSection('apartados/contacto.html')">Contáctanos</button>
           </div>
         </div>        
       </div>
@@ -51,23 +64,23 @@
     <!-- MENÚ PRINCIPAL -->
     <div class="tapbar-container">
       <div class="tapbar" id="tapbar">
-        <a href="#" onclick="loadSection('inicio/inicio.html'); return false;">INICIO</a>
+        <a href="#" onclick="loadSection('apartados/inicio.html'); return false;">INICIO</a>
         <span class="tapbar-sep">|</span>
         <div class="tapbar-dropdown">
-          <a href="#" onclick="loadSection('servicios/servicios.html');return false;" class="tapbar-dropbtn">SERVICIOS</a>
+          <a href="#" onclick="loadSection('apartados/servicios/servicios.html');return false;" class="tapbar-dropbtn">SERVICIOS</a>
           <div class="tapbar-dropdown-content">
-            <a href="#" onclick="loadSection('servicios/apartados/servicio_fiscal.html'); return false;">Asesoramiento fiscal</a>
-            <a href="#" onclick="loadSection('servicios/apartados/servicio_laboral.html'); return false;">Asesoramiento laboral</a>
-            <a href="#" onclick="loadSection('servicios/apartados/servicio_contable.html'); return false;">Asesoramiento contable</a>
-            <a href="#" onclick="loadSection('servicios/apartados/servicio_herencias.html'); return false;">Herencias y testamentaria</a>
+            <a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">Asesoramiento fiscal</a>
+            <a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">Asesoramiento laboral</a>
+            <a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">Asesoramiento contable</a>
+            <a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">Herencias y testamentaria</a>
           </div>
         </div>
         <span class="tapbar-sep">|</span>
-        <a href="#" onclick="loadSection('presupuestos/presupuestos.html'); return false;">PRESUPUESTOS</a>
+        <a href="#" onclick="loadSection('apartados/presupuestos.html'); return false;">PRESUPUESTOS</a>
         <span class="tapbar-sep">|</span>
-        <a href="#" onclick="loadSection('ubicacion/ubicacion.html'); return false;">LOCALIZACIÓN</a>
+        <a href="#" onclick="loadSection('apartados/ubicacion.html'); return false;">LOCALIZACIÓN</a>
         <span class="tapbar-sep">|</span>
-        <a href="#" onclick="loadSection('contacto/contacto.html'); return false;">CONTACTANOS</a>
+        <a href="#" onclick="loadSection('apartados/contacto.html'); return false;">CONTACTANOS</a>
       </div>
     </div>
 
@@ -81,22 +94,28 @@
       </div>
 
       <ul class="menu-list">
-        <li><a href="#" onclick="loadSection('inicio/inicio.html'); toggleMenu(); return false;">Inicio</a></li>
+        <li><a href="#" onclick="loadSection('apartados/inicio.html'); toggleMenu(); return false;">Inicio</a></li>
 
         <li class="menu-item has-submenu">
-          <a href="#" onclick="loadSection('servicios/servicios.html');">Servicios ▾</a>
+          <a href="#" onclick="loadSection('apartados/servicios/servicios.html');">Servicios ▾</a>
           <ul class="submenu">
-            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_fiscal.html'); toggleMenu(); return false;">Asesoramiento fiscal</a></li>
-            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_laboral.html'); toggleMenu(); return false;">Asesoramiento laboral</a></li>
-            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_contable.html'); toggleMenu(); return false;">Asesoramiento contable</a></li>
-            <li><a href="#" onclick="loadSection('servicios/apartados/servicio_herencias.html'); toggleMenu(); return false;">Herencias y testamentaria</a></li>
+            <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); toggleMenu(); return false;">Asesoramiento fiscal</a></li>
+            <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); toggleMenu(); return false;">Asesoramiento laboral</a></li>
+            <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); toggleMenu(); return false;">Asesoramiento contable</a></li>
+            <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); toggleMenu(); return false;">Herencias y testamentaria</a></li>
           </ul>
         </li>
 
-        <li><a href="#" onclick="loadSection('presupuestos/presupuestos.html'); toggleMenu(); return false;">Presupuestos</a></li>
-        <li><a href="#" onclick="loadSection('ubicacion/ubicacion.html'); toggleMenu(); return false;">Localización</a></li>
-        <li><a href="#" onclick="loadSection('contacto/contacto.html'); toggleMenu(); return false;">Contáctanos</a></li>
+        <li><a href="#" onclick="loadSection('apartados/presupuestos.html'); toggleMenu(); return false;">Presupuestos</a></li>
+        <li><a href="#" onclick="loadSection('apartados/ubicacion.html'); toggleMenu(); return false;">Localización</a></li>
+        <li><a href="#" onclick="loadSection('apartados/contacto.html'); toggleMenu(); return false;">Contáctanos</a></li>
       </ul>
+      <div class="side-menu-legal">
+        <a href="apartados/apartado_legal/aviso_legal.html">Aviso legal</a> 
+        <a href="apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a> 
+        <a href="apartados/apartado_legal/politica_cookies.html">Política de Cookies</a> 
+        <p>© 2025 Afisla Gestión</p>
+      </div>
     </nav>  
 
     <!-- CONTENIDO DINÁMICO -->
@@ -132,11 +151,11 @@
           </div>
           <div class="footer-column">
             <h4><i class="fa-solid fa-link"></i> ENLACES</h4>
-            <p><a href="#" onclick="loadSection('inicio/inicio.html'); return false;">Inicio</a></p>
-            <p><a href="#" onclick="loadSection('servicios/servicios.html'); return false;">Servicios</a></p>
-            <p><a href="#" onclick="loadSection('presupuestos/presupuestos.html'); return false;">Presupuestos</a></p>
-            <p><a href="#" onclick="loadSection('ubicacion/ubicacion.html'); return false;">Localización</a></p>
-            <p><a href="#" onclick="loadSection('contacto/contacto.html'); return false;">Contáctanos</a></p>
+            <p><a href="#" onclick="loadSection('apartados/inicio.html'); return false;">Inicio</a></p>
+            <p><a href="#" onclick="loadSection('apartados/servicios/servicios.html'); return false;">Servicios</a></p>
+            <p><a href="#" onclick="loadSection('apartados/presupuestos.html'); return false;">Presupuestos</a></p>
+            <p><a href="#" onclick="loadSection('apartados/ubicacion.html'); return false;">Localización</a></p>
+            <p><a href="#" onclick="loadSection('apartados/contacto.html'); return false;">Contáctanos</a></p>
           </div>
         </div>
       </section>
@@ -145,9 +164,9 @@
         <div class="footer-bottom-container">
           <p>© 2025 Afisla Gestión. Todos los derechos reservados.</p>
           <p class="footer-bottom-links">
-            <a href="apartado_legal/aviso_legal.html">Aviso Legal</a> |
-            <a href="apartado_legal/politica_privacidad.html">Política de Privacidad</a> |
-            <a href="apartado_legal/politica_cookies.html">Política de Cookies</a> |
+            <a href="apartados/apartado_legal/aviso_legal.html">Aviso Legal</a> |
+            <a href="apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a> |
+            <a href="apartados/apartado_legal/politica_cookies.html">Política de Cookies</a> |
             <span>Creado por <strong>adrianalonso200@gmail.com</strong></span>
           </p>
         </div>
@@ -167,7 +186,7 @@
         Utilizamos cookies propias y de terceros con fines técnicos, de personalización y analíticos. 
         Puedes aceptar todas, rechazarlas o configurar tus preferencias. 
         Más información en nuestra 
-        <a href="apartado_legal/politica_cookies.html" target="_blank">Política de Cookies</a>.
+        <a href="apartados/apartado_legal/politica_cookies.html" target="_blank">Política de Cookies</a>.
       </p>
       <div class="cookie-buttons">
         <button id="accept-all">Aceptar todas</button>
