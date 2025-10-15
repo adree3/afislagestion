@@ -37,8 +37,8 @@
   }
   .laboral-servicios-box h2 {
     color: #2e7d32;
-    font-size: 1.5rem;
-    margin-bottom: 18px;
+    font-size: var(--fs-h5);
+    margin-bottom: var(--space-2);
     text-align: left;
     letter-spacing: 1px;
   }
@@ -49,16 +49,21 @@
   }
   .laboral-servicios-box li {
     margin-bottom: 16px;
+    line-height: var(--lh-base);
   }
   .laboral-servicios-box a {
     color: #2e7d32;
     font-weight: bold;
     text-decoration: underline;
-    font-size: 1.15rem;
+    font-size: var(--fs-md);
     transition: color 0.2s;
+  }
+  .laboral-servicios-box a:hover {
+    color: #1b5e20;
   }
   .contable-servicios-box a.active,
   .contable-servicios-box a[aria-current="page"] {
+    color: #000;
     text-decoration: none;
   }
   .laboral-content {
@@ -66,48 +71,61 @@
     min-width: 400px;
     max-width: 900px;
     padding: 0 10px 30px 10px;
-    align-self: flex-start;
   }
   .laboral-content h1 {
     color: #2e7d32;
-    font-size: 2.5rem;
-    margin-bottom: 22px;
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-3);
     text-align: left;
   }
-  .laboral-content ul {
-    margin-top: 18px;
-    margin-bottom: 0;
-    padding-left: 28px;
-    font-size: 1.35rem;
+  .laboral-content p {
+    font-size: var(--fs-md);
     color: #444;
+    margin-bottom: var(--space-3);
+    line-height: var(--lh-relax);
+  }
+  .laboral-content ul {
+    margin-top: var(--space-2);
+    padding-left: 28px;
+    font-size: var(--fs-md);
+    color: #444;
+    line-height: var(--lh-relax);
   }
   .laboral-content > ul > li {
-    margin-bottom: 8px;
+    margin-bottom: var(--space-2);
   }
   .laboral-content ul ul {
-    margin-top: 6px;
+    margin-top: var(--space-1);
     margin-bottom: 0;
     padding-left: 22px;
-    font-size: 1.18rem;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
   }
   .laboral-content ul ul li {
     margin-bottom: 4px;
-    line-height: 1.5;
   }
-  .laboral-content li {
-    line-height: 1.5;
-  }
-  .laboral-content p {
-    font-size: 1.35rem;
-    color: #444;
-    margin-bottom: 22px;
-  }
+  
   @media (max-width: 1200px) {
-    .laboral-container { flex-direction: column; gap: 24px; }
-    .laboral-img-box { flex-direction: column; gap: 18px; }
-    .laboral-img { width: 100%; height: 180px; }
-    .laboral-content { max-width: 100%; min-width: 0; }
-    .laboral-servicios-box { max-width: 100%; min-width: 0; }
+    .laboral-container { 
+      flex-direction: column; 
+      gap: 24px; 
+    }
+    .laboral-img-box { 
+      flex-direction: column; 
+      gap: 18px; 
+    }
+    .laboral-img { 
+      width: 100%; 
+      height: 220px; 
+    }
+    .laboral-content {
+      max-width: 100%; 
+      min-width: 0; 
+    }
+    .laboral-servicios-box { 
+      max-width: 100%; 
+      min-width: 0; 
+    }
   }
 </style>
 
@@ -118,7 +136,7 @@
       <h2>SERVICIOS</h2>
       <ul>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">Asesoría Fiscal</a></li>
-        <li><a href="#", style="color: black;" class="active" aria-current="page">Asesoría Laboral </a></li>
+        <li><a href="#" style="color: black;" class="active" aria-current="page">Asesoría Laboral </a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">Asesoría Contable</a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">Herencias y Testamentaria</a></li>
       </ul>

@@ -1,258 +1,315 @@
 <style>
-.ubicacion-container {
+  .ubicacion-container {
     max-width: 1000px;
-    margin: 0 auto 40px auto;
-    padding: 0px;
+    margin: 0 auto var(--space-5);
+    padding: var(--space-4) var(--space-2);
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
+    gap: var(--space-5);
+  }
 
-.ubicacion-container h1 {
+  .ubicacion-container h1 {
     text-align: center;
     color: #2e7d32;
-    font-size: 2.5rem;
-    margin-bottom: 0px;
-}
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-tight);
+  }
 
-.mapa {
+  .mapa {
     width: 100%;
     height: 400px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 18px rgba(46,125,50,0.15);
-}
+  }
 
-.info-grid {
+  .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
 
-.direccion {
+  .direccion {
     background: #f0fafa;
     border-radius: 16px;
     box-shadow: 0 4px 18px rgba(46,125,50,0.10);
-    padding: 20px;
+    padding: var(--space-4);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
+    gap: var(--space-3);
+  }
 
-.direccion h2 {
+  .direccion h2 {
     color: #2e7d32;
-    margin-bottom: 10px;
-    margin-top: 2.8rem;
-    font-size: 2.1rem;
+    font-size: var(--fs-h3);
     text-align: center;
-}
+    margin: var(--space-3) 0 var(--space-2);
+  }
 
-.direccion p {
-    font-size: 1rem;
+  .direccion p {
+    font-size: var(--fs-md);
     color: #222;
-}
+    text-align: center;
+  }
 
-.direccion p strong {
-    font-weight: bold;
-}
-
-.direccion a {
+  .direccion a {
     color: #2e7d32;
     font-weight: bold;
     text-decoration: none;
-}
+  }
+    
+  .direccion a:hover {
+    text-decoration: none;
+  }
 
-.fotos {
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .contact-item svg {
+    flex-shrink: 0;
+  }
+
+  .address-main {
+    font-weight: 600;
+    font-size: var(--fs-md);
+  }
+
+  .address-sub {
+    font-size: var(--fs-sm);
+    color: #555;
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(46,125,50,0.10);
+    background: black;
+  }
+
+  .slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
+  }
+
+  .slider img.active {
+    transform: scale(1.02);
+  }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    color: #2e7d32;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 6px 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .arrow:hover {
+    background: #2e7d32;
+    color: white;
+  }
+
+  .arrow.left {
+    left: 12px;
+  }
+
+  .arrow.right {
+    right: 12px;
+  }
+
+
+  .fotos {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-}
+  }
 
-.fotos img {
+  .fotos img {
     width: 100%;
     height: 250px;
     border-radius: 12px;
     object-fit: cover;
     transition: transform 0.3s;
-}
+  }
 
-.fotos img:hover {
+  .fotos img:hover {
     transform: scale(1.05);
-}
+  }
 
-.horario-container {
+  .horario-container {
     background: #f0fafa;
     border-radius: 16px;
     box-shadow: 0 4px 18px rgba(46,125,50,0.10);
-    padding: 20px;
-}
+    padding: var(--space-4);
+  }
 
-.horario-container label {
-    font-weight: bold;
-}
+  .horario-container label {
+    font-weight: 600;
+    color: #2e7d32;
+    font-size: var(--fs-md);
+    display: inline-block;
+    margin-bottom: var(--space-2);
+  }
 
-.horario-container select {
+  .horario-container select {
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #c8e6c9;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    margin-left: 15px;
-}
+    font-size: var(--fs-md);
+    margin-left: var(--space-2);
+    background: #fff;
+    transition: border-color 0.2s;
+  }
 
-.horario-container table {
+  .horario-container select:focus {
+    border-color: #2e7d32;
+    outline: none;
+  }
+
+  .horario-container table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1rem;
-    table-layout: fixed;
-}
+    font-size: var(--fs-md);
+    margin-top: var(--space-3);
+  }
 
-.horario-container th,
-.horario-container td {
+  .horario-container th,
+  .horario-container td {
     border: 1px solid #c8e6c9;
     padding: 10px;
     text-align: center;
-}
+  }
 
-.horario-container th {
+  .horario-container th {
     background: #2e7d32;
     color: white;
+    font-weight: 600;
+  }
+
+/* ==== Ajustes para bloque de dirección y contacto ==== */
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+  margin: 0 auto;
+  width: fit-content; /* mantiene los ítems centrados dentro de la caja */
 }
 
-.horario-container th:nth-child(2),
-.horario-container td:nth-child(2) {
-    min-width: 250px; 
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.horario-container th:nth-child(1),
-.horario-container td:nth-child(1) {
-    min-width: 120px;
-}
-
-.slider {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(46,125,50,0.10);
-  background: black;
-}
-
-.slider img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
-}
-
-.slider img.active {
-  transform: scale(1.02);
-}
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
+.contact-icon {
   color: #2e7d32;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 6px 14px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-size: 1.3rem;
+  min-width: 24px;
 }
 
-.arrow:hover {
-  background: #2e7d32;
-  color: white;
+.contact-item div {
+  color: #000; /* texto negro */
+  font-size: var(--fs-md);
 }
 
-.arrow.left {
-  left: 12px;
+.contact-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.arrow.right {
-  right: 12px;
+.contact-link:hover {
+  text-decoration: underline;
+  color: #2e7d32;
 }
 
-@media (max-width: 900px) {
-  .slider {
-    max-width: 100%;
-    height: 400px;
-  }
-  .arrow {
-    font-size: 1.6rem;
-    padding: 4px 10px;
-  }
+.map-link {
+  text-align: center;
+  margin-top: var(--space-3);
 }
 
-@media (max-width: 500px) {
-  .slider {
-    height: 220px;
-  }
-  .arrow {
-    font-size: 1.4rem;
-    padding: 3px 8px;
-  }
+.map-link a {
+  color: #2e7d32;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-/* ======== Responsive para el apartado de ubicación ======== */
-@media (max-width: 900px) {
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fotos {
-    grid-template-columns: 1fr;
-  }
-
-  .fotos img {
-    height: 220px;
-  }
-
-  .direccion h2 {
-    font-size: 1.8rem;
-  }
-
-  .direccion p, .direccion a {
-    font-size: 0.95rem;
-  }
+.map-link a:hover {
+  text-decoration: underline;
 }
 
-@media (max-width: 500px) {
-  .ubicacion-container {
-    padding: 10px;
+
+  @media (max-width: 900px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .slider {
+      height: 300px;
+    }
+
+    .arrow {
+      font-size: 1.6rem;
+      padding: 4px 10px;
+    }
+
+    .direccion h2 {
+      font-size: var(--fs-h4);
+    }
+
+    .direccion p, .direccion a {
+      font-size: var(--fs-sm);
+    }
   }
 
-  .direccion {
-    padding: 15px;
-  }
+  @media (max-width: 500px) {
+    .ubicacion-container {
+      padding: var(--space-2);
+    }
 
-  .fotos img {
-    height: 200px;
-  }
+    .slider {
+      height: 220px;
+    }
 
-  .contact-item svg {
-    width: 24px;
-    height: 24px;
-  }
+    .arrow {
+      font-size: 1.4rem;
+      padding: 3px 8px;
+    }
 
-  .contact-info {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
+    .direccion {
+      padding: var(--space-3);
+    }
 
+    .horario-container {
+      padding: var(--space-3);
+    }
+  }
 </style>
 
 <div class="ubicacion-container">
-    <h1>UBICACIÓN</h1>
-
+    <h1>Ubicación</h1>
     <div class="mapa">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.9405650014937!2d-4.917200188130839!3d41.31015657119018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4751d1d581a047%3A0x3969d2f0467e0b02!2sAfisla%20-%20Gesti%C3%B3n!5e0!3m2!1ses!2ses!4v1758803917179!5m2!1ses!2ses"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
@@ -261,20 +318,37 @@
 
     <div class="info-grid">
       <div class="direccion">
-        <h2>Dirección y Contacto</h2>
-        <div class="contact-item">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#2e7d32">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 
-                    9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 
-                    12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
-          </svg>
-          <div>
-            <div class="address-main">Calle Padilla, 25, 1º</div>
-            <div class="address-sub">47400 Medina del Campo, Valladolid</div>
+        <h2>Dirección y contacto</h2>
+
+        <div class="contact-items">
+          <div class="contact-item">
+            <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
+            <div>
+              <strong>Teléfono:</strong>
+              <a href="tel:983811842" class="contact-link">983 81 18 42</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope contact-icon" aria-hidden="true"></i>
+            <div>
+              
+              <a href="mailto:info@afislagestion.es" class="contact-link">info@afislagestion.es</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot contact-icon" aria-hidden="true"></i>
+            <div>
+              <div class="address-main">Calle Padilla, 25, 1º</div>
+              <div class="address-sub">47400 Medina del Campo</div>
+            </div>
           </div>
         </div>
-        <p><a href="https://maps.app.goo.gl/6DifZMu29M8sZs5i6" target="_blank">Ver en Google Maps</a></p>
+        <p class="map-link">
+          <a href="https://maps.app.goo.gl/6DifZMu29M8sZs5i6" target="_blank">Ver en Google Maps</a>
+        </p>
       </div>
+
       <section class="slider" data-imagenes = '[
         "imagenes/afisla_cartel.jpg",
         "imagenes/afisla_puertaconlogoGrande.jpg",
@@ -288,7 +362,7 @@
       </section>
     </div>
 
-    <h1>HORARIO</h1>
+    <h1>Horario</h1>
 
     <div class="horario-container">
         <label for="selectorHorario">Seleccione temporada:</label>

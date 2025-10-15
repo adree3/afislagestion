@@ -1,3 +1,50 @@
+/* ==== VARIABLES PARA LAS TOPOGRAFÍAS ==== */
+:root {
+  /* Escala tipográfica fluida */
+  --fs-base: clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
+  --fs-sm: clamp(0.95rem, 0.9rem + 0.4vw, 1.05rem);
+  --fs-md: clamp(1.05rem, 1rem + 0.5vw, 1.2rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 1vw, 1.5rem);
+  --fs-h6: clamp(1.05rem, 1rem + 0.6vw, 1.2rem);
+  --fs-h5: clamp(1.15rem, 1.05rem + 0.8vw, 1.35rem);
+  --fs-h4: clamp(1.25rem, 1.1rem + 1vw, 1.6rem);
+  --fs-h3: clamp(1.4rem, 1.2rem + 1.4vw, 1.8rem);
+  --fs-h2: clamp(1.6rem, 1.3rem + 2vw, 2.2rem);
+  --fs-h1: clamp(1.9rem, 1.4rem + 3vw, 2.7rem);
+
+  /* Altura de línea y espaciado */
+  --lh-tight: 1.2;
+  --lh-base:  1.5;
+  --lh-relax: 1.65;
+
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+}
+
+/* Base general */
+html { font-size: 16px; }
+body { font-size: var(--fs-base); line-height: var(--lh-base); }
+
+/* Encabezados globales */
+h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0 0 var(--space-4); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0 0 var(--space-3); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-tight); margin: 0 0 var(--space-2); }
+h4 { font-size: var(--fs-h4); line-height: var(--lh-tight); margin: 0 0 var(--space-2); }
+h5 { font-size: var(--fs-h5); line-height: var(--lh-tight); margin: 0 0 var(--space-1); }
+h6 { font-size: var(--fs-h6); line-height: var(--lh-tight); margin: 0 0 var(--space-1); }
+
+/* Párrafos globales */
+p { font-size: var(--fs-md); line-height: var(--lh-relax); margin: 0 0 var(--space-3); }
+
+/* Utilidades */
+.text-sm { font-size: var(--fs-sm); }
+.text-md { font-size: var(--fs-md); }
+.text-lg { font-size: var(--fs-lg); }
+
+
 /* ============ BASE GENERAL ============ */
 * { margin:0; padding:0; box-sizing:border-box; }
 html, body {

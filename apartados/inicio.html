@@ -20,12 +20,17 @@
     box-shadow: 0 2px 24px rgba(0,0,0,0.14);
   }
   .inicio-hero-contenido h1 {
-    margin-bottom: 22px;
-    font-size: 2.7rem;
+    font-size: var(--fs-h1);
+    color: #fff;
+    margin-bottom: var(--space-3);
+    line-height: var(--lh-tight);
   }
+
   .inicio-hero-contenido p {
-    margin-bottom: 32px;
-    font-size: 1.35rem;
+    font-size: var(--fs-lg);
+    color: #e0f2f1;
+    margin-bottom: var(--space-4);
+    line-height: var(--lh-relax);
   }
   .inicio-hero-contenido button {
     background: #2e7d32;
@@ -33,7 +38,7 @@
     border: none;
     padding: 16px 38px;
     border-radius: 8px;
-    font-size: 1.25rem;
+    font-size: var(--fs-h5);
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
@@ -60,14 +65,14 @@
     margin-bottom: 10px;
   }
   .inicio-titulos .inicio-subtitulo {
-    font-size: 1.15rem;
+    font-size: var(--fs-base);
     color: #444;
     font-weight: 500;
     margin-bottom: 9px;
     margin-top: 55px;
   }
   .inicio-titulos .inicio-servicios-titulo {
-    font-size: 2.2rem;
+    font-size: var(--fs-h2);
     color: #2e7d32;
     font-weight: bold;
     letter-spacing: 1px;
@@ -75,6 +80,7 @@
   #inicio-servicios {
     padding: 40px 0 0 0;
   }
+
   .inicio-servicios-row {
     display: flex;
     flex-wrap: wrap;
@@ -114,9 +120,13 @@
   }
   .card-servicio h3 {
     margin-bottom: 14px;
-    font-size: 1.35rem;
+    font-size: var(--fs-h5);
     color: #222;
     text-align: center;
+  }
+  .card-servicio p {
+    font-size: var(--fs-md);
+    line-height: var(--lh-base);
   }
   .card-servicio:hover h3 {
     text-decoration: underline;
@@ -132,14 +142,6 @@
   }
   /* === RESPONSIVE === */
   @media (max-width: 1024px) {
-    .inicio-hero-contenido h1 {
-      font-size: 2.3rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1.2rem;
-    }
-
     .inicio-hero-contenido {
       padding: 40px 30px;
     }
@@ -152,14 +154,6 @@
   @media (max-width: 768px) {
     #inicio-hero {
       min-height: 450px;
-    }
-
-    .inicio-hero-contenido h1 {
-      font-size: 2rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1.1rem;
     }
 
     .card-servicio {
@@ -176,21 +170,9 @@
       padding: 30px 20px;
     }
 
-    .inicio-hero-contenido h1 {
-      font-size: 1.7rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1rem;
-    }
-
     .card-servicio {
       width: 90%;
       padding: 24px;
-    }
-
-    .inicio-titulos .inicio-servicios-titulo {
-      font-size: 1.6rem;
     }
   }
 </style>
@@ -223,22 +205,22 @@
 
 <section id="inicio-servicios">
   <div class="inicio-servicios-row">
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
       <img src="imagenes/asesoria_fiscal1.jpg" alt="Asesoría Fiscal">
       <h3>Asesoría Fiscal</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
       <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
       <h3>Asesoría Laboral</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
       <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
       <h3>Asesoría Contable</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
       <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
       <h3>Herencias y Testamentaria</h3>
       <span>Leer más</span>

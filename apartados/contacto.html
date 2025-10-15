@@ -1,6 +1,6 @@
 <style>
   .contacto-general {
-    padding: 0px 20px;
+    padding: var(--space-2) 20px var(--space-5);
     text-align: center;
   }
 
@@ -10,17 +10,18 @@
   }
 
   .contacto-general h1 {
-    font-size: 2.2rem;
+    font-size: var(--fs-h1);
     color: #2e7d32;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-3);
     font-weight: 700;
+    line-height: var(--lh-tight);
   }
 
   .contacto-general p {
-    font-size: 1.1rem;
+    font-size: var(--fs-md);
     color: #444;
-    margin-bottom: 50px;
-    line-height: 1.6;
+    margin-bottom: var(--space-5);
+    line-height: var(--lh-relax);
   }
 
   .contacto-grid {
@@ -69,7 +70,7 @@
   }
 
   .contacto-item h3 {
-    font-size: 1.15rem;
+    font-size: var(--fs-h5);
     color: #2e7d32;
     margin-bottom: 4px;
     text-align: left;
@@ -79,7 +80,8 @@
     margin: 0;
     color: #444;
     text-align: left;
-    font-size: 1rem;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
   }
 
   /* ======== FORMULARIO ======== */
@@ -94,13 +96,14 @@
   }
   .contacto-form h2 {
     color: #2e7d32;
-    font-size: 1.8rem;
+    font-size: var(--fs-h3);
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
+    margin-bottom: var(--space-3);
   }
 
   .contacto-form .form-group {
-    margin-bottom: 18px;
+    margin-bottom: var(--space-3);
     display: flex;
     flex-direction: column;
   }
@@ -109,20 +112,24 @@
     font-weight: 600;
     color: #2e7d32;
     margin-bottom: 6px;
-    font-size: 1rem;
+    font-size: var(--fs-sm);
   }
 
   .contacto-form input,
-  .contacto-form textarea {
+  .contacto-form textarea,
+  .contacto-form select {
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: var(--fs-md);
     transition: border-color 0.2s ease;
+    background-color: #fff;
+    color: #333;
   }
 
   .contacto-form input:focus,
-  .contacto-form textarea:focus {
+  .contacto-form textarea:focus,
+  .contacto-form select:focus {
     border-color: #2e7d32;
     outline: none;
   }
@@ -132,32 +139,18 @@
     color: white;
     border: none;
     padding: 0.8rem 1.4rem;
-    font-size: 1.1rem;
+    font-size: var(--fs-md);
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    width: 100%;
+    font-weight: 600;
   }
 
   .btn-enviar:hover {
     background: #256628;
     transform: translateY(-2px);
   }
-
-  .contacto-form select {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-    background-color: #fff;
-    color: #333;
-  }
-
-  .contacto-form select:focus {
-    border-color: #2e7d32;
-    outline: none;
-  }
-
   .contacto-form .confirmacion {
     background: #e8f5e9;
     color: #2e7d32;
@@ -166,40 +159,15 @@
     margin-top: 18px;
     text-align: center;
     font-weight: bold;
-    font-size: 1.05rem;
+    font-size: var(--fs-md);
     display: none;
   }
 
-  /* ======== RESPONSIVE ======== */
-  @media (max-width: 768px) {
-    .contacto-grid {
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .contacto-form,
-    .contacto-info {
-      width: 100%;
-    }
-
-    .contacto-general {
-      padding: 0px 15px 60px 15px;  
-    }
-
-    .whatsapp-fab {
-      bottom: 18px;
-      right: 18px;
-      width: 52px;
-      height: 52px;
-      font-size: 1.7rem;
-    }
-    
-  }
   .legal-consent {
-    margin-top: 12px;
-    font-size: 0.9rem;
+    margin-top: var(--space-2);
+    font-size: var(--fs-sm);
     color: #444;
-    margin-bottom: 5px;
+    margin-bottom: var(--space-2);
   }
 
   .legal-consent label {
@@ -216,7 +184,6 @@
     height: 18px;
     accent-color: #2e7d32;
     position: relative;
-    top: 1px;
     flex-shrink: 0;
   }
 
@@ -228,6 +195,26 @@
 
   .legal-consent a:hover {
     text-decoration: none;
+  }
+
+  /* ======== RESPONSIVE ======== */
+  @media (max-width: 768px) {
+    .contacto-grid {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .contacto-form,
+    .contacto-info {
+      width: 100%;
+    }
+
+    .contacto-item i {
+      font-size: 1.5rem;
+    }
+    .contacto-general {
+      padding: var(--space-2) 15px var(--space-7);
+    }
   }
 </style>
 

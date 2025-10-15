@@ -13,19 +13,19 @@
   }
 
   .servicios-container h1 {
-    font-size: 2.5rem;
+    font-size: var(--fs-h1);
     color: #2e7d32;
     text-align: center;
     font-weight: bold;
-    margin-bottom: 18px;
+    margin-bottom: var(--space-3);
     letter-spacing: 1px;
   }
   .servicios-container p {
-    font-size: 1.25rem;
+    font-size: var(--fs-md);
     color: #444;
-    margin-bottom: 10px;
+    margin: 0 auto var(--space-3);
+    line-height: var(--lh-relax);
   }
-
 
   #card-servicios {
     padding: 40px 0 0 0;
@@ -59,6 +59,7 @@
   .card-servicio:hover {
     background: rgba(46, 125, 50, 0.12);
     box-shadow: 0 8px 28px rgba(46,125,50,0.18);
+    transform: translateY(-2px);
   }
   .card-servicio img {
     width: 100%;
@@ -69,7 +70,7 @@
   }
   .card-servicio h3 {
     margin-bottom: 14px;
-    font-size: 1.35rem;
+    font-size: var(--fs-h5);
     color: #222;
     text-align: center;
   }
@@ -78,73 +79,31 @@
     text-decoration-color: #2e7d32;
     text-underline-offset: 4px;
   }
+  .card-servicio p {
+    font-size: var(--fs-md);
+    line-height: var(--lh-base);
+  }
   .card-servicio span {
     color: #2e7d32;
     font-weight: bold;
     text-decoration: underline;
     margin-top: 12px;
-    font-size: 1.08rem;
-  }
-  @media (max-width: 1024px) {
-    .inicio-hero-contenido h1 {
-      font-size: 2.3rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1.2rem;
-    }
-
-    .inicio-hero-contenido {
-      padding: 40px 30px;
-    }
-
-    .inicio-servicios-row {
-      gap: 30px;
-    }
+    font-size: var(--fs-sm);
   }
 
   @media (max-width: 768px) {
-    #inicio-hero {
-      min-height: 450px;
-    }
-
-    .inicio-hero-contenido h1 {
-      font-size: 2rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1.1rem;
-    }
-
     .card-servicio {
       width: 80%;
     }
-
     .inicio-servicios-row {
       gap: 20px;
     }
   }
 
   @media (max-width: 480px) {
-    .inicio-hero-contenido {
-      padding: 30px 20px;
-    }
-
-    .inicio-hero-contenido h1 {
-      font-size: 1.7rem;
-    }
-
-    .inicio-hero-contenido p {
-      font-size: 1rem;
-    }
-
     .card-servicio {
       width: 90%;
       padding: 24px;
-    }
-
-    .inicio-titulos .inicio-servicios-titulo {
-      font-size: 1.6rem;
     }
   }
 </style>
@@ -159,22 +118,22 @@
 
 <section id="card-servicios">
   <div class="card-servicios-row">
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
       <img src="imagenes/asesoria_fiscal1.jpg" alt="Asesoría Fiscal">
       <h3>Asesoría Fiscal</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
       <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
       <h3>Asesoría Laboral</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
       <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
       <h3>Asesoría Contable</h3>
       <span>Leer más</span>
     </a>
-    <a href="#" class="card-servicio", onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
+    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
       <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
       <h3>Herencias y Testamentaria</h3>
       <span>Leer más</span>

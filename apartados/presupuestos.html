@@ -1,105 +1,115 @@
 <style>
-.presupuesto-container {
-  max-width: 520px;
-  margin: 10px auto 0 auto;
-  background: #f0fafa;
-  border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(46,125,50,0.11);
-  padding: 0px 32px 32px 32px;
-}
-.presupuesto-container h1 {
-  text-align: center;
-  color: #2e7d32;
-  font-size: 2.1rem;
-  margin-bottom: 18px;
-  letter-spacing: 1px;
-}
-.presupuesto-form label {
-  display: block;
-  margin-bottom: 7px;
-  color: #222;
-  font-weight: bold;
-  font-size: 1.08rem;
-}
-.presupuesto-form input,
-.presupuesto-form select,
-.presupuesto-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 18px;
-  border: 1px solid #c8e6c9;
-  border-radius: 8px;
-  font-size: 1.08rem;
-  background: #fff;
-  transition: border-color 0.2s;
-}
-.presupuesto-form input:focus,
-.presupuesto-form select:focus,
-.presupuesto-form textarea:focus {
-  border-color: #2e7d32;
-  outline: none;
-}
-.presupuesto-form button {
-  width: 100%;
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  padding: 14px 0;
-  border-radius: 8px;
-  font-size: 1.15rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 2px 12px rgba(46,125,50,0.10);
-  transition: background 0.2s, transform 0.2s;
-}
-.presupuesto-form button:hover {
-  background: #1b5e20;
-  transform: translateY(-2px) scale(1.03);
-}
-.presupuesto-form .confirmacion {
-  background: #e8f5e9;
-  color: #2e7d32;
-  border-radius: 8px;
-  padding: 16px;
-  margin-top: 18px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.08rem;
-  display: none;
-}
-.legal-consent {
-  margin-top: 12px;
-  font-size: 0.9rem;
-  color: #444;
-}
+  .presupuesto-container {
+    max-width: 520px;
+    margin: var(--space-5) auto;
+    background: #f0fafa;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(46,125,50,0.11);
+    padding: var(--space-4) var(--space-5) var(--space-5);
+  }
+  .presupuesto-container h1 {
+    text-align: center;
+    color: #2e7d32;
+    font-size: var(--fs-h2);
+    margin-bottom: var(--space-4);
+    letter-spacing: 0.5px;
+    line-height: var(--lh-tight);
+  }
+  .presupuesto-form label {
+    display: block;
+    margin-bottom: 7px;
+    color: #222;
+    font-weight: bold;
+    font-size: var(--fs-sm);
+  }
+  .presupuesto-form input,
+  .presupuesto-form select,
+  .presupuesto-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: var(--space-3);
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    font-size: var(--fs-md);
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+  .presupuesto-form input:focus,
+  .presupuesto-form select:focus,
+  .presupuesto-form textarea:focus {
+    border-color: #2e7d32;
+    outline: none;
+  }
+  .presupuesto-form button {
+    width: 100%;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 14px 0;
+    border-radius: 8px;
+    font-size: var(--fs-md);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(46,125,50,0.10);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .presupuesto-form button:hover {
+    background: #1b5e20;
+    transform: translateY(-2px) scale(1.03);
+  }
+  .presupuesto-form .confirmacion {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: var(--space-3);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-md);
+    display: none;
+  }
+  .legal-consent {
+    margin-top: var(--space-2);
+    font-size: var(--fs-sm);
+    color: #444;
+    margin-bottom: var(--space-2);
+  }
 
-.legal-consent label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.4;
-  vertical-align: middle;
-  cursor: pointer;
-}
+  .legal-consent label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+    vertical-align: middle;
+    cursor: pointer;
+  }
 
-.legal-consent input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #2e7d32;
-  position: relative;
-  top: 1px;
-  flex-shrink: 0;
-}
+  .legal-consent input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2e7d32;
+    flex-shrink: 0;
+  }
 
-.legal-consent a {
-  color: #2e7d32;
-  text-decoration: underline;
-  font-weight: 500;
-}
+  .legal-consent a {
+    color: #2e7d32;
+    text-decoration: underline;
+    font-weight: 500;
+  }
 
-.legal-consent a:hover {
-  text-decoration: none;
-}
+  .legal-consent a:hover {
+    text-decoration: none;
+  }
+  @media (max-width: 600px) {
+    .presupuesto-container {
+      padding: var(--space-4) var(--space-3);
+      margin: var(--space-4) auto;
+    }
+
+    .presupuesto-container h1 {
+      font-size: 1.6rem;
+    }
+  }
 </style>
 
 <div class="presupuesto-container">
