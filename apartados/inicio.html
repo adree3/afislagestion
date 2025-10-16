@@ -1,4 +1,5 @@
 <style>
+  /* ==== HERO ==== */
   #inicio-hero {
     position: relative;
     min-height: 600px;
@@ -10,6 +11,7 @@
     margin-bottom: 0;
     overflow: hidden;
   }
+
   .inicio-hero-contenido {
     background: rgba(40, 60, 60, 0.60);
     color: #fff;
@@ -19,6 +21,7 @@
     max-width: 600px;
     box-shadow: 0 2px 24px rgba(0,0,0,0.14);
   }
+
   .inicio-hero-contenido h1 {
     font-size: var(--fs-h1);
     color: #fff;
@@ -32,6 +35,7 @@
     margin-bottom: var(--space-4);
     line-height: var(--lh-relax);
   }
+
   .inicio-hero-contenido button {
     background: #2e7d32;
     color: #fff;
@@ -42,14 +46,19 @@
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
+
   .inicio-hero-contenido button:hover {
     background: #1b5e20;
+    transform: scale(1.04);
   }
+
+  /* ==== SEPARADOR Y TÍTULOS ==== */
   .inicio-espaciado {
     height: 55px;
   }
+
   .inicio-barra-verde {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
@@ -59,26 +68,48 @@
     align-items: center;
     justify-content: center;
   }
+
   .inicio-titulos {
     text-align: center;
     margin-top: 18px;
     margin-bottom: 10px;
   }
-  .inicio-titulos .inicio-subtitulo {
+
+  .inicio-subtitulo {
     font-size: var(--fs-base);
     color: #444;
     font-weight: 500;
     margin-bottom: 9px;
     margin-top: 55px;
   }
-  .inicio-titulos .inicio-servicios-titulo {
+
+  .inicio-servicios-titulo {
     font-size: var(--fs-h2);
     color: #2e7d32;
     font-weight: bold;
     letter-spacing: 1px;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 6px;
   }
+
+  /* Subrayado animado del título */
+  .inicio-servicios-titulo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2.5px;
+    width: 100%;
+    background-color: #2e7d32;
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.4s ease;
+  }
+
+  /* ==== SERVICIOS ==== */
   #inicio-servicios {
-    padding: 40px 0 0 0;
+    padding: 60px 0 0 0;
   }
 
   .inicio-servicios-row {
@@ -89,7 +120,7 @@
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
   .card-servicio {
@@ -104,48 +135,68 @@
     align-items: center;
     padding: 32px;
     text-decoration: none;
-    transition: box-shadow 0.2s, background 0.2s;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
+    overflow: hidden;
   }
+
   .card-servicio:hover {
-    background: rgba(46, 125, 50, 0.12);
     box-shadow: 0 8px 28px rgba(46,125,50,0.18);
+    transform: translateY(-4px);
   }
+
   .card-servicio img {
     width: 100%;
     height: 190px;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 22px;
+    transition: transform 0.5s ease;
   }
+
+  .card-servicio:hover img {
+    transform: scale(1.05);
+  }
+
   .card-servicio h3 {
     margin-bottom: 14px;
     font-size: var(--fs-h5);
     color: #222;
     text-align: center;
+    position: relative;
+    display: inline-block;
   }
-  .card-servicio p {
-    font-size: var(--fs-md);
-    line-height: var(--lh-base);
+
+  /* Subrayado animado igual que en subservicios */
+  .card-servicio h3::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.3s ease;
   }
-  .card-servicio:hover h3 {
-    text-decoration: underline;
-    text-decoration-color: #2e7d32;
-    text-underline-offset: 4px;
+
+  .card-servicio:hover h3::after {
+    width: 80%;
   }
+
   .card-servicio span {
     color: #2e7d32;
     font-weight: bold;
     text-decoration: underline;
     margin-top: 12px;
-    font-size: 1.08rem;
+    font-size: var(--fs-sm);
   }
-  /* === RESPONSIVE === */
+
+  /* ==== RESPONSIVE ==== */
   @media (max-width: 1024px) {
     .inicio-hero-contenido {
       padding: 40px 30px;
     }
-
     .inicio-servicios-row {
       gap: 30px;
     }
@@ -155,11 +206,9 @@
     #inicio-hero {
       min-height: 450px;
     }
-
     .card-servicio {
       width: 80%;
     }
-
     .inicio-servicios-row {
       gap: 20px;
     }
@@ -169,7 +218,6 @@
     .inicio-hero-contenido {
       padding: 30px 20px;
     }
-
     .card-servicio {
       width: 90%;
       padding: 24px;
@@ -191,7 +239,6 @@
 </section>
 
 <div class="inicio-espaciado"></div>
-
 <div class="inicio-barra-verde"></div>
 
 <div class="inicio-titulos">
@@ -199,7 +246,7 @@
     Gestoría en Medina del Campo
   </div>
   <div class="inicio-servicios-titulo">
-    NUESTROS SERVICIOS
+    Nuestros Servicios
   </div>
 </div>
 

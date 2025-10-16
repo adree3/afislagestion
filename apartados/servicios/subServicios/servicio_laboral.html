@@ -8,6 +8,7 @@
     gap: 40px;
     align-items: flex-start;
   }
+
   .laboral-img-box {
     display: flex;
     flex-direction: row;
@@ -15,96 +16,200 @@
     align-items: flex-start;
     width: 100%;
   }
+
+  .laboral-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
   .laboral-img {
     width: 700px;
     max-width: 100%;
     height: 340px;
     object-fit: cover;
     border-radius: 18px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
     display: block;
+    transition: transform 0.5s ease;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
   }
+
+  .laboral-img-wrapper:hover .laboral-img {
+    transform: scale(1.05);
+  }
+
+  .img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(46,125,50,0.85);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
+
   .laboral-servicios-box {
-    background: #f0fafa;
-    border-radius: 16px;
-    box-shadow: 0 4px 18px rgba(46,125,50,0.13);
+    background: linear-gradient(135deg, #f3fbf3, #eaf5ef);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(46,125,50,0.10);
     padding: 32px 26px;
-    min-width: 270px;
-    max-width: 320px;
-    margin-top: 0;
-    align-self: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: fit-content;
   }
+
+  .laboral-servicios-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(46,125,50,0.18);
+  }
+
   .laboral-servicios-box h2 {
     color: #2e7d32;
     font-size: var(--fs-h5);
     margin-bottom: var(--space-2);
-    text-align: left;
     letter-spacing: 1px;
   }
+
   .laboral-servicios-box ul {
-    list-style: disc;
-    padding-left: 22px;
-    margin: 0;
+    padding: 0;
   }
+
   .laboral-servicios-box li {
-    margin-bottom: 16px;
-    line-height: var(--lh-base);
+    margin-bottom: 14px;
   }
-  .laboral-servicios-box a {
+
+  .laboral-servicios-box li a {
+    position: relative;
+    display: inline-block;
     color: #2e7d32;
-    font-weight: bold;
-    text-decoration: underline;
+    font-weight: 600;
+    text-decoration: none;
     font-size: var(--fs-md);
-    transition: color 0.2s;
+    transition: color 0.25s ease;
   }
-  .laboral-servicios-box a:hover {
+
+  .laboral-servicios-box li a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.25s ease;
+  }
+
+  .laboral-servicios-box li a:hover {
     color: #1b5e20;
   }
-  .contable-servicios-box a.active,
-  .contable-servicios-box a[aria-current="page"] {
-    color: #000;
+
+  .laboral-servicios-box li a:hover::after {
+    width: 100%;
+  }
+
+  .laboral-servicios-box a.active,
+  .laboral-servicios-box a[aria-current="page"] {
+    color: black;
     text-decoration: none;
   }
+
   .laboral-content {
     flex: 2 1 700px;
     min-width: 400px;
-    max-width: 900px;
-    padding: 0 10px 30px 10px;
+    padding: 0 10px 40px 10px;
+    line-height: 1.75;
   }
+
   .laboral-content h1 {
     color: #2e7d32;
     font-size: var(--fs-h1);
     margin-bottom: var(--space-3);
-    text-align: left;
+    border-bottom: 2px solid #2e7d32;
+    display: inline-block;
+    padding-bottom: 6px;
+    letter-spacing: 1px;
   }
+
   .laboral-content p {
     font-size: var(--fs-md);
-    color: #444;
+    color: #3a3a3a;
     margin-bottom: var(--space-3);
     line-height: var(--lh-relax);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
   }
+
+  .laboral-content strong {
+    background: linear-gradient(90deg, rgba(46,125,50,0.12), rgba(46,125,50,0.05));
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #1b5e20;
+  }
+
+  .laboral-quote {
+    background: #f5fbf5;
+    border-left: 4px solid #2e7d32;
+    padding: 1rem 1.2rem;
+    margin: var(--space-4) 0;
+    font-style: italic;
+    color: #2e7d32;
+    font-size: var(--fs-md);
+    line-height: var(--lh-relax);
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
   .laboral-content ul {
+    list-style: none;
     margin-top: var(--space-2);
     padding-left: 28px;
     font-size: var(--fs-md);
     color: #444;
-    line-height: var(--lh-relax);
   }
-  .laboral-content > ul > li {
+
+  .laboral-content li {
     margin-bottom: var(--space-2);
+    line-height: var(--lh-relax);
+    position: relative;
+    padding-left: 26px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
   }
+
+  .laboral-content li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #2e7d32;
+    font-weight: bold;
+  }
+
   .laboral-content ul ul {
     margin-top: var(--space-1);
-    margin-bottom: 0;
     padding-left: 22px;
     font-size: var(--fs-sm);
-    line-height: var(--lh-base);
   }
-  .laboral-content ul ul li {
-    margin-bottom: 4px;
+
+  .laboral-content ul ul li::before {
+    content: "–";
+    color: #2e7d32;
+    font-weight: bold;
   }
-  
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 1200px) {
     .laboral-container { 
       flex-direction: column; 
@@ -118,7 +223,7 @@
       width: 100%; 
       height: 220px; 
     }
-    .laboral-content {
+    .laboral-content { 
       max-width: 100%; 
       min-width: 0; 
     }
@@ -131,27 +236,40 @@
 
 <section class="laboral-container">
   <div class="laboral-img-box">
-    <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral Afisla" class="laboral-img">
+    <div class="laboral-img-wrapper">
+      <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral Afisla" class="laboral-img">
+      <div class="img-overlay">
+        <span>Asesoría Laboral</span>
+      </div>
+    </div>
+
     <div class="laboral-servicios-box">
       <h2>SERVICIOS</h2>
       <ul>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">Asesoría Fiscal</a></li>
-        <li><a href="#" style="color: black;" class="active" aria-current="page">Asesoría Laboral </a></li>
+        <li><a href="#" class="active" aria-current="page">Asesoría Laboral</a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">Asesoría Contable</a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">Herencias y Testamentaria</a></li>
       </ul>
     </div>
   </div>
+
   <div class="laboral-content">
     <h1>Asesoría Laboral</h1>
+
     <p>
-      En <strong>Afisla Gestión</strong> te acompañamos en la gestión laboral de tu empresa o actividad profesional, asegurando el cumplimiento de la normativa vigente y la tranquilidad de tu equipo. Nos encargamos de todos los trámites y documentación para que puedas centrarte en tu negocio.
+      En <strong>Afisla Gestión</strong> te acompañamos en la gestión laboral de tu empresa o actividad profesional, asegurando el cumplimiento de la normativa vigente y la tranquilidad de tu equipo.
     </p>
+
+    <blockquote class="laboral-quote">
+      “Una gestión laboral eficiente garantiza la estabilidad y el bienestar de tu empresa y tus trabajadores.”
+    </blockquote>
+
     <ul>
       <li><strong>Gestionamos:</strong>
         <ul>
           <li>Seguros sociales</li>
-          <li>Altas y bajas en la seguridad social</li>
+          <li>Altas y bajas en la Seguridad Social</li>
           <li>Incapacidad temporal</li>
           <li>Certificados de empresa</li>
         </ul>
@@ -165,8 +283,10 @@
         </ul>
       </li>
     </ul>
+
     <p>
-      Además, te asesoramos en la aplicación de convenios colectivos, prevención de riesgos laborales y resolución de conflictos. Nuestro equipo está siempre disponible para resolver tus dudas y ayudarte a tomar las mejores decisiones para tu empresa y tus empleados.
+      Además, te asesoramos en la aplicación de <strong>convenios colectivos</strong>, <strong>prevención de riesgos laborales</strong> y resolución de conflictos.  
+      Nuestro equipo está siempre disponible para resolver tus dudas y ayudarte a tomar las mejores decisiones para tu empresa y tus empleados.
     </p>
   </div>
 </section>

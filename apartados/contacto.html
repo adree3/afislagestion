@@ -2,6 +2,13 @@
   .contacto-general {
     padding: var(--space-2) 20px var(--space-5);
     text-align: center;
+    background-color: #f8f9fa;
+    animation: fadeIn 0.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .contacto-container {
@@ -15,6 +22,17 @@
     margin-bottom: var(--space-3);
     font-weight: 700;
     line-height: var(--lh-tight);
+    position: relative;
+  }
+
+  .contacto-general h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #2e7d32;
+    margin: 10px auto 0;
+    border-radius: 3px;
   }
 
   .contacto-general p {
@@ -39,34 +57,50 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
+    animation: fadeIn 1s ease;
   }
 
+  /* 🔹 Quitamos subrayados de todos los enlaces */
   .contacto-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .contacto-link:hover,
+  .contacto-link:focus,
+  .contacto-link:active {
     text-decoration: none;
     color: inherit;
   }
 
   .contacto-item {
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding: 20px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    padding: 18px 22px;
     display: flex;
     align-items: center;
     gap: 16px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
   }
 
   .contacto-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(46,125,50,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(46,125,50,0.25);
   }
 
   .contacto-item i {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #2e7d32;
-    min-width: 36px;
+    background: rgba(46,125,50,0.1);
+    padding: 12px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .contacto-item h3 {
@@ -90,10 +124,13 @@
     min-width: 340px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     padding: 30px;
     text-align: left;
+    border-top: 5px solid #2e7d32;
+    animation: fadeIn 1.2s ease;
   }
+
   .contacto-form h2 {
     color: #2e7d32;
     font-size: var(--fs-h3);
@@ -122,7 +159,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: var(--fs-md);
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     background-color: #fff;
     color: #333;
   }
@@ -131,14 +168,15 @@
   .contacto-form textarea:focus,
   .contacto-form select:focus {
     border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46,125,50,0.15);
     outline: none;
   }
 
   .btn-enviar {
-    background: #2e7d32;
+    background: linear-gradient(135deg, #2e7d32, #43a047);
     color: white;
     border: none;
-    padding: 0.8rem 1.4rem;
+    padding: 0.9rem 1.4rem;
     font-size: var(--fs-md);
     border-radius: 6px;
     cursor: pointer;
@@ -148,9 +186,10 @@
   }
 
   .btn-enviar:hover {
-    background: #256628;
+    background: linear-gradient(135deg, #256628, #388e3c);
     transform: translateY(-2px);
   }
+
   .contacto-form .confirmacion {
     background: #e8f5e9;
     color: #2e7d32;
@@ -170,23 +209,6 @@
     margin-bottom: var(--space-2);
   }
 
-  .legal-consent label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    line-height: 1.4;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  .legal-consent input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #2e7d32;
-    position: relative;
-    flex-shrink: 0;
-  }
-
   .legal-consent a {
     color: #2e7d32;
     text-decoration: underline;
@@ -197,7 +219,6 @@
     text-decoration: none;
   }
 
-  /* ======== RESPONSIVE ======== */
   @media (max-width: 768px) {
     .contacto-grid {
       flex-direction: column;
@@ -210,13 +231,19 @@
     }
 
     .contacto-item i {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      width: 38px;
+      height: 38px;
+      padding: 10px;
     }
+
     .contacto-general {
       padding: var(--space-2) 15px var(--space-7);
     }
   }
 </style>
+
+
 
 <section class="contacto-general">
   <div class="contacto-container">

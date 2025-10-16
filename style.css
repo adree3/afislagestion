@@ -22,42 +22,86 @@
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2rem;
+
+  /* Alturas en layout*/
+  --contact-block-height: 10.25rem;
+  --tapbar-height: 3.5rem;
 }
 
 /* Base general */
-html { font-size: 16px; }
-body { font-size: var(--fs-base); line-height: var(--lh-base); }
+html { 
+  font-size: 16px; 
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color:#333;
+  background:#fff;
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+}
 
 /* Encabezados globales */
-h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0 0 var(--space-4); }
-h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0 0 var(--space-3); }
-h3 { font-size: var(--fs-h3); line-height: var(--lh-tight); margin: 0 0 var(--space-2); }
-h4 { font-size: var(--fs-h4); line-height: var(--lh-tight); margin: 0 0 var(--space-2); }
-h5 { font-size: var(--fs-h5); line-height: var(--lh-tight); margin: 0 0 var(--space-1); }
-h6 { font-size: var(--fs-h6); line-height: var(--lh-tight); margin: 0 0 var(--space-1); }
+h1 { 
+  font-size: var(--fs-h1); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-4); 
+}
+h2 { 
+  font-size: var(--fs-h2); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-3); 
+}
+h3 { 
+  font-size: var(--fs-h3); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-2); 
+}
+h4 { 
+  font-size: var(--fs-h4); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-2); 
+}
+h5 { 
+  font-size: var(--fs-h5); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-1); 
+}
+h6 { 
+  font-size: var(--fs-h6); 
+  line-height: var(--lh-tight); 
+  margin: 0 0 var(--space-1); 
+}
 
 /* Párrafos globales */
-p { font-size: var(--fs-md); line-height: var(--lh-relax); margin: 0 0 var(--space-3); }
+p { 
+  font-size: var(--fs-md); 
+  line-height: var(--lh-relax); 
+  margin: 0 0 var(--space-3); 
+}
 
 /* Utilidades */
-.text-sm { font-size: var(--fs-sm); }
-.text-md { font-size: var(--fs-md); }
-.text-lg { font-size: var(--fs-lg); }
+.text-sm { 
+  font-size: var(--fs-sm); 
+}
+.text-md { 
+  font-size: var(--fs-md); 
+}
+.text-lg { 
+  font-size: var(--fs-lg); 
+}
 
 
 /* ============ BASE GENERAL ============ */
-* { margin:0; padding:0; box-sizing:border-box; }
+* { 
+  margin:0; 
+  padding:0; 
+  box-sizing:border-box; 
+}
 html, body {
-  min-width: 400px; /* tamaño mínimo para móviles pequeños */
+  min-width: 320px;
 }
 
-html { font-size:16px; scroll-behavior:smooth; }
-body {
-  font-family: Arial, Helvetica, sans-serif; 
-  color:#333; 
-  background:#fff; 
-  line-height:1.6; 
-}
 
 /* ============ TOP BAR ============ */
 .top-bar { background:#2e7d32; color:white; text-align:center; font-size:0.9rem; padding:0.5rem; }
@@ -268,25 +312,30 @@ body {
 .tapbar-dropdown.open .tapbar-dropdown-content { display:flex; }
 
 /* ============ MENÚ LATERAL (DESLIZANTE) ============ */
-.side-menu-overlay {
+
+.menu-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.45);
-  z-index: 1500;
-  display: none;
+  z-index: 2500 !important;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  cursor: pointer;
+}
+.menu-overlay.open { 
+  opacity: 1; 
+  visibility: visible;
+  pointer-events: auto;
 }
 
+/* Menú lateral abierto segun tu JS (.open) */
 .side-menu {
   position: fixed;
-  top: 0;
+  top: 0; 
   right: -100%;
-  width: 280px;
-  height: 100%;
+  width: 280px; height: 100%;
   background: #ffffff;
   box-shadow: -2px 0 10px rgba(0,0,0,0.2);
   transition: right 0.3s ease;
@@ -294,9 +343,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.side-menu.show { right: 0; }
-.side-menu-overlay.show { display: block; opacity: 1; }
+.side-menu.open { right: 0; }
 
 .menu-header {
   background-color: #2e7d32;
@@ -497,6 +544,9 @@ body {
   align-items: center;
   gap: 5px;
 }
+.footer-bottom p, .footer-column p {
+  margin: 0;
+}
 
 @media (min-width: 768px) {
   .footer-bottom-container {
@@ -558,7 +608,6 @@ body {
 @media (max-width:1024px) {
   .contact-block { flex-wrap:wrap; justify-content:space-between; padding:0.8rem 1.5rem; }
   .contact-right { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  .menu-toggle { display: none; }
 }
 
 @media (max-width:768px) {
@@ -573,7 +622,7 @@ body {
   }
 
   .contact-block { padding: 0.5rem 1rem; }
-  body.menu-open { overflow: hidden; height: 100vh; }
+  body.menu-open { overflow: hidden; }
 }
 
 @media (max-width:480px) {

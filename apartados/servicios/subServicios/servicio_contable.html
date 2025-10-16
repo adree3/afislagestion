@@ -8,6 +8,7 @@
     gap: 40px;
     align-items: flex-start;
   }
+
   .contable-img-box {
     display: flex;
     flex-direction: row;
@@ -15,85 +16,189 @@
     align-items: flex-start;
     width: 100%;
   }
+
+  .contable-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
   .contable-img {
     width: 700px;
     max-width: 100%;
     height: 340px;
     object-fit: cover;
     border-radius: 18px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
     display: block;
+    transition: transform 0.5s ease;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
   }
+
+  .contable-img-wrapper:hover .contable-img {
+    transform: scale(1.05);
+  }
+
+  .img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(46,125,50,0.85);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
+
   .contable-servicios-box {
-    background: #f0fafa;
-    border-radius: 16px;
-    box-shadow: 0 4px 18px rgba(46,125,50,0.13);
+    background: linear-gradient(135deg, #f3fbf3, #eaf5ef);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(46,125,50,0.10);
     padding: 32px 26px;
-    min-width: 270px;
-    max-width: 320px;
-    align-self: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: fit-content;
   }
+
+  .contable-servicios-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(46,125,50,0.18);
+  }
+
   .contable-servicios-box h2 {
     color: #2e7d32;
     font-size: var(--fs-h5);
     margin-bottom: var(--space-2);
-    text-align: left;
     letter-spacing: 1px;
-  }
-  .contable-servicios-box ul {
-    list-style: disc;
-    padding-left: 22px;
-    margin: 0;
-  }
-  .contable-servicios-box li {
-    margin-bottom: 14px;
-    line-height: var(--lh-base);
-  }
-  .contable-servicios-box a {
-    color: #2e7d32;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: var(--fs-md);
-    transition: color 0.2s;
+    text-align: start;
   }
 
-  .contable-servicios-box a:hover {
+  .contable-servicios-box ul {
+    padding: 0;
+  }
+
+  .contable-servicios-box li {
+    margin-bottom: 14px;
+  }
+
+  .contable-servicios-box li a {
+    position: relative;
+    display: inline-block;
+    color: #2e7d32;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: var(--fs-md);
+    transition: color 0.25s ease;
+  }
+
+  .contable-servicios-box li a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.25s ease;
+  }
+
+  .contable-servicios-box li a:hover {
     color: #1b5e20;
   }
+
+  .contable-servicios-box li a:hover::after {
+    width: 100%;
+  }
+
   .contable-servicios-box a.active,
   .contable-servicios-box a[aria-current="page"] {
+    color: black;
     text-decoration: none;
   }
+
   .contable-content {
     flex: 2 1 700px;
     min-width: 400px;
-    max-width: 900px;
-    padding: 0 10px 30px 10px;
+    padding: 0 10px 40px 10px;
+    line-height: 1.75;
   }
+
   .contable-content h1 {
     color: #2e7d32;
     font-size: var(--fs-h1);
     margin-bottom: var(--space-3);
-    text-align: left;
+    border-bottom: 2px solid #2e7d32;
+    display: inline-block;
+    padding-bottom: 6px;
+    letter-spacing: 1px;
   }
+
   .contable-content p {
     font-size: var(--fs-md);
-    color: #444;
+    color: #3a3a3a;
     margin-bottom: var(--space-3);
     line-height: var(--lh-relax);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
   }
+
+  .contable-content strong {
+    background: linear-gradient(90deg, rgba(46,125,50,0.12), rgba(46,125,50,0.05));
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #1b5e20;
+  }
+
+  .contable-quote {
+    background: #f5fbf5;
+    border-left: 4px solid #2e7d32;
+    padding: 1rem 1.2rem;
+    margin: var(--space-4) 0;
+    font-style: italic;
+    color: #2e7d32;
+    font-size: var(--fs-md);
+    line-height: var(--lh-relax);
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
   .contable-content ul {
+    list-style: none;
     margin-top: var(--space-2);
-    margin-bottom: 0;
     padding-left: 28px;
     font-size: var(--fs-md);
     color: #444;
   }
+
   .contable-content li {
     margin-bottom: var(--space-2);
     line-height: var(--lh-relax);
+    position: relative;
+    padding-left: 26px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
   }
+
+  .contable-content li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #2e7d32;
+    font-weight: bold;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 1200px) {
     .contable-container { 
       flex-direction: column; 
@@ -120,22 +225,35 @@
 
 <section class="contable-container">
   <div class="contable-img-box">
-    <img src="imagenes/asesoria_contable.jpg" alt="Asesoría Contable Afisla" class="contable-img">
+    <div class="contable-img-wrapper">
+      <img src="imagenes/asesoria_contable.jpg" alt="Asesoría Contable Afisla" class="contable-img">
+      <div class="img-overlay">
+        <span>Asesoría Contable</span>
+      </div>
+    </div>
+
     <div class="contable-servicios-box">
       <h2>SERVICIOS</h2>
       <ul>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">Asesoría Fiscal</a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">Asesoría Laboral</a></li>
-        <li><a href="#" class="active" aria-current="page" style="color: black;">Asesoría Contable</a></li>
+        <li><a href="#" class="active" aria-current="page">Asesoría Contable</a></li>
         <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">Herencias y Testamentaria</a></li>
       </ul>
     </div>
   </div>
+
   <div class="contable-content">
     <h1>Asesoría Contable</h1>
+
     <p>
       En <strong>Afisla Gestión</strong> nos encargamos de la <strong>contabilidad de tu empresa</strong> para que puedas centrarte en tu actividad principal con total tranquilidad. Nuestro equipo te ayuda a mantener tus cuentas claras y actualizadas, cumpliendo siempre con la normativa vigente.
     </p>
+
+    <blockquote class="contable-quote">
+      “Una contabilidad clara es la base de las decisiones empresariales inteligentes.”
+    </blockquote>
+
     <ul>
       <li><strong>Elaboramos la contabilidad</strong> de tu empresa, adaptándonos a tus necesidades y al sector en el que trabajas.</li>
       <li><strong>Presentamos los libros y cuentas anuales</strong> ante los órganos correspondientes, asegurando que toda la documentación esté en regla.</li>
@@ -143,6 +261,7 @@
       <li>Realizamos el <strong>seguimiento de gastos e ingresos</strong> para que tengas una visión clara de la salud económica de tu negocio.</li>
       <li>Te informamos sobre las <strong>obligaciones contables</strong> y te ayudamos a preparar auditorías y revisiones.</li>
     </ul>
+
     <p>
       Confía en nosotros para llevar la contabilidad de tu empresa de forma profesional, transparente y cercana. Estamos aquí para resolver tus dudas y ayudarte a tomar las mejores decisiones financieras.
     </p>

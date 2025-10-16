@@ -3,8 +3,8 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0px 0 10px 0;
-    background-color: #f8f9fa;
     text-align: center;
+    background: none; /* eliminado el fondo gris */
   }
 
   .servicios-container {
@@ -19,17 +19,31 @@
     font-weight: bold;
     margin-bottom: var(--space-3);
     letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px solid #2e7d32; /* subrayado correcto */
+
   }
+
+  /* Subrayado elegante verde (como en subservicios) */
+
+
+  .servicios-container h1:hover::after {
+    width: 120px;
+  }
+
   .servicios-container p {
     font-size: var(--fs-md);
     color: #444;
     margin: 0 auto var(--space-3);
     line-height: var(--lh-relax);
+    max-width: 800px;
   }
 
   #card-servicios {
     padding: 40px 0 0 0;
   }
+
   .card-servicios-row {
     display: flex;
     flex-wrap: wrap;
@@ -53,36 +67,61 @@
     align-items: center;
     padding: 32px;
     text-decoration: none;
-    transition: box-shadow 0.2s, background 0.2s;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
+    overflow: hidden;
   }
+
   .card-servicio:hover {
-    background: rgba(46, 125, 50, 0.12);
     box-shadow: 0 8px 28px rgba(46,125,50,0.18);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
   }
+
+  /* Contenedor para el efecto de imagen */
   .card-servicio img {
     width: 100%;
     height: 190px;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 22px;
+    transition: transform 0.5s ease;
   }
+
+  .card-servicio:hover img {
+    transform: scale(1.05); /* efecto zoom */
+  }
+
   .card-servicio h3 {
     margin-bottom: 14px;
     font-size: var(--fs-h5);
     color: #222;
     text-align: center;
+    position: relative;
+    display: inline-block;
   }
-  .card-servicio:hover h3 {
-    text-decoration: underline;
-    text-decoration-color: #2e7d32;
-    text-underline-offset: 4px;
+
+  /* Subrayado verde igual que en subservicios */
+  .card-servicio h3::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.3s ease;
   }
+
+  .card-servicio:hover h3::after {
+    width: 80%;
+  }
+
   .card-servicio p {
     font-size: var(--fs-md);
     line-height: var(--lh-base);
   }
+
   .card-servicio span {
     color: #2e7d32;
     font-weight: bold;
@@ -107,11 +146,12 @@
     }
   }
 </style>
+
 <section class="servicios-section">
   <div class="servicios-container">
-    <h1>NUESTROS SERVICIOS</h1>
+    <h1>Nuestros Servicios</h1>
     <p>
-      En <b>Afisla Gestión</b> ofrecemos asesoramiento profesional y personalizado en las áreas <b>fiscal, laboral, contable, herencias y testamentarias</b> entre otros. Nuestro equipo te acompaña en cada trámite, garantizando cercanía, <b>transparencia y soluciones</b> adaptadas a tus necesidades.
+      En <b>Afisla Gestión</b> ofrecemos asesoramiento profesional y personalizado en las áreas <b>fiscal, laboral, contable, herencias y testamentarias</b>. Nuestro equipo te acompaña en cada trámite, garantizando cercanía, <b>transparencia y soluciones</b> adaptadas a tus necesidades.
     </p>
   </div>
 </section>
@@ -123,16 +163,19 @@
       <h3>Asesoría Fiscal</h3>
       <span>Leer más</span>
     </a>
+
     <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
       <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
       <h3>Asesoría Laboral</h3>
       <span>Leer más</span>
     </a>
+
     <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
       <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
       <h3>Asesoría Contable</h3>
       <span>Leer más</span>
     </a>
+
     <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
       <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
       <h3>Herencias y Testamentaria</h3>

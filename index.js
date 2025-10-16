@@ -1,5 +1,5 @@
 function loadSection(fileName) {
-  localStorage.setItem('lastSection', fileName); 
+  localStorage.setItem('lastSection', fileName);
   const mainContent = document.getElementById('main-content');
   mainContent.classList.remove('visible');
 
@@ -11,13 +11,21 @@ function loadSection(fileName) {
     .then(data => {
       mainContent.innerHTML = data;
       setTimeout(() => mainContent.classList.add('visible'), 50);
-      updateActiveLink(fileName);
-      initHorarios();
-      initSlider();
-      if(fileName.includes('presupuestos')) {
-        inicializarFormularioPresupuesto();
-      }else if(fileName.includes('contacto')) {
-        inicializarFormularioContacto();
+
+      try { updateActiveLink(fileName); } catch (e) { console.debug('updateActiveLink()', e); }
+
+      if (typeof initHorarios === 'function') {
+        try { initHorarios(); } catch (e) { console.debug('initHorarios()', e); }
+      }
+
+      if (typeof initSlider === 'function') {
+        try { initSlider(); } catch (e) { console.debug('initSlider()', e); }
+      }
+
+      if (fileName.includes('presupuestos') && typeof inicializarFormularioPresupuesto === 'function') {
+        try { inicializarFormularioPresupuesto(); } catch (e) { console.debug('inicializarFormularioPresupuesto()', e); }
+      } else if (fileName.includes('contacto') && typeof inicializarFormularioContacto === 'function') {
+        try { inicializarFormularioContacto(); } catch (e) { console.debug('inicializarFormularioContacto()', e); }
       }
     })
     .catch(error => console.error(error));
@@ -45,21 +53,23 @@ function updateActiveLink(fileName) {
     });
   }
 }
-// Formulario de presupuestos
+
+// ==================== FORMULARIO PRESUPUESTOS ====================
 function inicializarFormularioPresupuesto() {
   const btn = document.getElementById('button');
   const form = document.getElementById('form');
   const confirmacion = document.getElementById('confirmacionMsg');
   const consentimiento = document.getElementById('consent-presupuesto');
-  
+
   if (!btn || !form) return;
 
-  btn.addEventListener('click', function() { form.requestSubmit(); });
+  btn.addEventListener('click', () => form.requestSubmit());
 
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
     document.getElementById('time').value = new Date().toLocaleString();
     btn.innerText = 'Enviando...';
+
     const serviceID = 'default_service';
     const templateID = 'template_f4kinzt';
 
@@ -68,18 +78,21 @@ function inicializarFormularioPresupuesto() {
       btn.innerText = 'Enviar solicitud';
       return;
     }
+
     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
         btn.innerText = 'Enviar solicitud';
         confirmacion.style.display = 'block';
         form.reset();
-      }, (err) => {
+      })
+      .catch(err => {
         btn.innerText = 'Enviar solicitud';
         alert("Error al enviar el mensaje: " + JSON.stringify(err));
       });
   });
 }
-// Formulario de contacto
+
+// ==================== FORMULARIO CONTACTO ====================
 function inicializarFormularioContacto() {
   const form = document.getElementById('form-mensaje');
   const btn = document.getElementById('button-contacto');
@@ -104,27 +117,27 @@ function inicializarFormularioContacto() {
       btn.innerText = 'Enviar mensaje';
       return;
     }
+
     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
         btn.innerText = 'Enviar mensaje';
         confirmacion.style.display = 'block';
         form.reset();
       })
-      .catch((err) => {
+      .catch(err => {
         btn.innerText = 'Enviar mensaje';
         alert("Error al enviar el mensaje: " + JSON.stringify(err));
       });
   });
 }
-// Inicializar tabla de horarios
 function initHorarios() {
   const selector = document.getElementById('selectorHorario');
-  const tabla = document.getElementById('tablaHorario')?.getElementsByTagName('tbody')[0];
-  if (!tabla || !selector) return;
+  const tabla = document.getElementById('tablaHorario')?.querySelector('tbody');
+  if (!selector || !tabla) return;
 
   const horarios = {
-      invierno: ["9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00"],
-      verano: ["8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00"]
+    invierno: ["9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00","9:00 - 14:00 / 17:00 - 19:00"],
+    verano: ["8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00"]
   };
   const dias = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
 
@@ -133,39 +146,18 @@ function initHorarios() {
   selector.value = temporada;
 
   function actualizarTabla(temp) {
-      tabla.innerHTML = "";
-      dias.forEach((dia, i) => {
-          const row = tabla.insertRow();
-          row.insertCell(0).textContent = dia;
-          row.insertCell(1).textContent = horarios[temp][i];
-      });
+    tabla.innerHTML = "";
+    dias.forEach((dia, i) => {
+      const row = tabla.insertRow();
+      row.insertCell(0).textContent = dia;
+      row.insertCell(1).textContent = horarios[temp][i];
+    });
   }
+
   actualizarTabla(temporada);
-  selector.addEventListener('change', () => {
-      actualizarTabla(selector.value);
-  });
+  selector.addEventListener('change', () => actualizarTabla(selector.value));
 }
-
-
-window.addEventListener('DOMContentLoaded', () => {
-  const lastSection = localStorage.getItem('lastSection') || 'inicio/inicio.html';
-  loadSection(lastSection);
-});
-
-function toggleMenu() {
-  const sideMenu = document.getElementById('side-menu');
-  const overlay = document.getElementById('menu-overlay');
-  
-  sideMenu.classList.toggle('open');
-  overlay.style.display = sideMenu.classList.contains('open') ? 'block' : 'none';
-}
-
-function toggleSubmenu(event) {
-  event.preventDefault();
-  const submenu = event.target.nextElementSibling;
-  submenu.classList.toggle('open');
-}
-// Carrusel de imagenes que se muenven con flechas y solo
+// ==================== SLIDER + MODAL ====================
 function initSlider() {
   const slider = document.querySelector('.slider');
   if (!slider) return;
@@ -173,17 +165,19 @@ function initSlider() {
   const imgEl = slider.querySelector('#slider-img');
   const leftBtn = slider.querySelector('.arrow.left');
   const rightBtn = slider.querySelector('.arrow.right');
-
+  slider.style.backgroundColor = "black";
+  // Soporta data-images o data-imagenes
   let images = [];
   try {
-    images = slider.dataset.images ? JSON.parse(slider.dataset.images) : [
+    const dataAttr = slider.dataset.images || slider.dataset.imagenes;
+    images = dataAttr ? JSON.parse(dataAttr) : [
       "imagenes/afisla_cartel.jpg",
       "imagenes/afisla_puertaconlogoGrande.jpg",
       "imagenes/afisla_despacho_grande.jpg",
       "imagenes/afisla_puertaconlogo.jpg",
       "imagenes/afisla_despacho_pequeño.jpg"
     ];
-  } catch (e) {
+  } catch {
     images = [
       "imagenes/afisla_cartel.jpg",
       "imagenes/afisla_puertaconlogoGrande.jpg",
@@ -200,6 +194,20 @@ function initSlider() {
     clearInterval(slider._intervalId);
     slider._intervalId = null;
   }
+const crossImg = document.createElement("img");
+crossImg.className = "crossfade-img";
+Object.assign(crossImg.style, {
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  opacity: "0",
+  transition: "opacity 0.6s ease",
+  pointerEvents: "none" // 👈 permite hacer clic en la imagen de abajo
+});
+slider.appendChild(crossImg);
 
   function showIndex(newIndex) {
     newIndex = ((newIndex % images.length) + images.length) % images.length;
@@ -210,7 +218,7 @@ function initSlider() {
       imgEl.src = images[newIndex];
       idx = newIndex;
       imgEl.style.opacity = 1;
-    }, 300);
+    }, 100);
   }
 
   function next() { showIndex(idx + 1); }
@@ -223,24 +231,82 @@ function initSlider() {
     if (slider._intervalId) clearInterval(slider._intervalId);
     slider._intervalId = setInterval(next, 7000);
   }
-  slider._intervalId = setInterval(next, 7000);
+  resetAuto();
 
   slider.addEventListener('mouseenter', () => {
-    if (slider._intervalId) {
-      clearInterval(slider._intervalId);
-      slider._intervalId = null;
-    }
+    clearInterval(slider._intervalId);
+    slider._intervalId = null;
   });
-  slider.addEventListener('mouseleave', () => {
-    resetAuto();
-  });
+  slider.addEventListener('mouseleave', resetAuto);
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (slider._intervalId) { clearInterval(slider._intervalId); slider._intervalId = null; }
-    } else {
-      resetAuto();
-    }
+    if (document.hidden) clearInterval(slider._intervalId);
+    else resetAuto();
   });
+
+  // ===== MODAL CON FLECHAS =====
+  const modal = document.getElementById("modalImagen");
+  const modalImg = document.getElementById("imagenAmpliada");
+  const cerrar = document.querySelector(".cerrar-modal");
+
+  if (modal && modalImg && cerrar) {
+    // Crear flechas dentro del modal
+    let leftArrow = document.createElement("button");
+    leftArrow.className = "modal-arrow left";
+    leftArrow.innerHTML = "❮";
+
+    let rightArrow = document.createElement("button");
+    rightArrow.className = "modal-arrow right";
+    rightArrow.innerHTML = "❯";
+
+    modal.appendChild(leftArrow);
+    modal.appendChild(rightArrow);
+
+    imgEl.addEventListener("click", () => {
+      const current = imgEl.getAttribute('src');
+      const currentIdx = images.indexOf(current);
+      if (currentIdx !== -1) idx = currentIdx;
+      modalImg.src = current;
+      modal.style.display = "flex";
+    });
+
+    cerrar.addEventListener("click", () => modal.style.display = "none");
+    modal.addEventListener("click", e => {
+      if (e.target === modal) modal.style.display = "none";
+    });
+
+    function updateModal(newIndex) {
+      newIndex = ((newIndex % images.length) + images.length) % images.length;
+      idx = newIndex;
+      modalImg.style.opacity = 0;
+      setTimeout(() => {
+        modalImg.src = images[idx];
+        modalImg.style.opacity = 1;
+      }, 100);
+    }
+
+    leftArrow.addEventListener("click", e => {
+      e.stopPropagation();
+      updateModal(idx - 1);
+    });
+
+    rightArrow.addEventListener("click", e => {
+      e.stopPropagation();
+      updateModal(idx + 1);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (modal.style.display === "flex") {
+        if (e.key === "ArrowRight") updateModal(idx + 1);
+        if (e.key === "ArrowLeft") updateModal(idx - 1);
+        if (e.key === "Escape") modal.style.display = "none";
+      }
+    });
+  }
 }
-    
+
+// ==================== AUTOLOAD SECCIÓN ====================
+window.addEventListener('DOMContentLoaded', () => {
+  const lastSection = localStorage.getItem('lastSection') || 'inicio/inicio.html';
+  loadSection(lastSection);
+});

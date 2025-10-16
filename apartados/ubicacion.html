@@ -3,20 +3,42 @@
     max-width: 1000px;
     margin: 0 auto var(--space-5);
     padding: var(--space-4) var(--space-2);
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
   }
 
+  /* === TÍTULOS === */
   .ubicacion-container h1 {
     text-align: center;
     color: #2e7d32;
     font-size: var(--fs-h1);
     margin-bottom: var(--space-2);
     line-height: var(--lh-tight);
+    position: relative;
+    display: inline-block;
+    align-self: center;
+    padding-bottom: 6px;
   }
 
+  .ubicacion-container h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2.5px;
+    width: 100%;
+    background-color: #2e7d32;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .ubicacion-container h1:hover::after {
+    transform: scaleX(1.3);
+  }
+
+  /* === MAPA === */
   .mapa {
     width: 100%;
     height: 400px;
@@ -25,13 +47,19 @@
     box-shadow: 0 4px 18px rgba(46,125,50,0.15);
   }
 
+  /* === BLOQUE INFO === */
   .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-5);
-    align-items: flex-start;
+    align-items: stretch;
   }
 
+  .direccion, .slider {
+    min-height: 420px;
+  }
+
+  /* === DIRECCIÓN Y CONTACTO === */
   .direccion {
     background: #f0fafa;
     border-radius: 16px;
@@ -40,6 +68,12 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .direccion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(46,125,50,0.18);
   }
 
   .direccion h2 {
@@ -49,36 +83,47 @@
     margin: var(--space-3) 0 var(--space-2);
   }
 
-  .direccion p {
-    font-size: var(--fs-md);
-    color: #222;
-    text-align: center;
-  }
-
-  .direccion a {
-    color: #2e7d32;
-    font-weight: bold;
-    text-decoration: none;
-  }
-    
-  .direccion a:hover {
-    text-decoration: none;
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: left;
+    margin: 0 auto;
+    width: fit-content;
   }
 
   .contact-item {
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-2);
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    background: rgba(46,125,50,0.1);
+    color: #2e7d32;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 1.2rem;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
 
-  .contact-item svg {
-    flex-shrink: 0;
+  .contact-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-link:hover {
+    text-decoration: underline;
+    color: #2e7d32;
   }
 
   .address-main {
     font-weight: 600;
-    font-size: var(--fs-md);
   }
 
   .address-sub {
@@ -86,6 +131,22 @@
     color: #555;
   }
 
+  .map-link {
+    text-align: center;
+    margin-top: var(--space-3);
+  }
+
+  .map-link a {
+    color: #2e7d32;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .map-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* === SLIDER === */
   .slider {
     position: relative;
     width: 100%;
@@ -108,6 +169,7 @@
   .slider img.active {
     transform: scale(1.02);
   }
+
   .arrow {
     position: absolute;
     top: 50%;
@@ -136,25 +198,72 @@
     right: 12px;
   }
 
-
-  .fotos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+  /* === MODAL DE IMAGEN === */
+  .modal-imagen {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
   }
 
-  .fotos img {
-    width: 100%;
-    height: 250px;
+  .modal-imagen img {
+    max-width: 90%;
+    max-height: 85%;
     border-radius: 12px;
-    object-fit: cover;
-    transition: transform 0.3s;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    animation: zoomIn 0.3s ease;
+  }
+  .modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    color: #2e7d32;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 6px 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
   }
 
-  .fotos img:hover {
-    transform: scale(1.05);
+  .modal-arrow:hover {
+    background: #2e7d32;
+    color: white;
   }
 
+  .modal-arrow.left {
+    left: 40px;
+  }
+
+  .modal-arrow.right {
+    right: 40px;
+  }
+  .cerrar-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .cerrar-modal:hover {
+    color: #66bb6a;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* === HORARIO === */
   .horario-container {
     background: #f0fafa;
     border-radius: 16px;
@@ -166,8 +275,6 @@
     font-weight: 600;
     color: #2e7d32;
     font-size: var(--fs-md);
-    display: inline-block;
-    margin-bottom: var(--space-2);
   }
 
   .horario-container select {
@@ -205,61 +312,6 @@
     font-weight: 600;
   }
 
-/* ==== Ajustes para bloque de dirección y contacto ==== */
-
-.contact-items {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  text-align: left;
-  margin: 0 auto;
-  width: fit-content; /* mantiene los ítems centrados dentro de la caja */
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-icon {
-  color: #2e7d32;
-  font-size: 1.3rem;
-  min-width: 24px;
-}
-
-.contact-item div {
-  color: #000; /* texto negro */
-  font-size: var(--fs-md);
-}
-
-.contact-link {
-  color: #000;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.contact-link:hover {
-  text-decoration: underline;
-  color: #2e7d32;
-}
-
-.map-link {
-  text-align: center;
-  margin-top: var(--space-3);
-}
-
-.map-link a {
-  color: #2e7d32;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.map-link a:hover {
-  text-decoration: underline;
-}
-
-
   @media (max-width: 900px) {
     .info-grid {
       grid-template-columns: 1fr;
@@ -269,117 +321,69 @@
     .slider {
       height: 300px;
     }
-
-    .arrow {
-      font-size: 1.6rem;
-      padding: 4px 10px;
-    }
-
-    .direccion h2 {
-      font-size: var(--fs-h4);
-    }
-
-    .direccion p, .direccion a {
-      font-size: var(--fs-sm);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .ubicacion-container {
-      padding: var(--space-2);
-    }
-
-    .slider {
-      height: 220px;
-    }
-
-    .arrow {
-      font-size: 1.4rem;
-      padding: 3px 8px;
-    }
-
-    .direccion {
-      padding: var(--space-3);
-    }
-
-    .horario-container {
-      padding: var(--space-3);
-    }
   }
 </style>
 
 <div class="ubicacion-container">
-    <h1>Ubicación</h1>
-    <div class="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.9405650014937!2d-4.917200188130839!3d41.31015657119018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4751d1d581a047%3A0x3969d2f0467e0b02!2sAfisla%20-%20Gesti%C3%B3n!5e0!3m2!1ses!2ses!4v1758803917179!5m2!1ses!2ses"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+  <h1>Ubicación</h1>
 
-    <div class="info-grid">
-      <div class="direccion">
-        <h2>Dirección y contacto</h2>
+  <div class="mapa"> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.9405650014937!2d-4.917200188130839!3d41.31015657119018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4751d1d581a047%3A0x3969d2f0467e0b02!2sAfisla%20-%20Gesti%C3%B3n!5e0!3m2!1ses!2ses!4v1758803917179!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </div>
 
-        <div class="contact-items">
-          <div class="contact-item">
-            <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
-            <div>
-              <strong>Teléfono:</strong>
-              <a href="tel:983811842" class="contact-link">983 81 18 42</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fa-solid fa-envelope contact-icon" aria-hidden="true"></i>
-            <div>
-              
-              <a href="mailto:info@afislagestion.es" class="contact-link">info@afislagestion.es</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-location-dot contact-icon" aria-hidden="true"></i>
-            <div>
-              <div class="address-main">Calle Padilla, 25, 1º</div>
-              <div class="address-sub">47400 Medina del Campo</div>
-            </div>
+  <div class="info-grid">
+    <div class="direccion">
+      <h2>Dirección y contacto</h2>
+      <div class="contact-items">
+        <div class="contact-item">
+          <i class="fa-solid fa-phone contact-icon"></i>
+          <div><strong>Teléfono:</strong> <a href="tel:983811842" class="contact-link">983 81 18 42</a></div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope contact-icon"></i>
+          <div><a href="mailto:info@afislagestion.es" class="contact-link">info@afislagestion.es</a></div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot contact-icon"></i>
+          <div>
+            <div class="address-main">Calle Padilla, 25, 1º</div>
+            <div class="address-sub">47400 Medina del Campo</div>
           </div>
         </div>
-        <p class="map-link">
-          <a href="https://maps.app.goo.gl/6DifZMu29M8sZs5i6" target="_blank">Ver en Google Maps</a>
-        </p>
       </div>
-
-      <section class="slider" data-imagenes = '[
-        "imagenes/afisla_cartel.jpg",
-        "imagenes/afisla_puertaconlogoGrande.jpg",
-        "imagenes/afisla_despacho_grande.jpg",
-        "imagenes/afisla_puertaconlogo.jpg",
-        "imagenes/afisla_despacho_pequeño.jpg",
-      ]'>
-        <button class="arrow left">❮</button>
-        <img id="slider-img" src="imagenes/afisla_porFuera.jpg" alt="Imagen exterior">
-        <button class="arrow right">❯</button>
-      </section>
+      <p class="map-link"><a href="https://maps.app.goo.gl/6DifZMu29M8sZs5i6" target="_blank">Ver en Google Maps</a></p>
     </div>
 
-    <h1>Horario</h1>
+    <section class="slider" data-imagenes='[
+      "imagenes/afisla_cartel.jpg",
+      "imagenes/afisla_puertaconlogoGrande.jpg",
+      "imagenes/afisla_despacho_grande.jpg",
+      "imagenes/afisla_puertaconlogo.jpg",
+      "imagenes/afisla_despacho_pequeño.jpg"
+    ]'>
+      <button class="arrow left">❮</button>
+      <img id="slider-img" src="imagenes/afisla_porFuera.jpg" alt="Imagen exterior">
+      <button class="arrow right">❯</button>
+    </section>
+  </div>
 
-    <div class="horario-container">
-        <label for="selectorHorario">Seleccione temporada:</label>
-        <select id="selectorHorario">
-            <option value="invierno"><b>Invierno</b> (Septiembre - Junio)</option>
-            <option value="verano"><b>Verano</b> (Julio y Agosto)</option>
-        </select>
-        <table id="tablaHorario">
-            <thead>
-                <tr>
-                    <th>Día</th>
-                    <th>Horario</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+  <h1>Horario</h1>
+
+  <div class="horario-container">
+    <label for="selectorHorario">Seleccione temporada:</label>
+    <select id="selectorHorario">
+      <option value="invierno">Invierno (Septiembre - Junio)</option>
+      <option value="verano">Verano (Julio y Agosto)</option>
+    </select>
+    <table id="tablaHorario">
+      <thead>
+        <tr><th>Día</th><th>Horario</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </div>
 
+<!-- Modal para ampliar imagen -->
+<div id="modalImagen" class="modal-imagen">
+  <span class="cerrar-modal">&times;</span>
+  <img id="imagenAmpliada" src="" alt="">
+</div>
