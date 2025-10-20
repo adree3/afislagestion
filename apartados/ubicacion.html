@@ -164,6 +164,7 @@
     border-radius: 16px;
     opacity: 1;
     transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
+    cursor: pointer;
   }
 
   .slider img.active {
@@ -199,6 +200,36 @@
   }
 
   /* === MODAL DE IMAGEN === */
+  .modal-fondo-negro {
+    position: absolute;
+    background: black;
+    border-radius: 12px;
+    z-index: 0;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #imagenAmpliada {
+    position: relative;
+    z-index: 1;
+    border-radius: 12px;
+  }
+  #imagenAmpliada {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+
+  #imagenAmpliada.fade-out {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  #imagenAmpliada.fade-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   .modal-imagen {
     display: none;
     position: fixed;
@@ -385,5 +416,6 @@
 <!-- Modal para ampliar imagen -->
 <div id="modalImagen" class="modal-imagen">
   <span class="cerrar-modal">&times;</span>
+  <div class="modal-fondo-negro"></div>
   <img id="imagenAmpliada" src="" alt="">
 </div>

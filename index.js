@@ -32,27 +32,31 @@ function loadSection(fileName) {
 }
 
 function updateActiveLink(fileName) {
-  const navLinks = document.querySelectorAll('.tapbar a');
+  const navLinks = document.querySelectorAll('.tapbar a, .tapbar button, .tapbar-dropbtn');
   navLinks.forEach(link => link.classList.remove('active'));
+  const normalizedFile = fileName.toLowerCase();
 
   const serviciosSub = [
-    'servicios/apartados/servicio_fiscal.html',
-    'servicios/apartados/servicio_laboral.html',
-    'servicios/apartados/servicio_contable.html',
-    'servicios/apartados/servicio_herencias.html'
+    'apartados/servicios/subservicios/servicio_fiscal.html',
+    'apartados/servicios/subservicios/servicio_laboral.html',
+    'apartados/servicios/subservicios/servicio_contable.html',
+    'apartados/servicios/subservicios/servicio_herencias.html'
   ];
 
-  if (serviciosSub.includes(fileName)) {
+  if (serviciosSub.some(path => normalizedFile.includes(path))) {
     const serviciosBtn = document.querySelector('.tapbar-dropbtn');
     if (serviciosBtn) serviciosBtn.classList.add('active');
-  } else {
-    navLinks.forEach(link => {
-      if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(fileName)) {
-        link.classList.add('active');
-      }
-    });
+    return;
   }
+
+  navLinks.forEach(link => {
+    const onClick = link.getAttribute('onclick');
+    if (onClick && onClick.toLowerCase().includes(normalizedFile)) {
+      link.classList.add('active');
+    }
+  });
 }
+
 
 // ==================== FORMULARIO PRESUPUESTOS ====================
 function inicializarFormularioPresupuesto() {
@@ -166,7 +170,6 @@ function initSlider() {
   const leftBtn = slider.querySelector('.arrow.left');
   const rightBtn = slider.querySelector('.arrow.right');
   slider.style.backgroundColor = "black";
-  // Soporta data-images o data-imagenes
   let images = [];
   try {
     const dataAttr = slider.dataset.images || slider.dataset.imagenes;
@@ -205,7 +208,7 @@ Object.assign(crossImg.style, {
   objectFit: "cover",
   opacity: "0",
   transition: "opacity 0.6s ease",
-  pointerEvents: "none" // 👈 permite hacer clic en la imagen de abajo
+  pointerEvents: "none"
 });
 slider.appendChild(crossImg);
 
@@ -250,7 +253,6 @@ slider.appendChild(crossImg);
   const cerrar = document.querySelector(".cerrar-modal");
 
   if (modal && modalImg && cerrar) {
-    // Crear flechas dentro del modal
     let leftArrow = document.createElement("button");
     leftArrow.className = "modal-arrow left";
     leftArrow.innerHTML = "❮";
@@ -268,6 +270,14 @@ slider.appendChild(crossImg);
       if (currentIdx !== -1) idx = currentIdx;
       modalImg.src = current;
       modal.style.display = "flex";
+      setTimeout(() => {
+        const fondoNegro = modal.querySelector('.modal-fondo-negro');
+        if (fondoNegro && modalImg.complete) {
+          const rect = modalImg.getBoundingClientRect();
+          fondoNegro.style.width = rect.width + "px";
+          fondoNegro.style.height = rect.height + "px";
+        }
+      }, 50);
     });
 
     cerrar.addEventListener("click", () => modal.style.display = "none");
@@ -278,12 +288,26 @@ slider.appendChild(crossImg);
     function updateModal(newIndex) {
       newIndex = ((newIndex % images.length) + images.length) % images.length;
       idx = newIndex;
-      modalImg.style.opacity = 0;
+
+      modalImg.classList.remove('fade-in');
+      modalImg.classList.add('fade-out');
+
       setTimeout(() => {
         modalImg.src = images[idx];
-        modalImg.style.opacity = 1;
-      }, 100);
+        modalImg.onload = () => {
+          modalImg.classList.remove('fade-out');
+          modalImg.classList.add('fade-in');
+
+          const fondoNegro = modal.querySelector('.modal-fondo-negro');
+          if (fondoNegro && modalImg.complete) {
+            const rect = modalImg.getBoundingClientRect();
+            fondoNegro.style.width = rect.width + "px";
+            fondoNegro.style.height = rect.height + "px";
+          }
+        };
+      }, 200);
     }
+
 
     leftArrow.addEventListener("click", e => {
       e.stopPropagation();
@@ -305,8 +329,8 @@ slider.appendChild(crossImg);
   }
 }
 
-// ==================== AUTOLOAD SECCIÓN ====================
+// ==================== ULTIMA ENTRADA ====================
 window.addEventListener('DOMContentLoaded', () => {
-  const lastSection = localStorage.getItem('lastSection') || 'inicio/inicio.html';
+  const lastSection = localStorage.getItem('lastSection') || 'apartados/inicio.html';
   loadSection(lastSection);
 });
