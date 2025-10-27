@@ -1,70 +1,9 @@
-function loadSection(fileName) {
-  localStorage.setItem('lastSection', fileName);
-  const mainContent = document.getElementById('main-content');
-  mainContent.classList.remove('visible');
-
-  fetch(fileName)
-    .then(response => {
-      if (!response.ok) throw new Error('No se pudo cargar el archivo ' + fileName);
-      return response.text();
-    })
-    .then(data => {
-      mainContent.innerHTML = data;
-      setTimeout(() => mainContent.classList.add('visible'), 50);
-
-      try { updateActiveLink(fileName); } catch (e) { console.debug('updateActiveLink()', e); }
-
-      if (typeof initHorarios === 'function') {
-        try { initHorarios(); } catch (e) { console.debug('initHorarios()', e); }
-      }
-
-      if (typeof initSlider === 'function') {
-        try { initSlider(); } catch (e) { console.debug('initSlider()', e); }
-      }
-
-      if (fileName.includes('presupuestos') && typeof inicializarFormularioPresupuesto === 'function') {
-        try { inicializarFormularioPresupuesto(); } catch (e) { console.debug('inicializarFormularioPresupuesto()', e); }
-      } else if (fileName.includes('contacto') && typeof inicializarFormularioContacto === 'function') {
-        try { inicializarFormularioContacto(); } catch (e) { console.debug('inicializarFormularioContacto()', e); }
-      }
-    })
-    .catch(error => console.error(error));
-}
-
-function updateActiveLink(fileName) {
-  const navLinks = document.querySelectorAll('.tapbar a, .tapbar button, .tapbar-dropbtn');
-  navLinks.forEach(link => link.classList.remove('active'));
-  const normalizedFile = fileName.toLowerCase();
-
-  const serviciosSub = [
-    'apartados/servicios/subservicios/servicio_fiscal.html',
-    'apartados/servicios/subservicios/servicio_laboral.html',
-    'apartados/servicios/subservicios/servicio_contable.html',
-    'apartados/servicios/subservicios/servicio_herencias.html'
-  ];
-
-  if (serviciosSub.some(path => normalizedFile.includes(path))) {
-    const serviciosBtn = document.querySelector('.tapbar-dropbtn');
-    if (serviciosBtn) serviciosBtn.classList.add('active');
-    return;
-  }
-
-  navLinks.forEach(link => {
-    const onClick = link.getAttribute('onclick');
-    if (onClick && onClick.toLowerCase().includes(normalizedFile)) {
-      link.classList.add('active');
-    }
-  });
-}
-
-
 // ==================== FORMULARIO PRESUPUESTOS ====================
 function inicializarFormularioPresupuesto() {
   const btn = document.getElementById('button');
   const form = document.getElementById('form');
   const confirmacion = document.getElementById('confirmacionMsg');
   const consentimiento = document.getElementById('consent-presupuesto');
-
   if (!btn || !form) return;
 
   btn.addEventListener('click', () => form.requestSubmit());
@@ -74,16 +13,13 @@ function inicializarFormularioPresupuesto() {
     document.getElementById('time').value = new Date().toLocaleString();
     btn.innerText = 'Enviando...';
 
-    const serviceID = 'default_service';
-    const templateID = 'template_f4kinzt';
-
     if (!consentimiento.checked) {
       alert('Debes aceptar la Política de Privacidad antes de enviar la solicitud.');
       btn.innerText = 'Enviar solicitud';
       return;
     }
 
-    emailjs.sendForm(serviceID, templateID, this)
+    emailjs.sendForm('default_service', 'template_f4kinzt', this)
       .then(() => {
         btn.innerText = 'Enviar solicitud';
         confirmacion.style.display = 'block';
@@ -102,19 +38,14 @@ function inicializarFormularioContacto() {
   const btn = document.getElementById('button-contacto');
   const confirmacion = document.getElementById('confirmacionMsg');
   const consentimiento = document.getElementById('consent-contacto');
-
   if (!form || !btn) return;
 
   btn.addEventListener('click', () => form.requestSubmit());
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-
     document.getElementById('time').value = new Date().toLocaleString();
     btn.innerText = 'Enviando...';
-
-    const serviceID = 'default_service';
-    const templateID = 'template_g31kgga';
 
     if (!consentimiento.checked) {
       alert('Debes aceptar la Política de Privacidad antes de enviar el formulario.');
@@ -122,7 +53,7 @@ function inicializarFormularioContacto() {
       return;
     }
 
-    emailjs.sendForm(serviceID, templateID, this)
+    emailjs.sendForm('default_service', 'template_g31kgga', this)
       .then(() => {
         btn.innerText = 'Enviar mensaje';
         confirmacion.style.display = 'block';
@@ -134,6 +65,8 @@ function inicializarFormularioContacto() {
       });
   });
 }
+
+// ==================== HORARIOS ====================
 function initHorarios() {
   const selector = document.getElementById('selectorHorario');
   const tabla = document.getElementById('tablaHorario')?.querySelector('tbody');
@@ -144,7 +77,6 @@ function initHorarios() {
     verano: ["8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00","8:00 - 15:00"]
   };
   const dias = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
-
   const mes = new Date().getMonth() + 1;
   const temporada = (mes === 7 || mes === 8) ? 'verano' : 'invierno';
   selector.value = temporada;
@@ -161,7 +93,8 @@ function initHorarios() {
   actualizarTabla(temporada);
   selector.addEventListener('change', () => actualizarTabla(selector.value));
 }
-// ==================== SLIDER + MODAL ====================
+
+// ==================== SLIDER ====================
 function initSlider() {
   const slider = document.querySelector('.slider');
   if (!slider) return;
@@ -170,6 +103,7 @@ function initSlider() {
   const leftBtn = slider.querySelector('.arrow.left');
   const rightBtn = slider.querySelector('.arrow.right');
   slider.style.backgroundColor = "black";
+
   let images = [];
   try {
     const dataAttr = slider.dataset.images || slider.dataset.imagenes;
@@ -193,25 +127,6 @@ function initSlider() {
   let idx = images.indexOf(imgEl.getAttribute('src'));
   if (idx === -1) idx = 0;
 
-  if (slider._intervalId) {
-    clearInterval(slider._intervalId);
-    slider._intervalId = null;
-  }
-const crossImg = document.createElement("img");
-crossImg.className = "crossfade-img";
-Object.assign(crossImg.style, {
-  position: "absolute",
-  top: "0",
-  left: "0",
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  opacity: "0",
-  transition: "opacity 0.6s ease",
-  pointerEvents: "none"
-});
-slider.appendChild(crossImg);
-
   function showIndex(newIndex) {
     newIndex = ((newIndex % images.length) + images.length) % images.length;
     if (newIndex === idx) return;
@@ -224,113 +139,79 @@ slider.appendChild(crossImg);
     }, 100);
   }
 
-  function next() { showIndex(idx + 1); }
-  function prev() { showIndex(idx - 1); }
-
-  if (leftBtn) leftBtn.addEventListener('click', () => { prev(); resetAuto(); });
-  if (rightBtn) rightBtn.addEventListener('click', () => { next(); resetAuto(); });
+  const next = () => showIndex(idx + 1);
+  const prev = () => showIndex(idx - 1);
+  leftBtn?.addEventListener('click', () => { prev(); resetAuto(); });
+  rightBtn?.addEventListener('click', () => { next(); resetAuto(); });
 
   function resetAuto() {
-    if (slider._intervalId) clearInterval(slider._intervalId);
+    clearInterval(slider._intervalId);
     slider._intervalId = setInterval(next, 7000);
   }
   resetAuto();
 
-  slider.addEventListener('mouseenter', () => {
-    clearInterval(slider._intervalId);
-    slider._intervalId = null;
-  });
+  slider.addEventListener('mouseenter', () => clearInterval(slider._intervalId));
   slider.addEventListener('mouseleave', resetAuto);
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearInterval(slider._intervalId);
-    else resetAuto();
-  });
-
-  // ===== MODAL CON FLECHAS =====
+}
+function initModalImagen() {
+  const sliderImg = document.getElementById("slider-img");
   const modal = document.getElementById("modalImagen");
   const modalImg = document.getElementById("imagenAmpliada");
-  const cerrar = document.querySelector(".cerrar-modal");
+  const cerrarModal = document.querySelector(".cerrar-modal");
+  const fondoNegro = document.querySelector(".modal-fondo-negro");
+  const slider = document.querySelector(".slider");
 
-  if (modal && modalImg && cerrar) {
-    let leftArrow = document.createElement("button");
-    leftArrow.className = "modal-arrow left";
-    leftArrow.innerHTML = "❮";
+  if (!slider || !sliderImg || !modal || !modalImg) return;
 
-    let rightArrow = document.createElement("button");
-    rightArrow.className = "modal-arrow right";
-    rightArrow.innerHTML = "❯";
+  const imagenes = JSON.parse(slider.dataset.imagenes || "[]");
+  let indiceActual = 0;
 
-    modal.appendChild(leftArrow);
-    modal.appendChild(rightArrow);
+  // Botones del modal
+  let botonPrev = document.createElement("button");
+  let botonNext = document.createElement("button");
+  botonPrev.className = "modal-arrow left";
+  botonNext.className = "modal-arrow right";
+  botonPrev.textContent = "❮";
+  botonNext.textContent = "❯";
+  modal.appendChild(botonPrev);
+  modal.appendChild(botonNext);
 
-    imgEl.addEventListener("click", () => {
-      const current = imgEl.getAttribute('src');
-      const currentIdx = images.indexOf(current);
-      if (currentIdx !== -1) idx = currentIdx;
-      modalImg.src = current;
-      modal.style.display = "flex";
-      setTimeout(() => {
-        const fondoNegro = modal.querySelector('.modal-fondo-negro');
-        if (fondoNegro && modalImg.complete) {
-          const rect = modalImg.getBoundingClientRect();
-          fondoNegro.style.width = rect.width + "px";
-          fondoNegro.style.height = rect.height + "px";
-        }
-      }, 50);
-    });
+  // Abrir modal al hacer clic en imagen
+  sliderImg.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalImg.src = sliderImg.src;
+    indiceActual = imagenes.indexOf(sliderImg.src.replace(window.location.origin + "/", "")) || 0;
+  });
 
-    cerrar.addEventListener("click", () => modal.style.display = "none");
-    modal.addEventListener("click", e => {
-      if (e.target === modal) modal.style.display = "none";
-    });
+  // Cambiar imagen dentro del modal
+  const mostrarImagen = (indice) => {
+    if (indice < 0) indice = imagenes.length - 1;
+    if (indice >= imagenes.length) indice = 0;
+    indiceActual = indice;
+    modalImg.src = imagenes[indiceActual];
+  };
 
-    function updateModal(newIndex) {
-      newIndex = ((newIndex % images.length) + images.length) % images.length;
-      idx = newIndex;
+  botonPrev.addEventListener("click", () => mostrarImagen(indiceActual - 1));
+  botonNext.addEventListener("click", () => mostrarImagen(indiceActual + 1));
 
-      modalImg.classList.remove('fade-in');
-      modalImg.classList.add('fade-out');
+  // Cerrar modal
+  const cerrar = () => (modal.style.display = "none");
+  cerrarModal?.addEventListener("click", cerrar);
+  fondoNegro?.addEventListener("click", cerrar);
 
-      setTimeout(() => {
-        modalImg.src = images[idx];
-        modalImg.onload = () => {
-          modalImg.classList.remove('fade-out');
-          modalImg.classList.add('fade-in');
-
-          const fondoNegro = modal.querySelector('.modal-fondo-negro');
-          if (fondoNegro && modalImg.complete) {
-            const rect = modalImg.getBoundingClientRect();
-            fondoNegro.style.width = rect.width + "px";
-            fondoNegro.style.height = rect.height + "px";
-          }
-        };
-      }, 200);
-    }
-
-
-    leftArrow.addEventListener("click", e => {
-      e.stopPropagation();
-      updateModal(idx - 1);
-    });
-
-    rightArrow.addEventListener("click", e => {
-      e.stopPropagation();
-      updateModal(idx + 1);
-    });
-
-    document.addEventListener("keydown", e => {
-      if (modal.style.display === "flex") {
-        if (e.key === "ArrowRight") updateModal(idx + 1);
-        if (e.key === "ArrowLeft") updateModal(idx - 1);
-        if (e.key === "Escape") modal.style.display = "none";
-      }
-    });
-  }
+  // Flechas del teclado
+  document.addEventListener("keydown", (e) => {
+    if (modal.style.display !== "flex") return;
+    if (e.key === "ArrowLeft") mostrarImagen(indiceActual - 1);
+    if (e.key === "ArrowRight") mostrarImagen(indiceActual + 1);
+    if (e.key === "Escape") cerrar();
+  });
 }
 
-// ==================== ULTIMA ENTRADA ====================
-window.addEventListener('DOMContentLoaded', () => {
-  const lastSection = localStorage.getItem('lastSection') || 'apartados/inicio.html';
-  loadSection(lastSection);
+// Ejecutar todo cuando cargue el DOM
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof initMenu === "function") initMenu();
+  if (typeof initSlider === "function") initSlider();
+  if (typeof initHorarios === "function") initHorarios();
+  initModalImagen();
 });

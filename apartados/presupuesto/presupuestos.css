@@ -1,7 +1,6 @@
-<style>
-  .presupuesto-container {
+.presupuesto-container {
     max-width: 520px;
-    margin: var(--space-5) auto;
+    margin: var(--space-1) auto;
     background: #f0fafa;
     border-radius: 18px;
     box-shadow: 0 4px 18px rgba(46,125,50,0.11);
@@ -110,42 +109,3 @@
       font-size: 1.6rem;
     }
   }
-</style>
-
-<div class="presupuesto-container">
-  <h1>Solicita tu presupuesto</h1>
-  <form class="presupuesto-form" id="form">
-    <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" id="nombre" placeholder="Ej: Nombre" required>
-
-    <label for="correo">Correo electrónico</label>
-    <input type="email" name="correo" id="correo" placeholder="Ej: ejemplo@gmail.com" required>
-
-    <label for="servicio">Servicio</label>
-    <select name="servicio" id="servicio" required>
-      <option value="">Selecciona un servicio</option>
-      <option value="fiscal">Asesoría Fiscal</option>
-      <option value="laboral">Asesoría Laboral</option>
-      <option value="contable">Asesoría Contable</option>
-      <option value="herencias">Herencias y Testamentaria</option>
-      <option value="otro">Otro</option>
-    </select>
-
-    <label for="detalles">Detalles para el presupuesto</label>
-    <textarea name="detalles" id="detalles" rows="5" placeholder="Ej: Necesito asesoramiento para mi declaración de impuestos..." required></textarea>
-    <div class="legal-consent">
-      <label>
-        <input type="checkbox" id="consent-presupuesto" required>He leído y acepto la <a href="apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a>
-      </label>
-    </div>
-
-    <input type="hidden" name="time" id="time" value="">
-
-    <button type="button" id="button">Enviar solicitud</button>
-    <div class="confirmacion" id="confirmacionMsg">
-      ¡Tu solicitud ha sido enviada! Nos pondremos en contacto contigo lo antes posible.
-    </div>
-  </form>
-</div>
-
-

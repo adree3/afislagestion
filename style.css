@@ -232,9 +232,10 @@ html, body {
 /* ============ TAPBAR (MENÚ DE NAVEGACIÓN DESKTOP) ============ */
 .tapbar-container {
   background: rgba(255, 255, 255, 1);
-  border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   position: relative;
+  overflow: visible;
+  z-index: 9999;  
 }
 
 .tapbar {
@@ -243,6 +244,7 @@ html, body {
   align-items:center;
   padding:0.8rem;
   flex-wrap:wrap;
+  gap: 0.75rem;  
 }
 
 .tapbar a {
@@ -275,6 +277,11 @@ html, body {
   background-color: #2e7d32;
   transition: width 0.3s ease;
 }
+.tapbar a,
+.tapbar .tapbar-sep,
+.tapbar .tapbar-dropdown {
+  flex: 0 0 auto;
+}
 
 .tapbar a:hover::after,
 .tapbar a.active::after {
@@ -282,12 +289,18 @@ html, body {
 }
 
 .tapbar-sep {
-  display: none;
+  display: inline-block;
+  opacity: 0.9;
+  color: #555;
 }
 .tapbar a {
   margin: 0 1rem;
 }
-/* Dropdown */
+.tapbar .tapbar-dropbtn i {
+  margin-right: .35rem;
+  font-size: .95em;
+  vertical-align: -1px;
+}
 .tapbar-dropdown { position:relative; }
 .tapbar-dropdown-content {
   display:none;
@@ -317,7 +330,7 @@ html, body {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
-  z-index: 2500 !important;
+  z-index: 10000;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -330,20 +343,24 @@ html, body {
   pointer-events: auto;
 }
 
-/* Menú lateral abierto segun tu JS (.open) */
 .side-menu {
   position: fixed;
-  top: 0; 
+  top: 0;
   right: -100%;
-  width: 280px; height: 100%;
-  background: #ffffff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-  transition: right 0.3s ease;
-  z-index: 3000;
+  width: 85%;
+  max-width: 360px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 12px rgba(0,0,0,.25);
+  transition: right .25s ease;
+  z-index: 10010;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
-.side-menu.open { right: 0; }
+.side-menu.open { 
+  right: 0;
+}
 
 .menu-header {
   background-color: #2e7d32;
@@ -378,7 +395,6 @@ html, body {
   font-weight: 600;
 }
 
-/* Submenú */
 .has-submenu > a {
   cursor: pointer;
 }
@@ -409,8 +425,8 @@ html, body {
 #main-content {
   padding: 2rem;
   min-height: 400px;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  transition: none;
 }
 #main-content.visible { opacity: 1; }
 
@@ -680,29 +696,25 @@ html, body {
   .top-bar {
     position: relative;
     width: 100%;
-    z-index: 3000;
+    z-index: 2900;
   }
 
   .contact-block {
     position: relative;
     width: 100%;
     background: #fff;
-    z-index: 2900;
+    z-index: 2950;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
 
  .tapbar-container {
-    position: fixed;
-    left: 0;
+    position: relative;
+    top: auto;
+    left: auto;
     width: 100%;
     z-index: 3000;
-    transition: top 0s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
-  /* Opcional: ajusta padding superior del contenido */
-  #main-content {
-    padding-top: calc(var(--tapbar-height, 70px) + 40px);
-  }
-
+  
 }

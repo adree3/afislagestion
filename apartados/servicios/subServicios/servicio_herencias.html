@@ -1,270 +1,268 @@
-<style>
-  .herencias-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 0 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: flex-start;
-  }
-
-  .herencias-img-box {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .herencias-img-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-  }
-
-  .herencias-img {
-    width: 700px;
-    max-width: 100%;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 18px;
-    display: block;
-    transition: transform 0.5s ease;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  }
-
-  .herencias-img-wrapper:hover .herencias-img {
-    transform: scale(1.05);
-  }
-
-  .img-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(46,125,50,0.85);
-    color: white;
-    padding: 0.8rem 1.2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-  }
-
-  .herencias-servicios-box {
-    background: linear-gradient(135deg, #f3fbf3, #eaf5ef);
-    border-radius: 18px;
-    box-shadow: 0 6px 20px rgba(46,125,50,0.10);
-    padding: 32px 26px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: fit-content;
-  }
-
-  .herencias-servicios-box:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(46,125,50,0.18);
-  }
-
-  .herencias-servicios-box h2 {
-    color: #2e7d32;
-    font-size: var(--fs-h5);
-    margin-bottom: var(--space-2);
-    letter-spacing: 1px;
-  }
-
-  .herencias-servicios-box ul {
-    padding: 0;
-  }
-
-  .herencias-servicios-box li {
-    margin-bottom: 14px;
-  }
-
-  .herencias-servicios-box li a {
-    position: relative;
-    display: inline-block;
-    color: #2e7d32;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: var(--fs-md);
-    transition: color 0.25s ease;
-  }
-
-  .herencias-servicios-box li a::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #2e7d32;
-    transition: width 0.25s ease;
-  }
-
-  .herencias-servicios-box li a:hover {
-    color: #1b5e20;
-  }
-
-  .herencias-servicios-box li a:hover::after {
-    width: 100%;
-  }
-
-  .herencias-servicios-box a.active,
-  .herencias-servicios-box a[aria-current="page"] {
-    color: black;
-    text-decoration: none;
-  }
-
-  .herencias-content {
-    flex: 2 1 700px;
-    min-width: 400px;
-    padding: 0 10px 40px 10px;
-    line-height: 1.75;
-  }
-
-  .herencias-content h1 {
-    color: #2e7d32;
-    font-size: var(--fs-h1);
-    margin-bottom: var(--space-3);
-    border-bottom: 2px solid #2e7d32;
-    display: inline-block;
-    padding-bottom: 6px;
-    letter-spacing: 1px;
-  }
-
-  .herencias-content p {
-    font-size: var(--fs-md);
-    color: #3a3a3a;
-    margin-bottom: var(--space-3);
-    line-height: var(--lh-relax);
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.6s ease forwards;
-  }
-
-  .herencias-content strong {
-    background: linear-gradient(90deg, rgba(46,125,50,0.12), rgba(46,125,50,0.05));
-    padding: 0 4px;
-    border-radius: 4px;
-    color: #1b5e20;
-  }
-
-  .herencias-quote {
-    background: #f5fbf5;
-    border-left: 4px solid #2e7d32;
-    padding: 1rem 1.2rem;
-    margin: var(--space-4) 0;
-    font-style: italic;
-    color: #2e7d32;
-    font-size: var(--fs-md);
-    line-height: var(--lh-relax);
-    border-radius: 6px;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.6s ease forwards;
-  }
-
-  .herencias-content ul {
-    list-style: none;
-    margin-top: var(--space-2);
-    padding-left: 28px;
-    font-size: var(--fs-md);
-    color: #444;
-  }
-
-  .herencias-content li {
-    margin-bottom: var(--space-2);
-    line-height: var(--lh-relax);
-    position: relative;
-    padding-left: 26px;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.6s ease forwards;
-  }
-
-  .herencias-content li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    color: #2e7d32;
-    font-weight: bold;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Herencias y Testamentaria | Afisla Gestión - Asesoramiento Legal en Medina del Campo</title>
+  <meta name="description" content="Asesoramiento en herencias, sucesiones y testamentarias en Medina del Campo. Tramitamos impuestos, certificados y documentos con profesionalidad y discreción.">
+  <meta name="keywords" content="herencias, testamentaria, sucesiones, testamentos, liquidación de herencias, certificados de defunción, impuestos sucesiones, Afisla Gestión, Medina del Campo">
+  <meta name="author" content="Afisla Gestión">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Herencias y Testamentaria - Afisla Gestión">
+  <meta property="og:description" content="Gestión integral de herencias, testamentos y sucesiones. Trato cercano y profesional en Medina del Campo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://afislagestion.es/apartados/servicios/subServicios/servicio_herencias.html">
+  <meta property="og:image" content="https://afislagestion.es/imagenes/herencia_Testamentaria.jpg">
+  <meta property="og:locale" content="es_ES">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="canonical" href="https://afislagestion.es/apartados/servicios/subServicios/servicio_herencias.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../imagenes/logo_32x32.png">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="servicio_herencias.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Herencias y Testamentaria",
+    "description": "Asesoramiento y gestión de herencias, sucesiones y testamentos en Medina del Campo. Tramitación de impuestos y certificados, con un trato profesional y cercano.",
+    "image": "https://afislagestion.es/imagenes/herencia_Testamentaria.jpg",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Afisla Gestión",
+      "image": "https://afislagestion.es/imagenes/logo-sin-fondo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Padilla, 25, 1º",
+        "addressLocality": "Medina del Campo",
+        "postalCode": "47400",
+        "addressCountry": "ES"
+      },
+      "telephone": "+34983811842",
+      "url": "https://afislagestion.es"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Medina del Campo"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Asesoría",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría Fiscal" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría Laboral" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría Contable" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Herencias y Testamentaria" } }
+      ]
     }
   }
+  </script>
+</head>
 
-  @media (max-width: 1200px) {
-    .herencias-container { 
-      flex-direction: column; 
-      gap: 24px; 
-    }
-    .herencias-img-box { 
-      flex-direction: column; 
-      gap: 18px; 
-    }
-    .herencias-img { 
-      width: 100%; 
-      height: 220px; 
-    }
-    .herencias-content { 
-      max-width: 100%; 
-      min-width: 0; 
-    }
-    .herencias-servicios-box { 
-      max-width: 100%; 
-      min-width: 0; 
-    }
-  }
-</style>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="top-bar">
+      Te aseguramos la mejor calidad por nuestros años de experiencia.
+    </div>
+    <div class="contact-block">
+      <div class="contact-left">
+        <div class="logo">
+          <a href="../../../index.html">
+            <img src="../../../imagenes/logo-sin-fondo.png" alt="Afisla Gestión">
+          </a>
+        </div>
+      </div>
 
-<section class="herencias-container">
-  <div class="herencias-img-box">
-    <div class="herencias-img-wrapper">
-      <img src="imagenes/herencia_Testamentaria.jpg" alt="Herencias y Testamentaria Afisla" class="herencias-img">
-      <div class="img-overlay">
-        <span>Herencias y Testamentaria</span>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+      <div class="contact-right">
+        <div class="contact-info">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.59.11.34.03.73-.24 1l-2.21 2.2z"/>
+            </svg>
+            <div class="phone-numbers">
+              <span class="phone-primary">983 811 842</span>
+              <span class="phone-secondary">685 131 806</span>
+            </div>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
+            </svg>
+            <div>
+              <div class="address-main">Calle Padilla, 25, 1º</div>
+              <div class="address-sub">47400, Medina del Campo</div>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a href="../../../apartados/contacto/contacto.html">
+              <button>Contáctanos</button>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="herencias-servicios-box">
-      <h2>SERVICIOS</h2>
-      <ul>
-        <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">Asesoría Fiscal</a></li>
-        <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">Asesoría Laboral</a></li>
-        <li><a href="#" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">Asesoría Contable</a></li>
-        <li><a href="#" class="active" aria-current="page">Herencias y Testamentaria</a></li>
-      </ul>
+    <!-- MENÚ PRINCIPAL -->
+    <div class="tapbar-container">
+      <div class="tapbar" id="tapbar">
+        <a href="../../../index.html">INICIO</a>
+        <span class="tapbar-sep">|</span>
+        <div class="tapbar-dropdown">
+          <a href="../../../apartados/servicios/servicios.html" class="tapbar-dropbtn">SERVICIOS <span style="font-size:0.8em;">▾</span></a>
+          <div class="tapbar-dropdown-content">
+            <a href="../../../apartados/servicios/subServicios/servicio_fiscal.html">Asesoramiento fiscal</a>
+            <a href="../../../apartados/servicios/subServicios/servicio_laboral.html">Asesoramiento laboral</a>
+            <a href="../../../apartados/servicios/subServicios/servicio_contable.html">Asesoramiento contable</a>
+            <a href="../../../apartados/servicios/subServicios/servicio_herencias.html">Herencias y testamentaria</a>
+          </div>
+        </div>
+        <span class="tapbar-sep">|</span>
+        <a href="../../../apartados/presupuesto/presupuestos.html">PRESUPUESTOS</a>
+        <span class="tapbar-sep">|</span>
+        <a href="../../../apartados/ubicacion/ubicacion.html">LOCALIZACIÓN</a>
+        <span class="tapbar-sep">|</span>
+        <a href="../../../apartados/contacto/contacto.html">CONTACTO</a>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="herencias-content">
-    <h1>Herencias y Testamentaria</h1>
+  <!-- MENÚ LATERAL (móvil) -->
+  <nav id="side-menu" class="side-menu">
+    <div class="menu-header">
+      <img src="../../../imagenes/logo-sin-fondo.png" alt="Afisla Gestión" class="menu-logo">
+    </div>
 
-    <p>
-      Déjate asesorar por <strong>expertos en herencias, sucesiones y testamentarias</strong>.  
-      En <strong>Afisla Gestión</strong> te acompañamos en todo el proceso, resolviendo tus dudas y gestionando cada trámite de forma personalizada y confidencial.
-    </p>
-
-    <blockquote class="herencias-quote">
-      “Nuestro compromiso es ofrecerte claridad y serenidad en los momentos en los que más se necesita.”
-    </blockquote>
-
-    <ul>
-      <li><strong>Asesoramos y gestionamos herencias y testamentos</strong> de forma personalizada, encontrando la mejor solución a tu caso.</li>
-      <li>Evita <strong>esperas innecesarias y papeleos</strong> ante las administraciones públicas: nosotros nos encargamos de todo.</li>
-      <li>Te ayudamos en la <strong>redacción y revisión de testamentos</strong>, sucesiones y particiones de herencia.</li>
-      <li>Gestionamos la <strong>liquidación de impuestos</strong> y la obtención de certificados necesarios.</li>
-      <li>Te ofrecemos <strong>apoyo legal y administrativo</strong> en situaciones complejas o familiares.</li>
+    <ul class="menu-list">
+      <li><a href="../../../index.html">Inicio</a></li>
+      <li class="menu-item has-submenu">
+        <a href="../../../apartados/servicios/servicios.html">Servicios ▾</a>
+        <ul class="submenu">
+          <li><a href="../../../apartados/servicios/subServicios/servicio_fiscal.html">Asesoramiento fiscal</a></li>
+          <li><a href="../../../apartados/servicios/subServicios/servicio_laboral.html">Asesoramiento laboral</a></li>
+          <li><a href="../../../apartados/servicios/subServicios/servicio_contable.html">Asesoramiento contable</a></li>
+          <li><a href="../../../apartados/servicios/subServicios/servicio_herencias.html">Herencias y testamentaria</a></li>
+        </ul>
+      </li>
+      <li><a href="../../../apartados/presupuesto/presupuestos.html">Presupuestos</a></li>
+      <li><a href="../../../apartados/ubicacion/ubicacion.html">Localización</a></li>
+      <li><a href="../../../apartados/contacto/contacto.html">Contáctanos</a></li>
     </ul>
 
-    <p>
-      Nuestro equipo te garantiza un trato cercano, discreto y profesional para que este proceso sea lo más sencillo y claro posible.  
-      Confía en nosotros para proteger tus intereses y los de tu familia.
-    </p>
-  </div>
-</section>
+    <div class="side-menu-legal">
+      <a href="../../../apartados/apartado_legal/aviso_legal.html">Aviso legal</a>
+      <a href="../../../apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a>
+      <a href="../../../apartados/apartado_legal/politica_cookies.html">Política de Cookies</a>
+      <p>© 2025 Afisla Gestión</p>
+    </div>
+  </nav>
+  <main id="main-content" class="main-content">
+    <article class="herencias-article" itemscope itemtype="https://schema.org/Service">
+      <section class="herencias-container">
+
+        <div class="herencias-img-box">
+          <div class="herencias-img-wrapper">
+            <img src="../../../imagenes/herencia_Testamentaria.jpg" alt="Herencias y Testamentaria Afisla" class="herencias-img" itemprop="image" loading="lazy">
+            <div class="img-overlay">
+              <span>Herencias y Testamentaria</span>
+            </div>
+          </div>
+
+          <nav class="herencias-servicios-box" aria-label="Otros servicios">
+            <h2>SERVICIOS</h2>
+            <ul>
+              <li><a href="servicio_fiscal.html">Asesoría Fiscal</a></li>
+              <li><a href="servicio_laboral.html">Asesoría Laboral</a></li>
+              <li><a href="servicio_contable.html">Asesoría Contable</a></li>
+              <li><a href="servicio_herencias.html" class="active" aria-current="page">Herencias y Testamentaria</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="herencias-content">
+          <h1 itemprop="name">Herencias y Testamentaria</h1>
+
+          <p itemprop="description">
+            Déjate asesorar por <strong>expertos en herencias, sucesiones y testamentarias</strong>.  
+            En <strong>Afisla Gestión</strong> te acompañamos en todo el proceso, resolviendo tus dudas y gestionando cada trámite de forma personalizada y confidencial.
+          </p>
+
+          <blockquote class="herencias-quote">
+            “Nuestro compromiso es ofrecerte claridad y serenidad en los momentos en los que más se necesita.”
+          </blockquote>
+
+          <ul>
+            <li><strong>Asesoramos y gestionamos herencias y testamentos</strong> de forma personalizada, encontrando la mejor solución a tu caso.</li>
+            <li>Evita <strong>esperas innecesarias y papeleos</strong> ante las administraciones públicas: nosotros nos encargamos de todo.</li>
+            <li>Te ayudamos en la <strong>redacción y revisión de testamentos</strong>, sucesiones y particiones de herencia.</li>
+            <li>Gestionamos la <strong>liquidación de impuestos</strong> y la obtención de certificados necesarios.</li>
+            <li>Te ofrecemos <strong>apoyo legal y administrativo</strong> en situaciones complejas o familiares.</li>
+          </ul>
+
+          <p>
+            Nuestro equipo te garantiza un trato cercano, discreto y profesional para que este proceso sea lo más sencillo y claro posible.  
+            Confía en nosotros para proteger tus intereses y los de tu familia.
+          </p>
+        </div>
+      </section>
+    </article>
+  </main>
+  <a 
+    href="https://wa.me/34685131806?text=%C2%A1Hola!%20Quiero%20obtener%20informaci%C3%B3n%20sobre%20mi%20caso..." 
+    target="_blank" 
+    class="whatsapp-fab" 
+    aria-label="Contactar por WhatsApp con Afisla Gestión"
+    title="Contactar por WhatsApp con Afisla Gestión"
+    rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <section class="pre-footer">
+      <div class="footer-inner">
+        <div class="footer-column">
+          <h4><i class="fa-solid fa-phone"></i> CONTACTO</h4>
+          <p><strong>Teléfonos:</strong></p>
+          <p><a href="tel:983811842"><i class="fa-solid fa-phone"></i> 983 811 842</a></p>
+          <p><a href="tel:685131806"><i class="fa-solid fa-mobile-screen"></i> 685 131 806</a></p>
+          <p><strong><i class="fa-solid fa-location-dot"></i> Dirección:</strong></p>
+          <p><a href="https://maps.app.goo.gl/24yKFTAD3vW3FCbE6" target="_blank"rel="noopener noreferrer">Calle Padilla 25, 1º</a></p>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fa-solid fa-clock"></i> HORARIO</h4>
+          <p><strong>Lunes - Viernes:</strong><br>9:00h - 14:00h / <br> 17:00h - 19:00h</p>
+          <p><strong>Julio y Agosto:</strong><br>8:00h - 15:00h</p>
+        </div>
+
+        <div class="footer-column">
+          <h4><i class="fa-solid fa-link"></i> ENLACES</h4>
+          <p><a href="../../../index.html">Inicio</a></p>
+          <p><a href="../../../apartados/servicios/servicios.html">Servicios</a></p>
+          <p><a href="../../../apartados/presupuesto/presupuestos.html">Presupuestos</a></p>
+          <p><a href="../../../apartados/ubicacion/ubicacion.html">Localización</a></p>
+          <p><a href="../../../apartados/contacto/contacto.html">Contáctanos</a></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>© 2025 Afisla Gestión. Todos los derechos reservados.</p>
+        <p class="footer-bottom-links">
+          <a href="../../../apartados/apartado_legal/aviso_legal.html">Aviso Legal</a> |
+          <a href="../../../apartados/apartado_legal/politica_privacidad.html">Política de Privacidad</a> |
+          <a href="../../../apartados/apartado_legal/politica_cookies.html">Política de Cookies</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../menu.js"></script>
+  <script src="../../../componentes/cookies.js" defer></script>
+  <script src="../../../index.js"></script>
+</body>
+</html>

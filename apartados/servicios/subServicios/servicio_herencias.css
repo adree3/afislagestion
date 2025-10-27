@@ -1,0 +1,221 @@
+.herencias-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .herencias-img-box {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .herencias-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .herencias-img {
+    width: 700px;
+    max-width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    transition: transform 0.5s ease;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+
+  .herencias-img-wrapper:hover .herencias-img {
+    transform: scale(1.05);
+  }
+
+  .img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(46,125,50,0.85);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
+
+  .herencias-servicios-box {
+    background: linear-gradient(135deg, #f3fbf3, #eaf5ef);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(46,125,50,0.10);
+    padding: 32px 26px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: fit-content;
+  }
+
+  .herencias-servicios-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(46,125,50,0.18);
+  }
+
+  .herencias-servicios-box h2 {
+    color: #2e7d32;
+    font-size: var(--fs-h5);
+    margin-bottom: var(--space-2);
+    letter-spacing: 1px;
+  }
+
+  .herencias-servicios-box ul {
+    padding: 0;
+  }
+
+  .herencias-servicios-box li {
+    margin-bottom: 14px;
+  }
+
+  .herencias-servicios-box li a {
+    position: relative;
+    display: inline-block;
+    color: #2e7d32;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: var(--fs-md);
+    transition: color 0.25s ease;
+  }
+
+  .herencias-servicios-box li a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.25s ease;
+  }
+
+  .herencias-servicios-box li a:hover {
+    color: #1b5e20;
+  }
+
+  .herencias-servicios-box li a:hover::after {
+    width: 100%;
+  }
+
+  .herencias-servicios-box a.active,
+  .herencias-servicios-box a[aria-current="page"] {
+    color: black;
+    text-decoration: none;
+  }
+
+  .herencias-content {
+    flex: 2 1 700px;
+    min-width: 400px;
+    padding: 0 10px 40px 10px;
+    line-height: 1.75;
+  }
+
+  .herencias-content h1 {
+    color: #2e7d32;
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-3);
+    border-bottom: 2px solid #2e7d32;
+    display: inline-block;
+    padding-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .herencias-content p {
+    font-size: var(--fs-md);
+    color: #3a3a3a;
+    margin-bottom: var(--space-3);
+    line-height: var(--lh-relax);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .herencias-content strong {
+    background: linear-gradient(90deg, rgba(46,125,50,0.12), rgba(46,125,50,0.05));
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #1b5e20;
+  }
+
+  .herencias-quote {
+    background: #f5fbf5;
+    border-left: 4px solid #2e7d32;
+    padding: 1rem 1.2rem;
+    margin: var(--space-4) 0;
+    font-style: italic;
+    color: #2e7d32;
+    font-size: var(--fs-md);
+    line-height: var(--lh-relax);
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .herencias-content ul {
+    list-style: none;
+    margin-top: var(--space-2);
+    padding-left: 28px;
+    font-size: var(--fs-md);
+    color: #444;
+  }
+
+  .herencias-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-relax);
+    position: relative;
+    padding-left: 26px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .herencias-content li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #2e7d32;
+    font-weight: bold;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .herencias-container { 
+      flex-direction: column; 
+      gap: 24px; 
+    }
+    .herencias-img-box { 
+      flex-direction: column; 
+      gap: 18px; 
+    }
+    .herencias-img { 
+      width: 100%; 
+      height: 220px; 
+    }
+    .herencias-content { 
+      max-width: 100%; 
+      min-width: 0; 
+    }
+    .herencias-servicios-box { 
+      max-width: 100%; 
+      min-width: 0; 
+    }
+  }

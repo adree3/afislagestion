@@ -1,6 +1,4 @@
-<style>
-  /* ==== HERO ==== */
-  #inicio-hero {
+ .inicio-hero {
     position: relative;
     min-height: 600px;
     display: flex;
@@ -223,54 +221,3 @@
       padding: 24px;
     }
   }
-</style>
-
-<section id="inicio-hero">
-  <div class="inicio-hero-contenido">
-    <h1>Bienvenido a Afisla Gestión</h1>
-    <p>
-      Tu gestoría de confianza en Medina del Campo.<br>
-      Trámites sencillos, atención cercana y soluciones profesionales.
-    </p>
-    <button onclick="loadSection('apartados/ubicacion.html')">
-      ¿Dónde estamos?
-    </button>
-  </div>
-</section>
-
-<div class="inicio-espaciado"></div>
-<div class="inicio-barra-verde"></div>
-
-<div class="inicio-titulos">
-  <div class="inicio-subtitulo">
-    Gestoría en Medina del Campo
-  </div>
-  <div class="inicio-servicios-titulo">
-    Nuestros Servicios
-  </div>
-</div>
-
-<section id="inicio-servicios">
-  <div class="inicio-servicios-row">
-    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_fiscal.html'); return false;">
-      <img src="imagenes/asesoria_fiscal1.jpg" alt="Asesoría Fiscal">
-      <h3>Asesoría Fiscal</h3>
-      <span>Leer más</span>
-    </a>
-    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_laboral.html'); return false;">
-      <img src="imagenes/Asesoria-laboral.jpg" alt="Asesoría Laboral">
-      <h3>Asesoría Laboral</h3>
-      <span>Leer más</span>
-    </a>
-    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_contable.html'); return false;">
-      <img src="imagenes/asesoria_contable.jpg" alt="Gestoría Administrativa">
-      <h3>Asesoría Contable</h3>
-      <span>Leer más</span>
-    </a>
-    <a href="#" class="card-servicio" onclick="loadSection('apartados/servicios/subServicios/servicio_herencias.html'); return false;">
-      <img src="imagenes/herencia_Testamentaria.jpg" alt="Gestión de Empresas">
-      <h3>Herencias y Testamentaria</h3>
-      <span>Leer más</span>
-    </a>
-  </div>
-</section>

@@ -1,31 +1,46 @@
-// Gestor menú lateral + overlay
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const sideMenu = document.getElementById('side-menu');
-  let overlay = document.querySelector('.menu-overlay');
+// ==============================
+// MENÚ LATERAL + TAPBAR MÓVIL/ESCRITORIO
+// ==============================
+console.log("Cargando menu.js");
+(function () {
+  console.log("initMenu ejecutado");
 
-  // Crear overlay si no existe
+  const menuToggle   = document.getElementById('menu-toggle');
+  const sideMenu     = document.getElementById('side-menu');
+  const overlayClass = 'menu-overlay';
+  const topBar       = document.querySelector('.top-bar');
+  const contactBlock = document.querySelector('.contact-block');
+  const tapbarContainer = document.querySelector('.tapbar-container');
+  let tapbarPlaceholder = document.createElement('div');
+  tapbarPlaceholder.style.display = "none";
+  tapbarPlaceholder.style.height = `${tapbarContainer?.offsetHeight || 0}px`;
+  tapbarContainer?.parentNode?.insertBefore(tapbarPlaceholder, tapbarContainer.nextSibling);
+  const mainContent  = document.querySelector('#main-content');
+
+  let overlay = document.querySelector(`.${overlayClass}`);
   if (!overlay) {
     overlay = document.createElement('div');
-    overlay.className = 'menu-overlay';
+    overlay.className = overlayClass;
     document.body.appendChild(overlay);
   }
 
-  function openMenu() {
-    overlay.classList.add('open');
-    sideMenu.classList.add('open');
+  const openMenu = () => {
+    if (!menuToggle || !sideMenu) return;
     document.body.classList.add('menu-open');
+    sideMenu.classList.add('open');
+    overlay.classList.add('open');
     menuToggle.classList.add('active');
-    menuToggle.setAttribute('aria-expanded','true');
-  }
+    menuToggle.setAttribute('aria-expanded', 'true');
+  };
 
-  function closeMenu() {
-    overlay.classList.remove('open');
-    sideMenu.classList.remove('open');
+  const closeMenu = () => {
+    if (!menuToggle || !sideMenu) return;
     document.body.classList.remove('menu-open');
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('open');
     menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded','false');
-  }
+    menuToggle.setAttribute('aria-expanded', 'false');
+  };
 
   if (menuToggle && sideMenu) {
     menuToggle.addEventListener('click', () => {
@@ -36,79 +51,91 @@
     overlay.addEventListener('click', closeMenu);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   }
-})();
-document.querySelectorAll('.side-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.side-menu a.active').forEach(a => a.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
 
-/* =============================
-   HEADER FIJO QUE SE ESCONDE/REAPARECE EN MÓVIL
-   ============================= */
-
-(function() {
   const header = document.querySelector('.contact-block');
   let lastScroll = 0;
   const scrollThreshold = 10;
 
-  if (!header) return;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll <= 0) {
-      header.classList.remove('hide-header');
-      return;
-    }
-
-    if (currentScroll > lastScroll && currentScroll - lastScroll > scrollThreshold) {
-      header.classList.add('hide-header');
-    }
-    else if (currentScroll < lastScroll) {
-      header.classList.remove('hide-header');
-    }
-
-    lastScroll = currentScroll;
-  });
-})();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const topBar = document.querySelector(".top-bar");
-  const contactBlock = document.querySelector(".contact-block");
-  const tapbar = document.querySelector(".tapbar-container");
+  if (header) {
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current <= 0) { header.classList.remove('hide-header'); return; }
+      if (current > lastScroll && current - lastScroll > scrollThreshold) header.classList.add('hide-header');
+      else if (current < lastScroll) header.classList.remove('hide-header');
+      lastScroll = current;
+    });
+  }
 
   const updateTapbarPosition = () => {
-    const topBarRect = topBar ? topBar.getBoundingClientRect() : { bottom: 0 };
-    const contactRect = contactBlock ? contactBlock.getBoundingClientRect() : { bottom: 0 };
+    if (!tapbarContainer) return;
+    const isMobile = window.innerWidth <= 768;
 
-    if ((topBarRect.bottom > 0) || (contactRect.bottom > 0)) {
-      tapbar.style.top = `${Math.max(topBarRect.bottom, contactRect.bottom)}px`;
+    if (isMobile) {
+      const topBarRect = topBar ? topBar.getBoundingClientRect() : { bottom: 0 };
+      const contactRect = contactBlock ? contactBlock.getBoundingClientRect() : { bottom: 0 };
+      tapbarContainer.style.position = "fixed";
+      tapbarContainer.style.top = `${Math.max(topBarRect.bottom, contactRect.bottom)}px`;
+      tapbarContainer.style.width = "100%";
+      tapbarContainer.style.zIndex = "1900";
+      tapbarContainer.style.boxShadow = "none";
+      if (tapbarPlaceholder) tapbarPlaceholder.style.display = "none";
     } else {
-      tapbar.style.top = "0";
+      const headerBottom = contactBlock ? contactBlock.getBoundingClientRect().bottom : 0;
+
+      if (headerBottom <= 0) {
+        tapbarContainer.style.position = "fixed";
+        tapbarContainer.style.top = "0";
+        tapbarContainer.style.left = "0";
+        tapbarContainer.style.width = "100%";
+        tapbarContainer.style.zIndex = "3000";
+        tapbarContainer.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+        if (tapbarPlaceholder) {
+          tapbarPlaceholder.style.display = "block";
+          tapbarPlaceholder.style.height = `${tapbarContainer.offsetHeight}px`;
+        }
+      } else {
+        tapbarContainer.style.position = "relative";
+        tapbarContainer.style.top = "";
+        if (tapbarPlaceholder) tapbarPlaceholder.style.display = "none";
+      }
     }
   };
 
   updateTapbarPosition();
   window.addEventListener("scroll", updateTapbarPosition);
   window.addEventListener("resize", updateTapbarPosition);
-});
 
-// Calcular padding del contenido en movil
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector(".contact-block");
-  const mainContent = document.querySelector("#main-content");
-
+  // --- Ajuste del padding del contenido principal en móvil ---
   const updatePadding = () => {
-    if (window.innerWidth <= 768 && header && mainContent) {
-      const headerHeight = header.offsetHeight;
-      mainContent.style.paddingTop = `${headerHeight + 20}px`;
+    if (!mainContent || !header) return;
+    if (window.innerWidth <= 768) {
+      mainContent.style.paddingTop = `${header.offsetHeight + 0}px`;
     } else {
-      mainContent.style.paddingTop = ""; // restablece en escritorio
+      mainContent.style.paddingTop = '';
     }
   };
-
   updatePadding();
-  window.addEventListener("resize", updatePadding);
-});
+  window.addEventListener('resize', updatePadding);
+
+  // ==============================
+  // MARCAR EN EL MENÚ LA PÁGINA ACTUAL
+  // ==============================
+  const navLinks = document.querySelectorAll(".tapbar a, .side-menu a");
+  const currentPage = window.location.pathname.split("/").pop().toLowerCase();
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href")?.toLowerCase();
+    if (!href) return;
+
+    if (href.includes(currentPage) && currentPage !== "") {
+      link.classList.add("active");
+    }
+    if (currentPage.startsWith("servicio_")) {
+      if (href.includes("servicios/servicios.html")) {
+        link.classList.add("active");
+      }
+    }
+  });
+
+  console.log("Menú inicializado correctamente");
+})();

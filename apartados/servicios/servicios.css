@@ -1,0 +1,141 @@
+.servicios-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 0 10px 0;
+    text-align: center;
+    background: none;
+}
+
+.servicios-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.servicios-container h1 {
+    font-size: var(--fs-h1);
+    color: #2e7d32;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: var(--space-3);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px solid #2e7d32;
+
+}
+.servicios-container h1:hover::after {
+    width: 120px;
+}
+
+.servicios-container p {
+    font-size: var(--fs-md);
+    color: #444;
+    margin: 0 auto var(--space-3);
+    line-height: var(--lh-relax);
+    max-width: 800px;
+}
+
+#card-servicios {
+    padding: 40px 0 0 0;
+}
+
+.card-servicios-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card-servicio {
+    background: #f0fafa;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    width: 320px;
+    max-width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-servicio:hover {
+    box-shadow: 0 8px 28px rgba(46,125,50,0.18);
+    transform: translateY(-4px);
+}
+
+/* Contenedor para el efecto de imagen */
+.card-servicio img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    transition: transform 0.5s ease;
+}
+
+.card-servicio:hover img {
+    transform: scale(1.05);
+}
+
+.card-servicio h3 {
+    margin-bottom: 14px;
+    font-size: var(--fs-h5);
+    color: #222;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.card-servicio h3::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    transition: width 0.3s ease;
+}
+
+.card-servicio:hover h3::after {
+    width: 80%;
+}
+
+.card-servicio p {
+    font-size: var(--fs-md);
+    line-height: var(--lh-base);
+}
+
+.card-servicio span {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 12px;
+    font-size: var(--fs-sm);
+}
+
+@media (max-width: 768px) {
+    .card-servicio {
+        width: 80%;
+    }
+    .inicio-servicios-row {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-servicio {
+        width: 90%;
+        padding: 24px;
+    }
+}
