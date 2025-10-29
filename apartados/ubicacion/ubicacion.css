@@ -124,14 +124,6 @@
     color: #2e7d32;
   }
 
-  .address-main {
-    font-weight: 600;
-  }
-
-  .address-sub {
-    font-size: var(--fs-sm);
-    color: #555;
-  }
 
   .map-link {
     text-align: center;
