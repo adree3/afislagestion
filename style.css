@@ -347,8 +347,7 @@ html, body {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 85%;
-  max-width: 360px;
+  width: 100%;
   height: 100%;
   background: #fff;
   box-shadow: -2px 0 12px rgba(0,0,0,.25);
@@ -356,16 +355,38 @@ html, body {
   z-index: 10010;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  overflow-y: auto;
 }
 .side-menu.open { 
   right: 0;
+}
+
+.menu-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10020;
+  padding: 0.5rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.menu-close:hover {
+  transform: scale(1.1);
+  color: #e0f2f1;
 }
 
 .menu-header {
   background-color: #2e7d32;
   padding: 1.5rem 0;
   text-align: center;
+  position: relative; 
+  padding: 1.5rem 0;
 }
 .menu-header img {
   width: 250px;
@@ -378,12 +399,12 @@ html, body {
 
 .side-menu ul li a {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0.9rem 1.2rem;
+  padding: 1rem 1.2rem;
   text-decoration: none;
   color: #333;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   transition: background 0.2s, color 0.2s;
 }
@@ -405,9 +426,10 @@ html, body {
 }
 
 .submenu li a {
-  padding-left: 2rem;
-  font-size: 0.95rem;
+  padding-left: 1.2rem;
+  font-size: 1rem;
   color: #444;
+  justify-content: center;
 }
 
 .submenu li a:hover,
@@ -592,7 +614,7 @@ html, body {
 /* === Bloque legal dentro del menú lateral === */
 .side-menu-legal {
   margin-top: auto;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   text-align: center;
   border-top: 1px solid #e0e0e0;
   font-size: 0.9rem;
@@ -643,7 +665,6 @@ html, body {
 
 @media (max-width:480px) {
   .logo img { max-width: 120px; }
-  .side-menu { width: 85%; }
 }
 
 /* Ocultar menú en desktop */
@@ -663,8 +684,12 @@ html, body {
     z-index: 2000;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     padding: 0.5rem 1rem;
+    transition: transform 0.3s ease-in-out;
   }
 
+  .contact-block.hide-header {
+    transform: translateY(-100%);
+  }
 
   .tapbar-container {
     position: fixed;
@@ -677,6 +702,8 @@ html, body {
 
   body.menu-open #main-content {
     overflow: hidden;
+    position: fixed; 
+    width: 100%;
   }
 }
 :root {

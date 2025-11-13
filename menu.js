@@ -7,6 +7,7 @@ console.log("Cargando menu.js");
 
   const menuToggle   = document.getElementById('menu-toggle');
   const sideMenu     = document.getElementById('side-menu');
+  const menuClose    = document.getElementById('menu-close');
   const overlayClass = 'menu-overlay';
   const topBar       = document.querySelector('.top-bar');
   const contactBlock = document.querySelector('.contact-block');
@@ -26,6 +27,8 @@ console.log("Cargando menu.js");
 
   const openMenu = () => {
     if (!menuToggle || !sideMenu) return;
+    const scrollY = window.scrollY;
+    document.body.style.top = `-${scrollY}px`;
     document.body.classList.add('menu-open');
     sideMenu.classList.add('open');
     overlay.classList.add('open');
@@ -35,7 +38,12 @@ console.log("Cargando menu.js");
 
   const closeMenu = () => {
     if (!menuToggle || !sideMenu) return;
+    const scrollY = document.body.style.top;
     document.body.classList.remove('menu-open');
+    if (scrollY) {
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
     sideMenu.classList.remove('open');
     overlay.classList.remove('open');
     menuToggle.classList.remove('active');
@@ -46,7 +54,9 @@ console.log("Cargando menu.js");
     menuToggle.addEventListener('click', () => {
       sideMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
-
+    if (menuClose) {
+      menuClose.addEventListener('click', closeMenu);
+    }
     sideMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     overlay.addEventListener('click', closeMenu);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
@@ -58,6 +68,10 @@ console.log("Cargando menu.js");
 
   if (header) {
     window.addEventListener('scroll', () => {
+      if (document.body.classList.contains('menu-open')) {
+        return;
+      }
+
       const current = window.scrollY;
       if (current <= 0) { header.classList.remove('hide-header'); return; }
       if (current > lastScroll && current - lastScroll > scrollThreshold) header.classList.add('hide-header');
